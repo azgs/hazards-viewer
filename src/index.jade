@@ -1,0 +1,74 @@
+!!!html
+html
+    head
+        title Arizona Hazards
+        
+        link(rel="stylesheet", href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css")        
+        link(rel="stylesheet", href="styles/base.css")
+        
+    body
+        .navbar.navbar-fixed-top
+            #nav.navbar-inner
+                .brand Arizona Hazards Viewer
+                .navbar-search.pull-right
+                    input(type="text", placeholder="Find Location").search-query
+                ul#menu.nav
+                    li.dropdown
+                        a(href="#", data-toggle="dropdown").dropdown-toggle Base Layers                            
+                            b.caret
+                        ul(role="menu", aria-labelledby="baseLayerDropdown").dropdown-menu
+                            li(role="presentation")
+                                a(role="menuitem", href="#") Bing Roads
+                            li(role="presentation")
+                                a(role="menuitem", href="#") Bing Imagery
+                            li(role="presentation")
+                                a(role="menuitem", href="#") MapBox Terrain
+                    li
+                        a(href="#") Print
+                    li
+                        a(href="#") Export
+                    li
+                        a(href="#") Help
+                    li
+                        a(href="#") Add Layer
+        #main-container.fill
+            .row-fluid.fill
+                #map.span9.fill
+                #sidebar.span3.fill
+                    ul#layer-list.unstyled
+                        li.navbar-inner
+                            input(type="checkbox")
+                            span Earth Fissures
+                            .pull-right
+                                span
+                                    a(href="#").icon-info-sign
+                                span
+                                    a(href="#")
+                                        span.icon-adjust
+                                    span.muted.small-text 100%
+                        li.navbar-inner
+                            input(type="checkbox")
+                            span Active Faults
+                            .pull-right
+                                span
+                                    a(href="#").icon-info-sign
+                                span
+                                    a(href="#")
+                                        span.icon-adjust
+                                    span.muted.small-text 100%
+                        li.navbar-inner
+                            input(type="checkbox")
+                            span Flood Potential
+                            .pull-right
+                                span
+                                    a(href="#").icon-info-sign
+                                span
+                                    a(href="#")
+                                        span.icon-adjust
+                                    span.muted.small-text 100%
+    
+        script(src="http://code.jquery.com/jquery-1.9.1.min.js")
+        script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")
+        script(src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js")
+        
+        script(src="scripts/map.js")

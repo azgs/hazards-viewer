@@ -1,0 +1,38 @@
+@import "../vendor/bootstrap/less/bootstrap";
+@import "../vendor/bootstrap/less/responsive";
+
+@gridGutterWidth: 0px;
+@gridGutterWidth1200: 0px;
+@gridGutterWidth768: 0px;
+
+html, body, .fill {
+  height: 100%;
+}
+
+#main-container {
+  padding-top: 40px; // Get out of the way of the navbar
+  // Some trick to get the padding included in the container height and rid yourself of scrollbars                 
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+// Sidebar business
+@li-height: 40px;
+@guessed-back-color: rgb(250, 250, 250);
+
+.small-text { font-size: 10px; }
+#sidebar { background-color: @guessed-back-color; }
+#layer-list {
+  li { // li eles get a lot from bootstrap .navbar-inner
+    height: @li-height;
+    line-height: @li-height;
+    border-radius: 0px;
+    > span, > div > span {
+      margin-left: 10px;
+      a:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
