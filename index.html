@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Arizona Hazards</title>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css">
     <link rel="stylesheet" href="styles/base.css">
   </head>
@@ -13,44 +14,44 @@
           <input type="text" placeholder="Find Location" class="search-query">
         </div>
         <ul id="menu" class="nav">
-          <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Base Layers                            <b class="caret"></b></a>
+          <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Base Layers<b class="caret"></b></a>
             <ul role="menu" aria-labelledby="baseLayerDropdown" class="dropdown-menu">
               <li role="presentation"><a role="menuitem" href="#">Bing Roads</a></li>
               <li role="presentation"><a role="menuitem" href="#">Bing Imagery</a></li>
               <li role="presentation"><a role="menuitem" href="#">MapBox Terrain</a></li>
             </ul>
           </li>
+          <li><a href="#">Add Layer</a></li>
           <li><a href="#">Print</a></li>
           <li><a href="#">Export</a></li>
           <li><a href="#">Help</a></li>
-          <li><a href="#">Add Layer</a></li>
         </ul>
       </div>
     </div>
     <div id="main-container" class="fill">
       <div class="row-fluid fill">
-        <div id="map" class="span9 fill"></div>
+        <div id="map" class="span9 fill">                               </div>
         <div id="sidebar" class="span3 fill">
-          <ul id="layer-list" class="unstyled">
-            <li class="navbar-inner">
-              <input type="checkbox"><span>Earth Fissures</span>
-              <div class="pull-right"><span><a href="#" class="icon-info-sign"></a></span><span><a href="#"><span class="icon-adjust"></span></a><span class="muted small-text">100%</span></span></div>
-            </li>
-            <li class="navbar-inner">
-              <input type="checkbox"><span>Active Faults</span>
-              <div class="pull-right"><span><a href="#" class="icon-info-sign"></a></span><span><a href="#"><span class="icon-adjust"></span></a><span class="muted small-text">100%</span></span></div>
-            </li>
-            <li class="navbar-inner">
-              <input type="checkbox"><span>Flood Potential</span>
-              <div class="pull-right"><span><a href="#" class="icon-info-sign"></a></span><span><a href="#"><span class="icon-adjust"></span></a><span class="muted small-text">100%</span></span></div>
-            </li>
-          </ul>
+          <ul id="layer-list" class="unstyled"></ul>
         </div>
       </div>
     </div>
+    <script id="model-template" type="text/html">       
+      <li class="navbar-inner">
+        <input id="<%= model.get('id') %>" type="checkbox"><span><%= model.get('layerName') %></span>
+        <div class="pull-right"><span><a href="#" class="icon-info-sign"></a></span><span><a href="#"><span class="icon-adjust"></span></a><span class="muted small-text">100%</span></span></div>
+      </li>
+    </script>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
-    <script src="scripts/map.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="scripts/leaflet-d3-layer.js">              </script>
+    <script src="underscore/underscore-min.js"></script>
+    <script src="backbone/backbone-min.js"></script>
+    <script src="scripts/root.js"></script>
+    <script src="scripts/model-layers.js"></script>
+    <script src="scripts/view-layers.js"></script>
+    <script src="scripts/app.js">       </script>
   </body>
 </html>
