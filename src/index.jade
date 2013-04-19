@@ -3,7 +3,8 @@ html(lang="en")
     head
         title Arizona Hazards
         meta(charset="utf-8")
-        link(rel="stylesheet", href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css")        
+        link(rel="stylesheet", href="styles/leaflet.css")
+        link(rel="stylesheet", href="styles/leaflet.draw.css")                
         link(rel="stylesheet", href="styles/base.css")
     body
         .navbar.navbar-fixed-top
@@ -46,10 +47,10 @@ html(lang="en")
                             a(href="#")
                                 span.icon-adjust
                             span.muted.small-text 100%
-
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
         script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")
-        script(src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js")
+        script(src="vendor/leaflet.js")
+        script(src="vendor/leaflet.draw.js")
         script(src="http://d3js.org/d3.v3.min.js")
         script(src="vendor/leaflet-d3-layer.js")
         script(src="vendor/underscore-min.js")
@@ -57,3 +58,4 @@ html(lang="en")
         script(src="scripts/model-layers.js")
         script(src="scripts/view-layers.js")
         script(src="scripts/app.js")
+        script(src="scripts/draw.js")         
