@@ -22,16 +22,18 @@ app.mapLayers = [
       styler: "fisstype"
   ,
     new app.LayerModel
-      geoserverUrl: "http://services.usgin.org/geoserver/ows"
+      geoserverUrl: "http://data.usgin.org/arizona/ows"
       typeName: "azgs:activefaults"
       id:"activeFaults"
       layerName:"Active Faults"
+      styler: "symbol"
   ,
     new app.LayerModel
       geoserverUrl: "http://services.usgin.org/geoserver/ows"
       typeName: "azgs:floodhazards"
       id:"floodPotential"
       layerName:"Flood Potential"
+      useWms: true
   ,
     new app.LayerModel
       geoserverUrl: "http://services.usgin.org/geoserver/ows"
