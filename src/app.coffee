@@ -29,8 +29,10 @@ app.mapLayers = [
       styler: "symbol"
   ,
     new app.LayerModel
-      geoserverUrl: "http://services.usgin.org/geoserver/ows"
-      typeName: "azgs:floodhazards"
+      # I haven't figured out Geoserver's TMS URLs yet, so this doesn't work yet
+      # tileUrl: "http://data.usgin.org/arizona/gwc/service/tms/1.0.0/azgs:floods@EPSG:900913@png/{z}/{x}/{y}.png"
+      geoserverUrl: "http://data.usgin.org/arizona/gwc/service/wms"
+      typeName: "azgs:floods"
       id:"floodPotential"
       layerName:"Flood Potential"
       useWms: true
