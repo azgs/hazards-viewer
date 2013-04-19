@@ -13,10 +13,11 @@ class app.LayerModel extends Backbone.Model
     @set "id",options.id
     @set "layerName", options.layerName
     @set "geoJSON_URL", options.geoJSON_URL
+    @set "styleAttribute", options.styler or ""
     @set "layer", @createLayer()
 
   createLayer: () ->
-    return new L.GeoJSON.d3.async @get("geoJSON_URL"), styler: {}
+    return new L.GeoJSON.d3.async @get("geoJSON_URL"), styler: @get("styleAttribute")
 
 class app.LayerCollection extends Backbone.Collection
   model:app.LayerModel

@@ -51,3 +51,24 @@ li {
     }
   }
 }
+
+// Styles for Earth Fissure layer
+
+.fissure() {
+  fill: none;
+  stroke-width: 2px;
+}
+
+path[styler="Reported, Unconfirmed Earth Fissure"] {
+  .fissure();
+  stroke: green;
+  stroke-dasharray: 10 4;
+}
+path[styler="Discontinuous Earth Fissure"] {
+  .fissure();
+  stroke: red;
+}
+path[styler="Continuous Earth Fissure"] {
+  .fissure();
+  stroke: black;
+}

@@ -16,7 +16,8 @@ app.map = new L.Map "map",
 app.fissuresLayer=new app.LayerModel
   id:"earthFissures"
   layerName:"Earth Fissures"
-  geoJSON_URL:"http://services.usgin.org/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=azgs:earthfissures&outputFormat=json"
+  geoJSON_URL:"http://data.usgin.org/arizona/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=azgs:earthfissures&outputFormat=json"
+  styler: "fisstype"
 
 app.faultsLayer=new app.LayerModel
   id:"activeFaults"
