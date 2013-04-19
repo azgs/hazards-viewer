@@ -13,28 +13,36 @@ app.map = new L.Map "map",
   layers: layer
   
 # Setup Layers
-app.fissuresLayer=new app.LayerModel
-  id:"earthFissures"
-  layerName:"Earth Fissures"
-  geoJSON_URL:"http://data.usgin.org/arizona/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=azgs:earthfissures&outputFormat=json"
-  styler: "fisstype"
 
-app.faultsLayer=new app.LayerModel
-  id:"activeFaults"
-  layerName:"Active Faults"
-  geoJSON_URL:"http://services.usgin.org/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=azgs:activefaults&outputFormat=json"
+app.mapLayers = [
+    new app.LayerModel
+      geoserverUrl: "http://data.usgin.org/arizona/ows"
+      typeName: "azgs:earthfissures"
+      id:"earthFissures"
+      layerName:"Earth Fissures"
+      styler: "fisstype"
+  ,
+    new app.LayerModel
+      geoserverUrl: "http://services.usgin.org/geoserver/ows"
+      typeName: "azgs:activefaults"
+      id:"activeFaults"
+      layerName:"Active Faults"
+  ,
+    new app.LayerModel
+      geoserverUrl: "http://services.usgin.org/geoserver/ows"
+      typeName: "azgs:floodhazards"
+      id:"floodPotential"
+      layerName:"Flood Potential"
+  ,
+    new app.LayerModel
+      geoserverUrl: "http://services.usgin.org/geoserver/ows"
+      typeName: "azgs:earthquakedata"
+      id:"earthquakes"
+      layerName:"Earthquakes"
+      styler: "magnitude"
+]
 
-app.floodsLayer=new app.LayerModel
-  id:"floodPotential"
-  layerName:"Flood Potential"
-  geoJSON_URL:"http://services.usgin.org/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=azgs:floodhazards&outputFormat=json"
-
-app.quakesLayer=new app.LayerModel
-  id:"earthquakes"
-  layerName:"Earthquakes"
-  geoJSON_URL:"http://services.usgin.org/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=azgs:earthquakedata&outputFormat=json"
-
-app.layerCollection=new app.LayerCollection [app.fissuresLayer,app.faultsLayer,app.floodsLayer,app.quakesLayer]
+app.layerCollection=new app.LayerCollection app.mapLayers
 
 # Render the sidebar
 app.sidebar = new app.SidebarView

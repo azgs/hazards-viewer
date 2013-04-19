@@ -4,25 +4,25 @@ if not root.app? then app = root.app = {} else app = root.app
 
 class app.SidebarView extends Backbone.View
   events: ->
-    "click input[type=checkbox]": "callback"
+    "click input[type=checkbox]": "toggleLayer"
 
   initialize: ->
     @template=_.template $("#model-template").html()
 
   render: ->
     el=@$el
-    template=@template
+    template = @template
     _.each @collection.models, (model) ->
       el.append template
         model:model
 
-  callback:(e) ->
-    element=$(e.currentTarget).attr "id"
-    item=@collection.get element
-    id=item.get "id"
-    layer="#"+id.toString()
-    
+  toggleLayer:(e) ->
+    element = $(e.currentTarget).attr "id"
+    item = @collection.get element
+    id = item.get "id"
+    layer = "##{id.toString()}"
+
     if $(layer).is(":checked")
-      app.map.addLayer(item.get("layer"))
+      app.map.addLayer(item.get("defaultLayer"))
     else
-      app.map.removeLayer(item.get("layer"))
+      app.map.removeLayer(item.get("defaultLayer"))

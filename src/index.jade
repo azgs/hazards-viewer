@@ -36,7 +36,8 @@ html(lang="en")
                 #map.span9.fill                                
                 #sidebar.span3.fill
                     ul#layer-list.unstyled
-        script(id="model-template",type="text/html")        
+
+        script(id="model-template",type="text/html")
                 li.navbar-inner
                     input(id!="<%= model.get('id') %>", type="checkbox")
                     span <%= model.get('layerName') %>
@@ -47,6 +48,7 @@ html(lang="en")
                             a(href="#")
                                 span.icon-adjust
                             span.muted.small-text 100%
+
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
         script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")
         script(src="vendor/leaflet/leaflet.js")

@@ -10,15 +10,25 @@ class app.LayerModel extends Backbone.Model
     layer:""
     
   initialize: (options) ->
-    @set "id",options.id
+    @set "id", options.id
+    @set "typeName", options.typeName
     @set "layerName", options.layerName
-    @set "geoJSON_URL", options.geoJSON_URL
+    @set "geoserverUrl", options.geoserverUrl
     @set "styleAttribute", options.styler or ""
-    @set "layer", @createLayer()
+    @set "d3Layer", @createD3Layer()
+    @set "wmsLayer", @createWmsLayer()
+    @set "defaultLayer", if options.useWms then @get("wmsLayer") else @get("d3Layer")
 
-  createLayer: () ->
-    return new L.GeoJSON.d3.async @get("geoJSON_URL"), styler: @get("styleAttribute")
+  createD3Layer: () ->
+    url = "#{@get("geoserverUrl")}?service=WFS&version=1.0.0&request=GetFeature&typeName=#{@get("typeName")}&outputFormat=json"
+    return new L.GeoJSON.d3.async url, styler: @get("styleAttribute")
+
+  createWmsLayer: () ->
+    url = "#{@get("geoserverUrl")}"
+    return new L.TileLayer.WMS url,
+      layers: @get "typeName"
+      format: "image/png"
+      transparent: true
 
 class app.LayerCollection extends Backbone.Collection
   model:app.LayerModel
-

@@ -53,10 +53,13 @@ li {
 }
 
 // Styles for Earth Fissure layer
-
 .fissure() {
   fill: none;
   stroke-width: 2px;
+  &:hover {
+    stroke: yellow;
+    cursor: pointer;
+  }
 }
 
 path[styler="Reported, Unconfirmed Earth Fissure"] {
@@ -71,4 +74,23 @@ path[styler="Discontinuous Earth Fissure"] {
 path[styler="Continuous Earth Fissure"] {
   .fissure();
   stroke: black;
+}
+
+// Styles for Earthquake Layer
+.quake() {
+  fill: orange;
+  fill-opacity: 0.6;
+  stroke-width: 2px;
+  stroke: darkorange;
+  &:hover {
+    fill: yellow;
+    stroke: yellow;
+    cursor: pointer;
+  }
+}
+
+#http---services-usgin-org-geoserver-ows-service-WFS-version-1-0-0-request-GetFeature-typeName-azgs-earthquakedata-outputFormat-json {
+  path {
+    .quake();
+  }
 }
