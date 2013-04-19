@@ -13,7 +13,6 @@ app.map = new L.Map "map",
   layers: layer
   
 # Setup Layers
-
 app.mapLayers = [
     new app.LayerModel
       geoserverUrl: "http://data.usgin.org/arizona/ows"
@@ -42,7 +41,7 @@ app.mapLayers = [
       styler: "magnitude"
 ]
 
-app.layerCollection=new app.LayerCollection app.mapLayers
+app.layerCollection = new app.LayerCollection app.mapLayers
 
 # Render the sidebar
 app.sidebar = new app.SidebarView
