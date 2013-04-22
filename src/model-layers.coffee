@@ -11,20 +11,37 @@ class app.LayerModel extends Backbone.Model
     
   initialize: (options) ->
     @set "id", options.id
-    @set "typeName", options.typeName
     @set "layerName", options.layerName
+
     @set "geoserverUrl", options.geoserverUrl
+    @set "typeName", options.typeName
     @set "styleAttribute", options.styler or ""
-    @set "d3Layer", @createD3Layer()
+
     @set "wmsLayer", @createWmsLayer()
-    @set "defaultLayer", if options.useWms then @get("wmsLayer") else @get("d3Layer")
-    if options.tileUrl?
+
+    if options.useWms
+      @set "defaultLayer", @createWmsLayer()
+    else if options.useTms
       @set "tileUrl", options.tileUrl
       @set "defaultLayer", @createTileLayer()
+    else
+      @createD3Layer()
 
   createD3Layer: () ->
-    url = "#{@get("geoserverUrl")}?service=WFS&version=1.0.0&request=GetFeature&typeName=#{@get("typeName")}&outputFormat=json"
-    return new L.GeoJSON.d3.async url, styler: @get("styleAttribute")
+    callbackName = "#{@get("id")}Data"
+    styler = @get "styleAttribute"
+    jsonpUrl = "#{@get("geoserverUrl")}?service=WFS&version=1.0.0&request=GetFeature&typeName=#{@get("typeName")}&outputFormat=text/javascript&format_options=callback:#{callbackName}"
+    thisLayer = @
+
+    # Define the function that'll run when the JSONP comes back. This should generate the d3 layer
+    root[callbackName] = (data) ->
+      l = new L.GeoJSON.d3 data,
+        styler: styler
+      thisLayer.set "defaultLayer", l
+
+    # Make the JSONP request
+    d3.text jsonpUrl, "text/javascript", (response) ->
+      $("body").append("<script>#{response}</script>")
 
   createWmsLayer: () ->
     url = "#{@get("geoserverUrl")}"
