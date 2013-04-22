@@ -26,3 +26,28 @@ class app.SidebarView extends Backbone.View
       app.map.addLayer(item.get("defaultLayer"))
     else
       app.map.removeLayer(item.get("defaultLayer"))
+
+class app.baseMapView extends Backbone.View
+  events: ->
+    "click": "switchBaseMap"
+    
+  initialize: ->
+    @template=_.template $("#basemap-template").html()
+    _.each @collection.models, (model) ->
+      if model.get "default"
+        app.map.addLayer(model.get("baseLayer"))
+
+  render: ->
+    el=@$el
+    template = @template
+    _.each @collection.models, (model) ->
+      el.append template
+        model:model
+    
+  switchBaseMap:(e) ->
+    _.each @collection.models, (model) ->
+      app.map.removeLayer(model.get("baseLayer"))
+
+    element = $(e.target).attr "id"
+    item = @collection.get element
+    app.map.addLayer(item.get("baseLayer"))      
