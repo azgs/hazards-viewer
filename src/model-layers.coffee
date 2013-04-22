@@ -30,21 +30,20 @@ class app.LayerModel extends Backbone.Model
   createD3Layer: () ->
     callbackName = "#{@get("id")}Data"
     styler = @get "styleAttribute"
-    jsonpUrl = "#{@get("geoserverUrl")}?service=WFS&version=1.0.0&request=GetFeature&typeName=#{@get("typeName")}&outputFormat=text/javascript&format_options=callback:#{callbackName}"
+    jsonpUrl = "#{@get("geoserverUrl")}?service=WFS&version=1.0.0&request=GetFeature&typeName=#{@get("typeName")}&outputFormat=text/javascript&format_options=callback:app.#{callbackName}"
     thisLayer = @
 
     # Define the function that'll run when the JSONP comes back. This should generate the d3 layer
-    root[callbackName] = (data) ->
+    app[callbackName] = (data) ->
       l = new L.GeoJSON.d3 data,
         styler: styler
       thisLayer.set "defaultLayer", l
 
     # Make the JSONP request
-    d3.text jsonpUrl, "text/javascript", (response) ->
-      # IE Hack
-      if response.responseText?
-        response = response.responseText
-      $("body").append("<script>#{response}</script>")
+    $.ajax
+      url: jsonpUrl
+      dataType: "jsonp"
+
 
   createWmsLayer: () ->
     url = "#{@get("geoserverUrl")}"
