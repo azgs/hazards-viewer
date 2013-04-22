@@ -4,3 +4,7 @@ styles/
 index.html
 .idea/
 codekit-config.json
+src/*.js
+src/*.html
+src/*.css
+node_modules

@@ -1,0 +1,12 @@
+{
+    "name": "az-hazard-viewer",
+    "author": "Adrian Sonnenschien and Ryan Clark",
+    "dependencies": {
+        "coffee-script": "1.6.2",
+        "jade": "0.29.0",
+        "less": "1.3.3",
+    },
+    "scripts": {
+        "install": "./install.js"
+    }
+}
