@@ -16,13 +16,7 @@ html(lang="en")
                     li.dropdown
                         a(href="#", data-toggle="dropdown").dropdown-toggle Base Layers
                             b.caret
-                        ul(role="menu", aria-labelledby="baseLayerDropdown").dropdown-menu
-                            li(role="presentation")
-                                a(role="menuitem", href="#") Bing Roads
-                            li(role="presentation")
-                                a(role="menuitem", href="#") Bing Imagery
-                            li(role="presentation")
-                                a(role="menuitem", href="#") MapBox Terrain
+                        ul(id="dropmenu", role="menu", aria-labelledby="baseLayerDropdown").dropdown-menu
                     li
                         a(href="#") Add Layer
                     li
@@ -36,6 +30,10 @@ html(lang="en")
                 #map.span9.fill                                
                 #sidebar.span3.fill
                     ul#layer-list.unstyled
+
+        script(id="basemap-template",type="text/html")
+                li(role="presentation")
+                    a(role="menuitem",id!="<%= model.get('id') %>",href="#")<%= model.get('mapName') %>
 
         script(id="model-template",type="text/html")
                 li.navbar-inner
