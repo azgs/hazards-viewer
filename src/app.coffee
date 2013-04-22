@@ -3,15 +3,12 @@ root = @
 if not root.app? then app = root.app = {} else app = root.app
 
 #Initialize the map
-layer = new L.BingLayer "AkfIUAQ4-XFxEC6NQsNO1aDX9iMCXrKYeE5Fqd8Y9ie0zB1MJUM_Ag_S1XUjEIuG",
-  type: "Road"
 center = new L.LatLng 33.610044573695625, -111.50024414062501
 zoom = 9
 
 app.map = new L.Map "map",
   center: center
   zoom: zoom
-  layers: layer
   
 # Setup Layers
 app.mapLayers = [
@@ -46,11 +43,40 @@ app.mapLayers = [
       styler: "magnitude"
 ]
 
+app.baseMaps = [
+    new app.baseMapModel
+      id:"bingRoads"
+      mapName:"Bing Maps Roads"
+      apiKey:"AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
+      type:"Road"
+      useBing:true
+  ,  
+    new app.baseMapModel
+      id:"bingAerial"
+      mapName:"Bing Maps Aerial"
+      apiKey:"AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
+      type:"Aerial"
+      useBing:true
+  ,
+    new app.baseMapModel
+      id:"bingAerialLabels"
+      mapName:"Bing Maps Aerial w/ Labels"
+      apiKey:"AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
+      type:"AerialWithLabels"
+      useBing:true
+      default:true           
+]
+
 app.layerCollection = new app.LayerCollection app.mapLayers
+app.baseMapCollection = new app.BaseMapCollection app.baseMaps
 
 # Render the sidebar
 app.sidebar = new app.SidebarView
   el:$("#layer-list").first()
   collection: app.layerCollection
-
 app.sidebar.render()
+
+app.baseLayers = new app.baseMapView
+  el:$("#dropmenu").first()
+  collection: app.baseMapCollection
+app.baseLayers.render()  

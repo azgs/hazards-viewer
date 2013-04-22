@@ -3,8 +3,8 @@ html(lang="en")
     head
         title Arizona Hazards
         meta(charset="utf-8")
-        link(rel="stylesheet", href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css")
-        link(rel="stylesheet", href="vendor/leaflet-draw/leaflet.draw.css")
+        link(rel="stylesheet", href="vendor/leaflet/leaflet.css")
+        link(rel="stylesheet", href="vendor/leaflet/leaflet.draw.css")                
         link(rel="stylesheet", href="styles/base.css")
     body
         .navbar.navbar-fixed-top
@@ -30,11 +30,9 @@ html(lang="en")
                 #map.span9.fill                                
                 #sidebar.span3.fill
                     ul#layer-list.unstyled
-
         script(id="basemap-template",type="text/html")
                 li(role="presentation")
-                    a(role="menuitem",id!="<%= model.get('id') %>",href="#")<%= model.get('mapName') %>
-
+                    a(role="menuitem",id!="<%= model.get('id') %>",href="#")<%= model.get('mapName') %>        
         script(id="model-template",type="text/html")
                 li.navbar-inner
                     input(id!="<%= model.get('id') %>", type="checkbox")
@@ -49,11 +47,11 @@ html(lang="en")
 
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
         script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")
-        script(src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js")
-        script(src="vendor/leaflet-draw/leaflet.draw.js")
+        script(src="vendor/leaflet/leaflet.js")
+        script(src="vendor/leaflet/leaflet.bing.js")
+        script(src="vendor/leaflet/leaflet.draw.js")
         script(src="http://d3js.org/d3.v3.min.js")
         script(src="vendor/leaflet-d3-layer.js")
-        script(src="vendor/Leaflet.Bing.js")
         script(src="vendor/underscore-min.js")
         script(src="vendor/backbone-min.js")
         script(src="scripts/model-layers.js")

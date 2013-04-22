@@ -53,5 +53,35 @@ class app.LayerModel extends Backbone.Model
   createTileLayer: () ->
     return new L.TileLayer @get("tileUrl")
 
+class app.baseMapModel extends Backbone.Model
+  defaults:
+    id:""
+    mapName:""
+    apiKey:""
+    isActive:""
+  
+  initialize: (options) ->
+    @set "id", options.id
+    @set "mapName", options.mapName
+    @set "apiKey", options.apiKey
+    @set "defaultBaseLayer", @defaultBaseLayer()
+    @set "createBaseLayer", @createBaseLayer()
+    @set "baseLayer", if options.default then @get "defaultBaseLayer" else @get "createBaseLayer"
+    
+  defaultBaseLayer: () ->
+    url = @get "apiKey"
+    if @get "default"
+      return new L.BingLayer url, 
+        type:@get "type"    
+
+  createBaseLayer: () ->
+    url = @get "apiKey"
+    if @get "useBing"
+      return new L.BingLayer url, 
+        type:@get "type"
+
 class app.LayerCollection extends Backbone.Collection
   model:app.LayerModel
+  
+class app.BaseMapCollection extends Backbone.Collection
+  model:app.baseMapModel
