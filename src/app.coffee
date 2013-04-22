@@ -79,4 +79,18 @@ app.sidebar.render()
 app.baseLayers = new app.baseMapView
   el:$("#dropmenu").first()
   collection: app.baseMapCollection
-app.baseLayers.render()  
+app.baseLayers.render()
+
+# Setup the Leaflet Draw extension
+app.drawControl = new L.Control.Draw
+  position: "topleft"
+  rectangle:
+    shapeOptions:
+      color:"#33cc33"
+      weight:5
+  polygon: null
+  polyline: null
+  circle: null
+  marker: null
+
+app.map.addControl app.drawControl
