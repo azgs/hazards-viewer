@@ -41,6 +41,9 @@ class app.LayerModel extends Backbone.Model
 
     # Make the JSONP request
     d3.text jsonpUrl, "text/javascript", (response) ->
+      # IE Hack
+      if response.responseText?
+        response = response.responseText
       $("body").append("<script>#{response}</script>")
 
   createWmsLayer: () ->
