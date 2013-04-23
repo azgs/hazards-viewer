@@ -50,6 +50,7 @@ app.baseMaps = [
       apiKey:"AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
       type:"Road"
       useBing:true
+      active:true      
   ,  
     new app.baseMapModel
       id:"bingAerial"
@@ -63,8 +64,7 @@ app.baseMaps = [
       mapName:"Bing Maps Aerial w/ Labels"
       apiKey:"AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
       type:"AerialWithLabels"
-      useBing:true
-      default:true           
+      useBing:true           
 ]
 
 app.layerCollection = new app.LayerCollection app.mapLayers

@@ -35,7 +35,7 @@ class app.baseMapView extends Backbone.View
   initialize: ->
     @template=_.template $("#basemap-template").html()
     _.each @collection.models, (model) ->
-      if model.get "default"
+      if model.get "active"
         app.map.addLayer(model.get("baseLayer"))
 
   render: ->
@@ -52,4 +52,4 @@ class app.baseMapView extends Backbone.View
 
     element = $(e.target).attr "id"
     item = @collection.get element
-    app.map.addLayer(item.get("baseLayer"))      
+    app.map.addLayer(item.get("baseLayer"))
