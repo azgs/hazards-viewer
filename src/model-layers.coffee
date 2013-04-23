@@ -12,6 +12,8 @@ class app.LayerModel extends Backbone.Model
   initialize: (options) ->
     @set "id", options.id
     @set "layerName", options.layerName
+    if options.layerId?
+      @set "layerId", options.layerId
 
     @set "geoserverUrl", options.geoserverUrl
     @set "typeName", options.typeName
@@ -24,19 +26,38 @@ class app.LayerModel extends Backbone.Model
     else if options.useTms
       @set "tileUrl", options.tileUrl
       @set "defaultLayer", @createTileLayer()
+    else if options.straightGeoJson
+      @set "defaultLayer", @createGeoJSONLayer(options.layerOptions or null)
     else
       @createD3Layer()
+
+  createGeoJSONLayer: (layerOptions) ->
+    thisLayer = @
+    callbackName = "#{@get("id")}Data"
+    jsonpUrl = "#{@get("geoserverUrl")}?service=WFS&version=1.0.0&request=GetFeature&typeName=#{@get("typeName")}&outputFormat=text/javascript&format_options=callback:app.#{callbackName}"
+
+    app[callbackName] = (data) ->
+      l = new L.GeoJSON data, layerOptions
+      thisLayer.set "defaultLayer", l
+
+    $.ajax
+      url: jsonpUrl
+      dataType: "jsonp"
 
   createD3Layer: () ->
     callbackName = "#{@get("id")}Data"
     styler = @get "styleAttribute"
     jsonpUrl = "#{@get("geoserverUrl")}?service=WFS&version=1.0.0&request=GetFeature&typeName=#{@get("typeName")}&outputFormat=text/javascript&format_options=callback:app.#{callbackName}"
     thisLayer = @
+    layerId = @get("layerId")
 
     # Define the function that'll run when the JSONP comes back. This should generate the d3 layer
     app[callbackName] = (data) ->
-      l = new L.GeoJSON.d3 data,
+      options =
         styler: styler
+      options.layerId = layerId if layerId?
+
+      l = new L.GeoJSON.d3 data, options
       thisLayer.set "defaultLayer", l
 
     # Make the JSONP request

@@ -58,7 +58,10 @@ li {
   stroke-width: 2px;
   &:hover {
     stroke: yellow;
+    stroke-width: 4px;
     cursor: pointer;
+    transform: rotate(30);
+    transition: all .25s ease-in-out;
   }
 }
 
@@ -76,7 +79,7 @@ path[styler="Continuous Earth Fissure"] {
   stroke: black;
 }
 
-// Styles for Earthquake Layer
+/* Styles for Earthquake Layer
 .quake() {
   fill: orange;
   fill-opacity: 0.6;
@@ -89,11 +92,12 @@ path[styler="Continuous Earth Fissure"] {
   }
 }
 
-#http---services-usgin-org-geoserver-ows-service-WFS-version-1-0-0-request-GetFeature-typeName-azgs-earthquakedata-outputFormat-json {
+#d3Earthquakes {
   path {
     .quake();
   }
 }
+*/
 
 // Styles for Active Faults Layer
 path[styler="2.13.2"] {

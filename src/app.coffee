@@ -38,8 +38,46 @@ app.mapLayers = [
     new app.LayerModel
       geoserverUrl: "http://data.usgin.org/arizona/ows"
       typeName: "azgs:earthquakedata"
-      id:"earthquakes"
-      layerName:"Earthquakes"
+      id: "earthquakes"
+      straightGeoJson: true
+      layerOptions:
+        pointToLayer: (feature, latlng) ->
+          markerOptions =
+            fillOpacity: 0.2
+            hands: "feet"
+
+          # Try to make a float from the magnitude
+          if isNaN parseFloat feature.properties.magnitude
+            switch feature.properties.magnitude
+              when "I" then mag = 1
+              when "II" then mag = 2
+              when "III" then mag = 3
+              when "IV" then mag = 4
+              when "V" then mag = 5
+              when "VI" then mag = 6
+              when "VII" then mag = 7
+
+          else
+            mag = parseFloat feature.properties.magnitude
+
+          if 0 < mag <= 1 then color = "#FFFF00" # Dead yellow, hsl: 60,100,100
+          else if 1 < mag <= 2 then color = "#FFDD00"
+          else if 2 < mag <= 3 then color = "#FFBF00"
+          else if 3 < mag <= 4 then color = "#FF9D00"
+          else if 4 < mag <= 5 then color = "#FF8000"
+          else if 5 < mag <= 6 then color = "#FF5E00"
+          else if 6 < mag <= 7 then color = "#FF4000"
+          else if 7 < mag <= 8 then color = "#FF0000" # Dead red, hsl: 0, 100, 100
+
+          markerOptions.radius = mag * 5
+          markerOptions.color = markerOptions.fillColor = color
+
+          return L.circleMarker latlng, markerOptions
+
+        onEachFeature: (feature, layer) ->
+          layer.bindPopup feature.properties.magnitude
+
+      layerName: "Earthquakes"
       styler: "magnitude"
 ]
 
