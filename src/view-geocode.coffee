@@ -32,4 +32,5 @@ class app.GeocodeView extends Backbone.View
             coordinates: [ point.coordinates[1], point.coordinates[0] ]
         }
 
+        l.clearLayers()
         l.addData geojson
