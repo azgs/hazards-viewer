@@ -94,3 +94,9 @@ app.drawControl = new L.Control.Draw
   marker: null
 
 app.map.addControl app.drawControl
+
+# Setup the Geocoder
+app.geocodeView = new app.GeocodeView
+  model: new app.GeocodeModel
+    apiKey: "AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
+  el: $("#geocoder")

@@ -15,6 +15,7 @@ class app.SidebarView extends Backbone.View
     _.each @collection.models, (model) ->
       el.append template
         model:model
+    return @
 
   toggleLayer:(e) ->
     element = $(e.currentTarget).attr "id"
@@ -43,7 +44,8 @@ class app.baseMapView extends Backbone.View
     _.each @collection.models, (model) ->
       el.append template
         model:model
-    
+    return @
+
   switchBaseMap:(e) ->
     _.each @collection.models, (model) ->
       app.map.removeLayer(model.get("baseLayer"))

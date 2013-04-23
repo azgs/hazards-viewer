@@ -2,6 +2,7 @@
 scripts/
 styles/
 index.html
+server.js
 .idea/
 codekit-config.json
 src/*.js

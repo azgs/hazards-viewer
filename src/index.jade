@@ -10,7 +10,7 @@ html(lang="en")
         .navbar.navbar-fixed-top
             #nav.navbar-inner
                 .brand Arizona Hazards Viewer
-                .navbar-search.pull-right
+                #geocoder.navbar-search.pull-right
                     input(type="text", placeholder="Find Location").search-query
                 ul#menu.nav
                     li.dropdown
@@ -31,20 +31,19 @@ html(lang="en")
                 #sidebar.span3.fill
                     ul#layer-list.unstyled
         script(id="basemap-template",type="text/html")
-                li(role="presentation")
-                    a(role="menuitem",id!="<%= model.get('id') %>",href="#")<%= model.get('mapName') %>        
+            li(role="presentation")
+                a(role="menuitem",id!="<%= model.get('id') %>",href="#")<%= model.get('mapName') %>
         script(id="model-template",type="text/html")
-                li.navbar-inner
-                    input(id!="<%= model.get('id') %>", type="checkbox")
-                    span <%= model.get('layerName') %>
-                    .pull-right
-                        span
-                            a(href="#").icon-info-sign
-                        span
-                            a(href="#")
-                                span.icon-adjust
-                            span.muted.small-text 100%
-
+            li.navbar-inner
+                input(id!="<%= model.get('id') %>", type="checkbox")
+                span <%= model.get('layerName') %>
+                .pull-right
+                    span
+                        a(href="#").icon-info-sign
+                    span
+                        a(href="#")
+                            span.icon-adjust
+                        span.muted.small-text 100%
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
         script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")
         script(src="vendor/leaflet/leaflet.js")
@@ -56,4 +55,6 @@ html(lang="en")
         script(src="vendor/backbone-min.js")
         script(src="scripts/model-layers.js")
         script(src="scripts/view-layers.js")
+        script(src="scripts/model-geocode.js")
+        script(src="scripts/view-geocode.js")
         script(src="scripts/app.js")
