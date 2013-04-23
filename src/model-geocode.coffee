@@ -6,7 +6,7 @@ class app.GeocodeModel extends Backbone.Model
   initialize: (options) ->
     @set "key", options.apiKey or null
     @set "baseUrl", "http://dev.virtualearth.net/REST/v1/Locations/"
-    @set "proxy", options.proxy or "/proxy"
+    @set "proxy", options.proxy or "proxy"
 
   # Utilize Bing Geocoding
   getLocation: (query, callback) ->
