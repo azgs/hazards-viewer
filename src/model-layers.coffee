@@ -47,13 +47,17 @@ class app.LayerModel extends Backbone.Model
 
   createWmsLayer: () ->
     url = "#{@get("geoserverUrl")}"
-    return new L.TileLayer.WMS url,
+    layer = new L.TileLayer.WMS url,
       layers: @get "typeName"
       format: "image/png"
       transparent: true
+    layer.setZIndex 4
+    return layer
 
   createTileLayer: () ->
-    return new L.TileLayer @get("tileUrl")
+    layer = new L.TileLayer @get("tileUrl")
+    layer.setZIndex 4
+    return layer
 
 class app.baseMapModel extends Backbone.Model
   defaults:

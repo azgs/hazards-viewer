@@ -17,6 +17,7 @@ class app.GeocodeModel extends Backbone.Model
         # Find the coordinates
         bbox = data.resourceSets[0].resources[0].bbox
         point = data.resourceSets[0].resources[0].point
-        callback bbox, point
+        name = data.resourceSets[0].resources[0].name
+        callback bbox, point, name
       error: (err) ->
         console.log err
