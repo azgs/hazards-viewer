@@ -2,113 +2,68 @@
 root = @
 if not root.app? then app = root.app = {} else app = root.app
 
-class app.LayerModel extends Backbone.Model
+app.models = {}
+app.data = {}
+
+class app.models.LayerModel extends Backbone.Model
   defaults:
-    id:""
-    layerName:""
-    geoJSON_URL:""
-    layer:""
-    
+    id: "layer-#{Math.floor(Math.random() * 101)}"
+    layerName: "No Name"
+    description: "No Description"
+    serviceUrl: null
+
   initialize: (options) ->
-    @set "id", options.id
-    @set "layerName", options.layerName
-    if options.layerId?
-      @set "layerId", options.layerId
+    @set "layer", @createLayer(options)
 
-    @set "geoserverUrl", options.geoserverUrl
-    @set "typeName", options.typeName
-    @set "styleAttribute", options.styler or ""
+  createLayer: (options) ->
+    return null
 
-    @set "wmsLayer", @createWmsLayer()
+class app.models.WmsLayer extends app.models.LayerModel
+  createLayer: (options) ->
+    if options.serviceUrl? and options.typeName?
+      layer = new L.TileLayer.WMS options.serviceUrl,
+        layers: options.typeName
+        format: options.format or "image/png"
+        transparent: options.transparent or true
+      layer.setZIndex 4
+      return layer
 
-    if options.useWms
-      @set "defaultLayer", @createWmsLayer()
-    else if options.useTms
-      @set "tileUrl", options.tileUrl
-      @set "defaultLayer", @createTileLayer()
-    else if options.straightGeoJson
-      @set "defaultLayer", @createGeoJSONLayer(options.layerOptions or null)
+    console.log "Error creating #{@get("layerName")}:\n\tMake sure to specify serviceUrl and typeName when creating a WmsLayer."
+    return
+
+class app.models.GeoJSONLayer extends app.models.LayerModel
+  createLayer: (options) ->
+    if options.serviceUrl? and options.typeName? and options.layerOptions?
+      callbackName = "#{@id}Data"
+      jsonp = options.serviceUrl
+      jsonp += "?service=WFS&version=1.0.0&request=GetFeature&outputFormat=text/javascript"
+      jsonp += "&typeName=#{options.typeName}"
+      jsonp += "&format_options=callback:app.data.#{callbackName}"
+
+      thisModel = @
+
+      app.data[callbackName] = (data) ->
+        layerType = if options.useD3 then L.GeoJSON.d3 else L.GeoJSON
+        layer = new layerType data, options.layerOptions
+        thisModel.set "layer", layer
+
+      $.ajax
+        url: jsonp
+        dataType: "jsonp"
+
+      return
+
     else
-      @createD3Layer()
+      console.log "Error creating #{@get("layerName")}:\n\tMake sure to specify serviceUrl, typeName and layerOptions when creating a GeoJSONLayer."
+      return
 
-  createGeoJSONLayer: (layerOptions) ->
-    thisLayer = @
-    callbackName = "#{@get("id")}Data"
-    jsonpUrl = "#{@get("geoserverUrl")}?service=WFS&version=1.0.0&request=GetFeature&typeName=#{@get("typeName")}&outputFormat=text/javascript&format_options=callback:app.#{callbackName}"
+class app.models.BingLayer extends app.models.LayerModel
+  createLayer: (options) ->
+    if options.apiKey? and options.bingType?
+      layer = new L.BingLayer options.apiKey,
+        type: options.bingType
+      return layer
+    return
 
-    app[callbackName] = (data) ->
-      l = new L.GeoJSON data, layerOptions
-      thisLayer.set "defaultLayer", l
-
-    $.ajax
-      url: jsonpUrl
-      dataType: "jsonp"
-
-  createD3Layer: () ->
-    callbackName = "#{@get("id")}Data"
-    styler = @get "styleAttribute"
-    jsonpUrl = "#{@get("geoserverUrl")}?service=WFS&version=1.0.0&request=GetFeature&typeName=#{@get("typeName")}&outputFormat=text/javascript&format_options=callback:app.#{callbackName}"
-    thisLayer = @
-    layerId = @get("layerId")
-
-    # Define the function that'll run when the JSONP comes back. This should generate the d3 layer
-    app[callbackName] = (data) ->
-      options =
-        styler: styler
-      options.layerId = layerId if layerId?
-
-      l = new L.GeoJSON.d3 data, options
-      thisLayer.set "defaultLayer", l
-
-    # Make the JSONP request
-    $.ajax
-      url: jsonpUrl
-      dataType: "jsonp"
-
-
-  createWmsLayer: () ->
-    url = "#{@get("geoserverUrl")}"
-    layer = new L.TileLayer.WMS url,
-      layers: @get "typeName"
-      format: "image/png"
-      transparent: true
-    layer.setZIndex 4
-    return layer
-
-  createTileLayer: () ->
-    layer = new L.TileLayer @get("tileUrl")
-    layer.setZIndex 4
-    return layer
-
-class app.baseMapModel extends Backbone.Model
-  defaults:
-    id:""
-    mapName:""
-    apiKey:""
-    isActive:""
-  
-  initialize: (options) ->
-    @set "id", options.id
-    @set "mapName", options.mapName
-    @set "apiKey", options.apiKey
-    @set "defaultBaseLayer", @defaultBaseLayer()
-    @set "createBaseLayer", @createBaseLayer()
-    @set "baseLayer", if options.default then @get "defaultBaseLayer" else @get "createBaseLayer"
-    
-  defaultBaseLayer: () ->
-    url = @get "apiKey"
-    if @get "default"
-      return new L.BingLayer url, 
-        type:@get "type"    
-
-  createBaseLayer: () ->
-    url = @get "apiKey"
-    if @get "useBing"
-      return new L.BingLayer url, 
-        type:@get "type"
-
-class app.LayerCollection extends Backbone.Collection
-  model:app.LayerModel
-  
-class app.BaseMapCollection extends Backbone.Collection
-  model:app.baseMapModel
+class app.models.LayerCollection extends Backbone.Collection
+  model: app.models.LayerModel

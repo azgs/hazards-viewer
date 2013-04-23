@@ -2,54 +2,70 @@
 root = @
 if not root.app? then app = root.app = {} else app = root.app
 
-class app.SidebarView extends Backbone.View
-  events: ->
+app.views = {}
+
+class app.views.SidebarView extends Backbone.View
+  initialize: (options) ->
+    @template = _.template $("#model-template").html()
+
+  render: () ->
+    el = @$el
+    template = @template
+
+    @collection.forEach (model) ->
+      el.append template
+        model: model
+
+    return @
+
+  events:
     "click input[type=checkbox]": "toggleLayer"
 
-  initialize: ->
-    @template=_.template $("#model-template").html()
+  toggleLayer: (e) ->
+    checkbox = $ e.currentTarget
+    boxId = checkbox.attr "id"
+    modelId = boxId.split("-")[0]
+    model = @collection.get modelId
 
-  render: ->
-    el=@$el
-    template = @template
-    _.each @collection.models, (model) ->
-      el.append template
-        model:model
-    return @
-
-  toggleLayer:(e) ->
-    element = $(e.currentTarget).attr "id"
-    item = @collection.get element
-    id = item.get "id"
-    layer = "##{id.toString()}"
-
-    if $(layer).is(":checked")
-      app.map.addLayer(item.get("defaultLayer"))
+    if checkbox.is ":checked"
+      app.map.addLayer model.get "layer"
     else
-      app.map.removeLayer(item.get("defaultLayer"))
+      app.map.removeLayer model.get "layer"
 
-class app.baseMapView extends Backbone.View
-  events: ->
-    "click": "switchBaseMap"
-    
-  initialize: ->
-    @template=_.template $("#basemap-template").html()
-    _.each @collection.models, (model) ->
-      if model.get "active"
-        app.map.addLayer(model.get("baseLayer"))
+class app.views.BasemapView extends Backbone.View
+  initialize: (options) ->
+    @template = _.template $("#basemap-template").html()
+    active = @findActiveModel()
+    app.map.addLayer(active.get("layer")) if active?
 
-  render: ->
-    el=@$el
+  render: () ->
+    el = @$el
     template = @template
-    _.each @collection.models, (model) ->
+
+    @collection.forEach (model) ->
       el.append template
-        model:model
+        model: model
+
     return @
 
-  switchBaseMap:(e) ->
-    _.each @collection.models, (model) ->
-      app.map.removeLayer(model.get("baseLayer"))
+  events:
+    "click a": "switchBaseMap"
 
-    element = $(e.target).attr "id"
-    item = @collection.get element
-    app.map.addLayer(item.get("baseLayer"))
+  findActiveModel: () ->
+    for model in @collection.models
+      return model if model.get "active"
+
+  switchBaseMap: (e) ->
+    toggle = $ e.currentTarget
+    toggleId = toggle.attr "id"
+    modelId = toggleId.split("-")[0]
+    model = @collection.get modelId
+    activeModel = @findActiveModel()
+
+    return if model is activeModel
+
+    app.map.addLayer model.get "layer"
+    model.set "active", true
+
+    app.map.removeLayer activeModel.get "layer"
+    activeModel.set "active", false

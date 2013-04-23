@@ -9,42 +9,38 @@ zoom = 9
 app.map = new L.Map "map",
   center: center
   zoom: zoom
-  
-# Setup Layers
-app.mapLayers = [
-    new app.LayerModel
-      geoserverUrl: "http://data.usgin.org/arizona/ows"
+
+geoserverUrl = "http://data.usgin.org/arizona/ows"
+
+# Setup data layers
+dataLayers = [
+    new app.models.GeoJSONLayer
+      id: "earthFissures"
+      layerName: "Earth Fissures"
+      serviceUrl: geoserverUrl
       typeName: "azgs:earthfissures"
-      id:"earthFissures"
-      layerName:"Earth Fissures"
-      styler: "fisstype"
+      useD3: true
+      layerOptions:
+        styler: "fisstype"
   ,
-    new app.LayerModel
-      geoserverUrl: "http://data.usgin.org/arizona/ows"
+    new app.models.GeoJSONLayer
+      id: "activeFaults"
+      layerName: "Active Faults"
+      serviceUrl: geoserverUrl
       typeName: "azgs:activefaults"
-      id:"activeFaults"
-      layerName:"Active Faults"
-      styler: "symbol"
+      useD3: true
+      layerOptions:
+        styler: "symbol"
   ,
-    new app.LayerModel
-      # I haven't figured out Geoserver's TMS URLs yet, so this doesn't work yet
-      # tileUrl: "http://data.usgin.org/arizona/gwc/service/tms/1.0.0/azgs:floods@EPSG:900913@png/{z}/{x}/{y}.png"
-      geoserverUrl: "http://data.usgin.org/arizona/gwc/service/wms"
-      typeName: "azgs:floods"
-      id:"floodPotential"
-      layerName:"Flood Potential"
-      useWms: true
-  ,
-    new app.LayerModel
-      geoserverUrl: "http://data.usgin.org/arizona/ows"
-      typeName: "azgs:earthquakedata"
+    new app.models.GeoJSONLayer
       id: "earthquakes"
-      straightGeoJson: true
+      layerName: "Earthquake Hypocenters"
+      serviceUrl: geoserverUrl
+      typeName: "azgs:earthquakedata"
       layerOptions:
         pointToLayer: (feature, latlng) ->
           markerOptions =
             fillOpacity: 0.2
-            hands: "feet"
 
           # Try to make a float from the magnitude
           if isNaN parseFloat feature.properties.magnitude
@@ -76,47 +72,51 @@ app.mapLayers = [
 
         onEachFeature: (feature, layer) ->
           layer.bindPopup feature.properties.magnitude
-
-      layerName: "Earthquakes"
-      styler: "magnitude"
-]
-
-app.baseMaps = [
-    new app.baseMapModel
-      id:"bingRoads"
-      mapName:"Bing Maps Roads"
-      apiKey:"AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
-      type:"Road"
-      useBing:true
-      active:true      
-  ,  
-    new app.baseMapModel
-      id:"bingAerial"
-      mapName:"Bing Maps Aerial"
-      apiKey:"AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
-      type:"Aerial"
-      useBing:true
   ,
-    new app.baseMapModel
-      id:"bingAerialLabels"
-      mapName:"Bing Maps Aerial w/ Labels"
-      apiKey:"AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
-      type:"AerialWithLabels"
-      useBing:true           
+    new app.models.WmsLayer
+      id: "floodPotential"
+      layerName: "Flood Potential"
+      serviceUrl: "http://data.usgin.org/arizona/gwc/service/wms"
+      typeName: "azgs:floods"
 ]
 
-app.layerCollection = new app.LayerCollection app.mapLayers
-app.baseMapCollection = new app.BaseMapCollection app.baseMaps
+app.dataLayerCollection = new app.models.LayerCollection dataLayers
+
+# Setup base layers
+bingApiKey = "AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
+baseLayers = [
+    new app.models.BingLayer
+      id: "bingRoads"
+      layerName: "Road Map"
+      apiKey: bingApiKey
+      bingType: "Road"
+      active: true
+  ,
+    new app.models.BingLayer
+      id: "bingAerial"
+      layerName: "Satellite Imagery"
+      apiKey: bingApiKey
+      bingType: "Aerial"
+  ,
+    new app.models.BingLayer
+      id: "bingAerialWithLabels"
+      layerName: "Imagery with Labels"
+      apiKey: bingApiKey
+      bingType: "AerialWithLabels"
+]
+
+app.baseLayerCollection = new app.models.LayerCollection baseLayers
 
 # Render the sidebar
-app.sidebar = new app.SidebarView
-  el:$("#layer-list").first()
-  collection: app.layerCollection
+app.sidebar = new app.views.SidebarView
+  el: $("#layer-list").first()
+  collection: app.dataLayerCollection
 app.sidebar.render()
 
-app.baseLayers = new app.baseMapView
-  el:$("#dropmenu").first()
-  collection: app.baseMapCollection
+# Render the base layer dropdown
+app.baseLayers = new app.views.BasemapView
+  el: $("#dropmenu").first()
+  collection: app.baseLayerCollection
 app.baseLayers.render()
 
 # Setup the Leaflet Draw extension
@@ -136,5 +136,5 @@ app.map.addControl app.drawControl
 # Setup the Geocoder
 app.geocodeView = new app.GeocodeView
   model: new app.GeocodeModel
-    apiKey: "AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
+    apiKey: bingApiKey
   el: $("#geocoder")

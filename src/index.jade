@@ -32,10 +32,10 @@ html(lang="en")
                     ul#layer-list.unstyled
         script(id="basemap-template",type="text/html")
             li(role="presentation")
-                a(role="menuitem",id!="<%= model.get('id') %>",href="#")<%= model.get('mapName') %>
+                a(role="menuitem",id!="<%= model.get('id') %>-toggle",href="#")<%= model.get('layerName') %>
         script(id="model-template",type="text/html")
             li.navbar-inner
-                input(id!="<%= model.get('id') %>", type="checkbox")
+                input(id!="<%= model.get('id') %>-toggle", type="checkbox")
                 span <%= model.get('layerName') %>
                 .pull-right
                     span
