@@ -20,6 +20,7 @@ class app.views.SidebarView extends Backbone.View
 
   events:
     "click input[type=checkbox]": "toggleLayer"
+    "click .icon-list":"toggleLegend"
 
   toggleLayer: (e) ->
     checkbox = $ e.currentTarget
@@ -31,6 +32,11 @@ class app.views.SidebarView extends Backbone.View
       app.map.addLayer model.get "layer"
     else
       app.map.removeLayer model.get "layer"
+      
+  toggleLegend: (e) ->
+    element = $ e.currentTarget
+    elId = element.attr "id"
+    $(elId).collapse('toggle')
 
 class app.views.BasemapView extends Backbone.View
   initialize: (options) ->

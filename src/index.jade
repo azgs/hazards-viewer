@@ -22,7 +22,9 @@ html(lang="en")
             .row-fluid.fill
                 #map.span9.fill                                
                 #sidebar.span3.fill
-                    ul#layer-list.unstyled
+                    div(class="accordion", id="accordion-legend")
+                        div(class="accordion-group")
+                            ul#layer-list.unstyled
         script(id="navbar-template",type="text/html")
                 li
                     a(id!="<%= model.get('id') %>")<%= model.get('display') %>
@@ -32,18 +34,22 @@ html(lang="en")
             li(role="presentation")
                 a(role="menuitem",id!="<%= model.get('id') %>-toggle",href="#")<%= model.get('layerName') %>
         script(id="model-template",type="text/html")
-            li.navbar-inner
-                input(id!="<%= model.get('id') %>-toggle", type="checkbox")
-                span <%= model.get('layerName') %>
-                .pull-right
-                    span
-                        a(href="#").icon-list                
-                    span
-                        a(href="#").icon-info-sign
-                    span
-                        a(href="#")
-                            span.icon-adjust
-                        span.muted.small-text 100%
+                    li.navbar-inner
+                        input(id!="<%= model.get('id') %>-toggle", type="checkbox")
+                        span <%= model.get('layerName') %>
+                        .pull-right
+
+                            span
+                                a(data-parent="#accordion-legend", id!="<%= model.get('datatarget') %>").icon-list                
+                            span
+                                a(href="#").icon-info-sign
+                            span
+                                a(href="#")
+                                    span.icon-adjust
+                                span.muted.small-text 100%
+                    div(id!="<%= model.get('id') %>", class="accordion-body collapse")
+                        div(class="accordion-inner")
+                            <%= model.get('legend') %>  
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
         script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")
         script(src="vendor/leaflet/leaflet.js")

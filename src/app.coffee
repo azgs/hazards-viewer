@@ -16,7 +16,10 @@ geoserverUrl = "http://data.usgin.org/arizona/ows"
 dataLayers = [
     new app.models.GeoJSONLayer
       id: "earthFissures"
+      div_id: "earthFissures.id"
+      datatarget:"#earthFissures"
       layerName: "Earth Fissures"
+      legend:"Earth fissures legend"
       serviceUrl: geoserverUrl
       typeName: "azgs:earthfissures"
       useD3: true
@@ -25,7 +28,10 @@ dataLayers = [
   ,
     new app.models.GeoJSONLayer
       id: "activeFaults"
+      div_id: "activeFaults.id"
+      datatarget:"#activeFaults"
       layerName: "Active Faults"
+      legend:"Active faults legend"
       serviceUrl: geoserverUrl
       typeName: "azgs:activefaults"
       useD3: true
@@ -34,7 +40,10 @@ dataLayers = [
   ,
     new app.models.GeoJSONLayer
       id: "earthquakes"
+      div_id: "earthquakes.id"
+      datatarget:"#earthquakes"      
       layerName: "Earthquake Hypocenters"
+      legend:"Earthquake hypocenters legend"
       serviceUrl: geoserverUrl
       typeName: "azgs:earthquakedata"
       layerOptions:
@@ -75,7 +84,10 @@ dataLayers = [
   ,
     new app.models.WmsLayer
       id: "floodPotential"
+      div_id: "floodPotential.id"
+      datatarget:"#floodPotential"      
       layerName: "Flood Potential"
+      legend:"Flood potential legend"
       serviceUrl: "http://data.usgin.org/arizona/gwc/service/wms"
       typeName: "azgs:floods"
 ]
