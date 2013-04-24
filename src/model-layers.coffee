@@ -1,9 +1,8 @@
 # Setup a global object to stash our work in
 root = @
 if not root.app? then app = root.app = {} else app = root.app
-
-app.models = {}
-app.data = {}
+if not app.models then models = app.models = {} else models = app.models
+if not app.data then data = app.data = {} else data = app.data
 
 class app.models.LayerModel extends Backbone.Model
   defaults:
@@ -68,13 +67,3 @@ class app.models.BingLayer extends app.models.LayerModel
 class app.models.LayerCollection extends Backbone.Collection
   model: app.models.LayerModel
   
-class app.models.navToolModel extends Backbone.Model
-  defaults:
-    id:""
-    datatarget:""
-    display:""
-    title:""
-    body:""
-
-class app.models.NavToolCollection extends Backbone.Collection
-  model:app.models.navToolModel

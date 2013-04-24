@@ -120,37 +120,29 @@ baseLayers = [
 app.baseLayerCollection = new app.models.LayerCollection baseLayers
 
 navTools = [
-    new app.models.navToolModel
-      id:"addLayer.id"
-      div_id:"addLayer"
-      datatarget:"#addLayer"
-      display:"Add Layer"
-      title:"Add Layer"
-      body:"Add layer tool"
+    new app.models.NavToolModel
+      id: "addLayer"
+      toolName: "Add Layer"
+      modalName: "Add a Layer"
+      modalBody: "Not Implemented Yet"
   , 
-    new app.models.navToolModel
-      id:"print.id"
-      div_id:"print"
-      datatarget:"#print"
-      display:"Print"
-      title:"Print"
-      body:"Print Map Tool"
+    new app.models.NavToolModel
+      id: "print"
+      toolName: "Print"
+      modalName: "Print a Map"
+      modalBody: "Not Implemented Yet"
   , 
-    new app.models.navToolModel
-      id:"export.id"
-      div_id:"export"
-      datatarget:"#export"      
-      display:"Export"
-      title:"Export"
-      body:"Map Export Tool"
+    new app.models.NavToolModel
+      id: "export"
+      toolName: "Export"
+      modalName: "Download Data"
+      modalBody: "Not Implemented Yet"
   ,
-    new app.models.navToolModel
-      id:"mainhelp.id"
-      div_id:"mainHelp"
-      datatarget:"#mainHelp"      
-      display:"Help"
-      title:"Help"
-      body:"State of Arizona Natural Hazards Viewer"
+    new app.models.NavToolModel
+      id: "mainHelp"
+      toolName: "Help"
+      modalName: "How Do I Do This?"
+      modalBody: "Not Implemented Yet"
 ]
 
 app.navToolCollection = new app.models.NavToolCollection navTools
@@ -167,8 +159,8 @@ app.baseLayers = new app.views.BasemapView
   collection: app.baseLayerCollection
 app.baseLayers.render()
 
-app.navbar = new app.views.navHelpView
-  el:$("#menu").first()
+app.navbar = new app.views.NavToolView
+  el: $ "body"
   collection: app.navToolCollection
 app.navbar.render()
 
@@ -190,4 +182,4 @@ app.map.addControl app.drawControl
 app.geocodeView = new app.GeocodeView
   model: new app.GeocodeModel
     apiKey: bingApiKey
-  el: $("#geocoder")
+  el: $ "#geocoder"

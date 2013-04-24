@@ -25,31 +25,42 @@ html(lang="en")
                     div(class="accordion", id="accordion-legend")
                         div(class="accordion-group")
                             ul#layer-list.unstyled
-        script(id="navbar-template",type="text/html")
-                li
-                    a(id!="<%= model.get('id') %>")<%= model.get('display') %>
-                        div(id!="<%= model.get('div_id') %>", class="modal hide fade")
-                            p <%= model.get('body') %>                    
+
+        script(id="navbar-button",type="text/html")
+            li
+                a(href!="#<%= model.get('id') %>-modal", role="button", data-toggle="modal") <%= model.get('toolName') %>
+
+        script#navbar-modal(type="text/html")
+            .modal.hide.fade(id!="<%= model.get('id') %>-modal", role="dialog", aria-labelledby!="<%= model.get('id') %>-header", aria-hidden="true")
+                .modal-header
+                    h3(id!="<%= model.get('id') %>-header") <%= model.get('modalName') %>
+                .modal-body <%= model.get('modalBody') %>
+                .modal-footer
+                    button.btn(data-dismiss="modal", aria-hidden="true") Close
+                    button.btn.btn-primary(data-dismiss="modal") Okay
+
         script(id="basemap-template",type="text/html")
             li(role="presentation")
                 a(role="menuitem",id!="<%= model.get('id') %>-toggle",href="#")<%= model.get('layerName') %>
-        script(id="model-template",type="text/html")
-                    li.navbar-inner
-                        input(id!="<%= model.get('id') %>-toggle", type="checkbox")
-                        span <%= model.get('layerName') %>
-                        .pull-right
 
-                            span
-                                a(data-parent="#accordion-legend", id!="<%= model.get('datatarget') %>").icon-list                
-                            span
-                                a(href="#").icon-info-sign
-                            span
-                                a(href="#")
-                                    span.icon-adjust
-                                span.muted.small-text 100%
-                    div(id!="<%= model.get('id') %>", class="accordion-body collapse")
-                        div(class="accordion-inner")
-                            <%= model.get('legend') %>  
+        script(id="model-template",type="text/html")
+            li.navbar-inner
+                input(id!="<%= model.get('id') %>-toggle", type="checkbox")
+                span <%= model.get('layerName') %>
+                .pull-right
+
+                    span
+                        a(data-parent="#accordion-legend", id!="<%= model.get('datatarget') %>").icon-list
+                    span
+                        a(href="#").icon-info-sign
+                    span
+                        a(href="#")
+                            span.icon-adjust
+                        span.muted.small-text 100%
+            div(id!="<%= model.get('id') %>", class="accordion-body collapse")
+                div(class="accordion-inner")
+                    <%= model.get('legend') %>
+
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
         script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")
         script(src="vendor/leaflet/leaflet.js")
@@ -60,6 +71,8 @@ html(lang="en")
         script(src="vendor/underscore-min.js")
         script(src="vendor/backbone-min.js")
         script(src="scripts/model-layers.js")
+        script(src="scripts/model-tools.js")
+        script(src="scripts/view-tools.js")
         script(src="scripts/view-layers.js")
         script(src="scripts/model-geocode.js")
         script(src="scripts/view-geocode.js")
