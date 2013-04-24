@@ -26,7 +26,7 @@ html(lang="en")
                         div(class="accordion-group")
                             ul#layer-list.unstyled
 
-        script(id="navbar-button",type="text/html")
+        script#navbar-button(type="text/html")
             li
                 a(href!="#<%= model.get('id') %>-modal", role="button", data-toggle="modal") <%= model.get('toolName') %>
 
@@ -39,11 +39,11 @@ html(lang="en")
                     button.btn(data-dismiss="modal", aria-hidden="true") Close
                     button.btn.btn-primary(data-dismiss="modal") Okay
 
-        script(id="basemap-template",type="text/html")
+        script#basemap-template(type="text/html")
             li(role="presentation")
                 a(role="menuitem",id!="<%= model.get('id') %>-toggle",href="#")<%= model.get('layerName') %>
 
-        script(id="model-template",type="text/html")
+        script#model-template(type="text/html")
             li.navbar-inner
                 input(id!="<%= model.get('id') %>-toggle", type="checkbox")
                 span <%= model.get('layerName') %>
