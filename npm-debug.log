@@ -1,0 +1,27 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'nodejs', '/usr/bin/npm', 'install' ]
+2 info using npm@1.1.62
+3 info using node@v0.8.11
+4 verbose read json /home/asonnenschein/git/hazards-viewer/package.json
+5 error install Couldn't read dependencies
+6 error Error: no version
+6 error     at validVersion (/usr/lib/nodejs/npm/node_modules/read-package-json/read-json.js:527:32)
+6 error     at final (/usr/lib/nodejs/npm/node_modules/read-package-json/read-json.js:289:23)
+6 error     at /usr/lib/nodejs/npm/node_modules/read-package-json/read-json.js:119:33
+6 error     at cb (/usr/lib/nodejs/npm/node_modules/slide/lib/async-map.js:48:11)
+6 error     at /usr/lib/nodejs/npm/node_modules/read-package-json/read-json.js:233:59
+6 error     at Glob.<anonymous> (/usr/lib/nodejs/npm/node_modules/glob/glob.js:91:7)
+6 error     at Glob.EventEmitter.emit (events.js:93:17)
+6 error     at Glob._processEmitQueue (/usr/lib/nodejs/npm/node_modules/glob/glob.js:270:10)
+6 error     at Glob.emitMatch (/usr/lib/nodejs/npm/node_modules/glob/glob.js:255:8)
+6 error     at Glob._finish (/usr/lib/nodejs/npm/node_modules/glob/glob.js:217:8)
+7 error If you need help, you may report this log at:
+7 error     <http://github.com/isaacs/npm/issues>
+7 error or email it to:
+7 error     <npm-@googlegroups.com>
+8 error System Linux 3.2.0-39-generic
+9 error command "nodejs" "/usr/bin/npm" "install"
+10 error cwd /home/asonnenschein/git/hazards-viewer
+11 error node -v v0.8.11
+12 error npm -v 1.1.62
+13 verbose exit [ 1, true ]

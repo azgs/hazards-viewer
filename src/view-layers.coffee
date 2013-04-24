@@ -69,3 +69,26 @@ class app.views.BasemapView extends Backbone.View
 
     app.map.removeLayer activeModel.get "layer"
     activeModel.set "active", false
+
+class app.views.navHelpView extends Backbone.View
+  events:
+    "click":"launchNavTool"
+
+  initialize: ->
+    @template=_.template $("#navbar-template").html()
+  
+  render: ->
+    el = @$el
+    template = @template
+
+    @collection.forEach (model) ->
+      el.append template
+        model: model
+
+
+  launchNavTool: (e) ->
+    element = $(e.target).attr "id"
+    item = @collection.get element
+    target = item.get "datatarget"
+    $(target).modal
+      show:true

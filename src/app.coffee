@@ -107,6 +107,42 @@ baseLayers = [
 
 app.baseLayerCollection = new app.models.LayerCollection baseLayers
 
+navTools = [
+    new app.models.navToolModel
+      id:"addLayer.id"
+      div_id:"addLayer"
+      datatarget:"#addLayer"
+      display:"Add Layer"
+      title:"Add Layer"
+      body:"Add layer tool"
+  , 
+    new app.models.navToolModel
+      id:"print.id"
+      div_id:"print"
+      datatarget:"#print"
+      display:"Print"
+      title:"Print"
+      body:"Print Map Tool"
+  , 
+    new app.models.navToolModel
+      id:"export.id"
+      div_id:"export"
+      datatarget:"#export"      
+      display:"Export"
+      title:"Export"
+      body:"Map Export Tool"
+  ,
+    new app.models.navToolModel
+      id:"mainhelp.id"
+      div_id:"mainHelp"
+      datatarget:"#mainHelp"      
+      display:"Help"
+      title:"Help"
+      body:"State of Arizona Natural Hazards Viewer"
+]
+
+app.navToolCollection = new app.models.NavToolCollection navTools
+
 # Render the sidebar
 app.sidebar = new app.views.SidebarView
   el: $("#layer-list").first()
@@ -118,6 +154,11 @@ app.baseLayers = new app.views.BasemapView
   el: $("#dropmenu").first()
   collection: app.baseLayerCollection
 app.baseLayers.render()
+
+app.navbar = new app.views.navHelpView
+  el:$("#menu").first()
+  collection: app.navToolCollection
+app.navbar.render()
 
 # Setup the Leaflet Draw extension
 app.drawControl = new L.Control.Draw

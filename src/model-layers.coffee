@@ -67,3 +67,14 @@ class app.models.BingLayer extends app.models.LayerModel
 
 class app.models.LayerCollection extends Backbone.Collection
   model: app.models.LayerModel
+  
+class app.models.navToolModel extends Backbone.Model
+  defaults:
+    id:""
+    datatarget:""
+    display:""
+    title:""
+    body:""
+
+class app.models.NavToolCollection extends Backbone.Collection
+  model:app.models.navToolModel
