@@ -1,8 +1,7 @@
 # Setup a global object to stash our work in
 root = @
 if not root.app? then app = root.app = {} else app = root.app
-
-app.views = {}
+if not app.views? then app.views = views = {} else views = app.views
 
 class app.views.SidebarView extends Backbone.View
   initialize: (options) ->
@@ -76,26 +75,3 @@ class app.views.BasemapView extends Backbone.View
 
     app.map.removeLayer activeModel.get "layer"
     activeModel.set "active", false
-
-class app.views.navHelpView extends Backbone.View
-  events:
-    "click":"launchNavTool"
-
-  initialize: ->
-    @template=_.template $("#navbar-template").html()
-  
-  render: ->
-    el = @$el
-    template = @template
-
-    @collection.forEach (model) ->
-      el.append template
-        model: model
-
-
-  launchNavTool: (e) ->
-    element = $(e.target).attr "id"
-    item = @collection.get element
-    target = item.get "datatarget"
-    $(target).modal
-      show:true

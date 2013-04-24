@@ -1,0 +1,14 @@
+# Setup a global object to stash our work in
+root = @
+if not root.app? then app = root.app = {} else app = root.app
+if not app.models? then models = app.models = {} else models = app.models
+
+class app.models.NavToolModel extends Backbone.Model
+  defaults:
+    id: "navTool-#{Math.floor(Math.random() * 101)}"
+    toolName: "Some Tool"
+    modalName: "Do Something"
+    modalBody: "Not Implemented Yet"
+
+class app.models.NavToolCollection extends Backbone.Collection
+  model: app.models.navToolModel
