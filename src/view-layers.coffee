@@ -29,7 +29,14 @@ class app.views.SidebarView extends Backbone.View
     model = @collection.get modelId
 
     if checkbox.is ":checked"
-      app.map.addLayer model.get "layer"
+      l = model.get "layer"
+      app.map.addLayer l
+
+      for key, value of l._layers
+        p = $(value._container).parent()
+
+      p.attr "id", "#{model.id}-layer"
+
     else
       app.map.removeLayer model.get "layer"
       
