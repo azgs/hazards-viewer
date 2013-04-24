@@ -12,6 +12,7 @@ html, body, .fill {
 #layer-list li > span,
 #layer-list li > div > span {
   margin-left: 5px;
+}
 
 #main-container {
   padding-top: 40px; // Get out of the way of the navbar
@@ -57,11 +58,17 @@ li {
 }
 
 // Styles for Earth Fissure layer
-.fissure() {
+.line() {
   fill: none;
   stroke-width: 2px;
+
+}
+
+@hoverColor: red;
+
+.hover() {
   &:hover {
-    stroke: yellow;
+    stroke: @hoverColor;
     stroke-width: 4px;
     cursor: pointer;
     transition: all .25s ease-in-out;
@@ -69,29 +76,48 @@ li {
 }
 
 path[styler="Reported, Unconfirmed Earth Fissure"] {
-  .fissure();
+  .line();
+  .hover();
   stroke: green;
   stroke-dasharray: 10 4;
 }
+
 path[styler="Discontinuous Earth Fissure"] {
-  .fissure();
+  .line();
+  .hover();
   stroke: red;
 }
+
 path[styler="Continuous Earth Fissure"] {
-  .fissure();
+  .line();
+  .hover();
   stroke: black;
 }
 
 // Styles for Active Faults Layer
 path[styler="2.13.2"] {
-  .fissure();
+  .line();
+  .hover();
   stroke: orange;
 }
+
 path[styler="2.13.3"] {
-  .fissure();
+  .line();
+  .hover();
   stroke: green;
 }
+
 path[styler="2.13.4"] {
-  .fissure();
+  .line();
+  .hover();
   stroke: purple;
+}
+
+// Styles for Earthquake Layer
+#earthquakes-layer {
+  path:hover {
+    .hover();
+    fill-opacity: 1;
+    fill: @hoverColor;
+  }
 }
