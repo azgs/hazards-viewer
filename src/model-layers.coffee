@@ -12,6 +12,8 @@ class app.models.LayerModel extends Backbone.Model
     serviceUrl: null
 
   initialize: (options) ->
+    @set "divid", options.id + ".id"
+    @set "datatarget", "#" + options.id
     @set "layer", @createLayer(options)
 
   createLayer: (options) ->
