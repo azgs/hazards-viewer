@@ -12,6 +12,8 @@ class app.models.LayerModel extends Backbone.Model
     legend: new models.Legend [], {}
 
   initialize: (options) ->
+    @set "divid", options.id + ".id"
+    @set "datatarget", "#" + options.id
     @id = options.id or "layer-#{Math.floor(Math.random() * 101)}"
     @set "layer", @createLayer(options)
 
