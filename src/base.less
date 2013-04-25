@@ -43,6 +43,16 @@ html, body, .fill {
     margin: 0px;
   }
 
+  .accordion-inner {
+    border-top: none;
+  }
+
+  .legendItems {
+    td {
+      vertical-align: middle;
+    }
+  }
+
   #layer-list {
     padding: 0px;
     margin: 2* @layerListMargin @layerListMargin;
@@ -59,6 +69,11 @@ html, body, .fill {
           text-decoration: none;
         }
       }
+    }
+
+    // Legend fixes
+    .legendItems {
+      margin: 0px;
     }
   }
 }

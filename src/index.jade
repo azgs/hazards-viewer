@@ -48,7 +48,6 @@ html(lang="en")
                 input(id!="<%= model.get('id') %>-toggle", type="checkbox")
                 span <%= model.get('layerName') %>
                 .pull-right
-
                     span
                         a(data-parent="#accordion-legend", id!="<%= model.get('datatarget') %>").icon-list
                     span
@@ -58,8 +57,50 @@ html(lang="en")
                             span.icon-adjust
                         span.muted.small-text 100%
             div(id!="<%= model.get('id') %>", class="accordion-body collapse")
-                div(class="accordion-inner")
-                    <%= model.get('legend') %>
+                div(id!="<%= model.get('id') %>-legend", class="accordion-inner")
+
+        script#legend-template(type="text/html")
+            .heading <%= model.get("heading") %>
+            table.table
+                thead
+                    tr
+                        <% if (model.filterable) { %>
+                        th
+                        <% } %>
+                        th
+                        th <%= model.heading %>
+                tbody.legendItems
+
+        script#legendItem-template(type="text/html")
+            tr
+                <% if (filter) { %>
+                td.filter
+                    input(type="checkbox")
+                <% } %>
+                td.legend-image
+                td.legend-text <%= model.get("caption") %>
+
+        script#quakeImage(type="text/html")
+            svg(xmlns="http://www.w3.org/2000/svg", version="1.1",
+                    style!="height:<%= 2 * (info.radius + 4) %>px;width:<%= 2 * (info.radius + 4) %>px")
+                circle(cx!="<%= info.radius + 4 %>", cy!="<%= info.radius + 4 %>", r!="<%= info.radius %>",
+                        stroke!="<%= info.color %>", stroke-width!="2", fill-opacity="0.2", fill!="<%= info.color %>")
+
+        script#faultImage(type="text/html")
+            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:48px;")
+                path(d="M 5 40 q 20 -60 40 -20",
+                        stroke-width="2", stroke!="<%= info.color %>", fill="none")
+
+        script#fissureImage(type="text/html")
+            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:48px;")
+                path(d="M 5 40 q 20 -60 40 -20",
+                        stroke-width="2", stroke!="<%= info.color %>", fill="none",
+                        stroke-dasharray!="<%= info.dashed %>")
+
+        script#floodImage(type="text/html")
+            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:50px;")
+                path(d="M 5 5 L 45 5 L 45 45 L 5 45 L 5 5",
+                        stroke="none", fill!="<%= info.color %>", fill-opacity="0.6")
 
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
         script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")
@@ -70,6 +111,8 @@ html(lang="en")
         script(src="vendor/leaflet-d3-layer.js")
         script(src="vendor/underscore-min.js")
         script(src="vendor/backbone-min.js")
+        script(src="scripts/model-legend.js")
+        script(src="scripts/view-legend.js")
         script(src="scripts/model-layers.js")
         script(src="scripts/model-tools.js")
         script(src="scripts/view-tools.js")

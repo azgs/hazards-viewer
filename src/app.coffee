@@ -19,10 +19,33 @@ dataLayers = [
       div_id: "earthFissures.id"
       datatarget:"#earthFissures"
       layerName: "Earth Fissures"
-      legend:"Earth fissures legend"
       serviceUrl: geoserverUrl
       typeName: "azgs:earthfissures"
       useD3: true
+      legend: new app.models.Legend [
+          caption: "Continuous Earth Fissure"
+          attribute: "fisstype"
+          value: "Continuous Earth Fissure"
+          imageTemplateId: "fissureImage"
+          imageInfo:
+            color: "#000000"
+        ,
+          caption: "Discontinuous Earth Fissure"
+          attribute: "fisstype"
+          value: "Discontinuous Earth Fissure"
+          imageTemplateId: "fissureImage"
+          imageInfo:
+            color: "#FF0000"
+        ,
+          caption: "Reported, Unconfirmed Earth Fissure"
+          attribute: "fisstype"
+          value: "Reported, Unconfirmed Earth Fissure"
+          imageTemplateId: "fissureImage"
+          imageInfo:
+            color: "#008000"
+            dashed: "10 4"
+      ],
+        heading: "Fissure Type"
       layerOptions:
         styler: "fisstype"
   ,
@@ -31,10 +54,32 @@ dataLayers = [
       div_id: "activeFaults.id"
       datatarget:"#activeFaults"
       layerName: "Active Faults"
-      legend:"Active faults legend"
       serviceUrl: geoserverUrl
       typeName: "azgs:activefaults"
       useD3: true
+      legend: new app.models.Legend [
+          caption: "Holocene ( <10 ka )"
+          attribute: "symbol"
+          value: "2.13.2"
+          imageTemplateId: "faultImage"
+          imageInfo:
+            color: "#FFA500"
+        ,
+          caption: "Late Quaternary ( <750 ka )"
+          attribute: "symbol"
+          value: "2.13.3"
+          imageTemplateId: "faultImage"
+          imageInfo:
+            color: "#008000"
+        ,
+          caption: "Quaternary (Undifferentiated)"
+          attribute: "symbol"
+          value: "2.13.4"
+          imageTemplateId: "faultImage"
+          imageInfo:
+            color: "#800080"
+      ],
+        heading: "Latest Motion"
       layerOptions:
         styler: "symbol"
   ,
@@ -43,9 +88,74 @@ dataLayers = [
       div_id: "earthquakes.id"
       datatarget:"#earthquakes"      
       layerName: "Earthquake Hypocenters"
-      legend:"Earthquake hypocenters legend"
       serviceUrl: geoserverUrl
       typeName: "azgs:earthquakedata"
+      legend: new app.models.Legend [
+          caption: "0 - 1"
+          attribute: "magnitude"
+          value: "hmm"
+          imageTemplateId: "quakeImage"
+          imageInfo:
+            radius: 5
+            color: "#FFFF00"
+        ,
+          caption: "1 - 2"
+          attribute: "magnitude"
+          value: "hmm"
+          imageTemplateId: "quakeImage"
+          imageInfo:
+            radius: 10
+            color: "#FFDD00"
+        ,
+          caption: "2 - 3"
+          attribute: "magnitude"
+          value: "hmm"
+          imageTemplateId: "quakeImage"
+          imageInfo:
+            radius: 15
+            color: "#FFBF00"
+        ,
+          caption: "3 - 4"
+          attribute: "magnitude"
+          value: "hmm"
+          imageTemplateId: "quakeImage"
+          imageInfo:
+            radius: 20
+            color: "#FF9D00"
+        ,
+          caption: "4 - 5"
+          attribute: "magnitude"
+          value: "hmm"
+          imageTemplateId: "quakeImage"
+          imageInfo:
+            radius: 25
+            color: "#FF8000"
+        ,
+          caption: "5 - 6"
+          attribute: "magnitude"
+          value: "hmm"
+          imageTemplateId: "quakeImage"
+          imageInfo:
+            radius: 30
+            color: "#FF5E00"
+        ,
+          caption: "6 - 7"
+          attribute: "magnitude"
+          value: "hmm"
+          imageTemplateId: "quakeImage"
+          imageInfo:
+            radius: 35
+            color: "#FF4000"
+        ,
+          caption: "7 - 8"
+          attribute: "magnitude"
+          value: "hmm"
+          imageTemplateId: "quakeImage"
+          imageInfo:
+            radius: 40
+            color: "#FF0000"
+      ],
+        heading: "Magnitude"
       layerOptions:
         pointToLayer: (feature, latlng) ->
           markerOptions =
@@ -87,9 +197,21 @@ dataLayers = [
       div_id: "floodPotential.id"
       datatarget:"#floodPotential"      
       layerName: "Flood Potential"
-      legend:"Flood potential legend"
       serviceUrl: "http://data.usgin.org/arizona/gwc/service/wms"
       typeName: "azgs:floods"
+      legend: new app.models.Legend [
+          caption: "High"
+          imageTemplateId: "floodImage"
+          imageInfo:
+            color: "#0039BF"
+        ,
+          caption: "Medium"
+          imageTemplateId: "floodImage"
+          imageInfo:
+            color: "#6FCFF7"
+      ],
+        heading: "Flood Potential"
+        filterable: false
 ]
 
 app.dataLayerCollection = new app.models.LayerCollection dataLayers

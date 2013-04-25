@@ -5,10 +5,12 @@ if not app.models? then models = app.models = {} else models = app.models
 
 class app.models.NavToolModel extends Backbone.Model
   defaults:
-    id: "navTool-#{Math.floor(Math.random() * 101)}"
     toolName: "Some Tool"
     modalName: "Do Something"
     modalBody: "Not Implemented Yet"
+
+  initialize: (options) ->
+    @id = options.id or "navTool-#{Math.floor(Math.random() * 101)}"
 
 class app.models.NavToolCollection extends Backbone.Collection
   model: app.models.navToolModel

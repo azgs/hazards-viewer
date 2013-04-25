@@ -12,9 +12,15 @@ class app.views.SidebarView extends Backbone.View
     template = @template
 
     @collection.forEach (model) ->
+      # Append the model's template
       el.append template
         model: model
 
+      # Append the model's legend's template
+      legendView = new views.LegendView
+        collection: model.get("legend")
+        el: el.find("##{model.get("id")}-legend")
+      legendView.render()
     return @
 
   events:
@@ -31,10 +37,12 @@ class app.views.SidebarView extends Backbone.View
       l = model.get "layer"
       app.map.addLayer l
 
+      # Give an ID to the DOM representation of a GeoJSON layer
       for key, value of l._layers
         p = $(value._container).parent()
 
-      p.attr "id", "#{model.id}-layer"
+      if p?
+        p.attr "id", "#{model.id}-layer"
 
     else
       app.map.removeLayer model.get "layer"

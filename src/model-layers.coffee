@@ -6,12 +6,13 @@ if not app.data then data = app.data = {} else data = app.data
 
 class app.models.LayerModel extends Backbone.Model
   defaults:
-    id: "layer-#{Math.floor(Math.random() * 101)}"
     layerName: "No Name"
     description: "No Description"
     serviceUrl: null
+    legend: new models.Legend [], {}
 
   initialize: (options) ->
+    @id = options.id or "layer-#{Math.floor(Math.random() * 101)}"
     @set "layer", @createLayer(options)
 
   createLayer: (options) ->
