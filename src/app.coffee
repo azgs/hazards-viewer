@@ -159,12 +159,12 @@ dataLayers = [
           if isNaN parseFloat feature.properties.magnitude
             switch feature.properties.magnitude
               when "I" then mag = 1
-              when "II" then mag = 2
+              when "II" then mag = 3
               when "III" then mag = 3
               when "IV" then mag = 4
-              when "V" then mag = 5
-              when "VI" then mag = 6
-              when "VII" then mag = 7
+              when "V" then mag = 4
+              when "VI" then mag = 5
+              when "VII" then mag = 6
 
           else
             mag = parseFloat feature.properties.magnitude
