@@ -20,6 +20,8 @@ dataLayers = [
       serviceUrl: geoserverUrl
       typeName: "azgs:earthfissures"
       useD3: true
+      description: "Earth fissure maps are prepared by the Arizona Geological Survey (\"AZGS\") in accordance \
+        with Ariz. Rev. Stat. § 27-152.01(3)."
       legend: new app.models.Legend [
           caption: "Continuous Earth Fissure"
           attribute: "fisstype"
@@ -204,7 +206,7 @@ baseLayers = [
       layerName: "Road Map"
       apiKey: bingApiKey
       bingType: "Road"
-      active: true
+      #active: true
   ,
     new app.models.BingLayer
       id: "bingAerial"

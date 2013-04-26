@@ -46,16 +46,17 @@ html(lang="en")
         script#model-template(type="text/html")
             li.navbar-inner
                 input.layerToggle(id!="<%= model.get('id') %>-toggle", type="checkbox")
-                span <%= model.get('layerName') %>
+                span: a.layer-info-button(href="#") <%= model.get('layerName') %>
                 .pull-right
                     span
                         a(href="#", data-parent="#accordion-legend", id!="<%= model.get('datatarget') %>").icon-list
-                    span
-                        a(href="#").icon-info-sign
-                    span
-                        a(href="#")
-                            span.icon-adjust
-                        span.muted.small-text 100%
+                    ///
+                        span
+                            a.icon-info-sign(href="#")
+                        span
+                            a(href="#")
+                                span.icon-adjust
+                            span.muted.small-text 100%
             div(id!="<%= model.get('id') %>", class="accordion-body collapse")
                 div(id!="<%= model.get('id') %>-legend", class="accordion-inner")
 

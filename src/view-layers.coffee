@@ -23,6 +23,13 @@ class app.views.SidebarView extends Backbone.View
         el: el.find("##{model.get("id")}-legend")
       legendView.render()
 
+      # Setup the info popover
+      el.find(".layer-info-button").popover
+        title: "Layer Information"
+        content: model.get "description"
+        placement: "bottom"
+        trigger: "manual"
+
     # All filterable boxes should start checked
     el.find(".filter").prop "checked", true
 
@@ -30,7 +37,8 @@ class app.views.SidebarView extends Backbone.View
 
   events:
     "click input.layerToggle": "toggleLayer"
-    "click .icon-list":"toggleLegend"
+    "click .icon-list": "toggleLegend"
+    "click .layer-info-button": "showInfo"
 
   toggleLayer: (e) ->
     checkbox = $ e.currentTarget
@@ -56,6 +64,14 @@ class app.views.SidebarView extends Backbone.View
     element = $ e.currentTarget
     elId = element.attr "id"
     $(elId).collapse('toggle')
+
+  showInfo: (e) ->
+    ele = $ e.currentTarget
+    ele.popover "show"
+    $("body").on "click", (e) ->
+      if not $(e.target).is(ele)
+        ele.popover "hide"
+        $("body").off "click"
 
 class app.views.BasemapView extends Backbone.View
   initialize: (options) ->
