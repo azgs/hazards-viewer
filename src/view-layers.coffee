@@ -18,13 +18,18 @@ class app.views.SidebarView extends Backbone.View
 
       # Append the model's legend's template
       legendView = new views.LegendView
+        layerModel: model
         collection: model.get("legend")
         el: el.find("##{model.get("id")}-legend")
       legendView.render()
+
+    # All filterable boxes should start checked
+    el.find(".filter").prop "checked", true
+
     return @
 
   events:
-    "click input[type=checkbox]": "toggleLayer"
+    "click input.layerToggle": "toggleLayer"
     "click .icon-list":"toggleLegend"
 
   toggleLayer: (e) ->
@@ -34,6 +39,7 @@ class app.views.SidebarView extends Backbone.View
     model = @collection.get modelId
 
     if checkbox.is ":checked"
+      # Get the layer added to the map
       l = model.get "layer"
       app.map.addLayer l
 
@@ -43,7 +49,6 @@ class app.views.SidebarView extends Backbone.View
 
       if p?
         p.attr "id", "#{model.id}-layer"
-
     else
       app.map.removeLayer model.get "layer"
       

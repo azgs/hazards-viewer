@@ -7,6 +7,7 @@ class views.LegendView extends Backbone.View
   initialize: (options) ->
     @template = _.template $("#legend-template").html()
     @itemTemplate = _.template $("#legendItem-template").html()
+    @layerModel = options.layerModel or null
 
   render: () ->
     # Append the legend container
@@ -26,3 +27,23 @@ class views.LegendView extends Backbone.View
       thisone.children(".legend-image").append model.get "image"
 
     return @
+
+  events:
+    "click .filter": "applyFilter"
+
+  applyFilter: (e) ->
+    # Find which boxes are currently checked
+    filterObj = (boxEl) ->
+      obj = {}
+      obj[$(box).attr("column")] = $(box).attr("columnvalue")
+      return obj
+
+    oldLayer = @layerModel.get("layer")
+    @layerModel.once "layerLoaded", (newLayer) ->
+      if app.map.hasLayer oldLayer
+        app.map.removeLayer oldLayer
+        newLayer.addTo app.map
+
+    filters = ( filterObj(box) for box in @$el.find(".filter") when $(box).is(":checked") )
+    @layerModel.filterLayer filters
+

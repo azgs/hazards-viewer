@@ -45,7 +45,7 @@ html(lang="en")
 
         script#model-template(type="text/html")
             li.navbar-inner
-                input(id!="<%= model.get('id') %>-toggle", type="checkbox")
+                input.layerToggle(id!="<%= model.get('id') %>-toggle", type="checkbox")
                 span <%= model.get('layerName') %>
                 .pull-right
                     span
@@ -74,8 +74,9 @@ html(lang="en")
         script#legendItem-template(type="text/html")
             tr
                 <% if (filter) { %>
-                td.filter
-                    input(type="checkbox")
+                td
+                    input.filter(type="checkbox",
+                            column!="<%= model.get('attribute') %>", columnvalue!="<%= model.get('value') %>")
                 <% } %>
                 td.legend-image
                 td.legend-text <%= model.get("caption") %>
@@ -111,6 +112,8 @@ html(lang="en")
         script(src="vendor/leaflet-d3-layer.js")
         script(src="vendor/underscore-min.js")
         script(src="vendor/backbone-min.js")
+        script(src="http://cdnjs.cloudflare.com/ajax/libs/openlayers/2.11/OpenLayers.js")
+        script(src="scripts/model-filter.js")
         script(src="scripts/model-legend.js")
         script(src="scripts/view-legend.js")
         script(src="scripts/model-layers.js")

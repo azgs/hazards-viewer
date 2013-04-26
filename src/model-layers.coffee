@@ -16,8 +16,12 @@ class app.models.LayerModel extends Backbone.Model
     @set "datatarget", "#" + options.id
     @id = options.id or "layer-#{Math.floor(Math.random() * 101)}"
     @set "layer", @createLayer(options)
+    @originalOptions = options
 
   createLayer: (options) ->
+    return null
+
+  filterLayer: (filters) ->
     return null
 
 class app.models.WmsLayer extends app.models.LayerModel
@@ -41,6 +45,7 @@ class app.models.GeoJSONLayer extends app.models.LayerModel
       jsonp += "?service=WFS&version=1.0.0&request=GetFeature&outputFormat=text/javascript"
       jsonp += "&typeName=#{options.typeName}"
       jsonp += "&format_options=callback:app.data.#{callbackName}"
+      jsonp += options.filterClause if options.filterClause?
 
       thisModel = @
 
@@ -48,6 +53,7 @@ class app.models.GeoJSONLayer extends app.models.LayerModel
         layerType = if options.useD3 then L.GeoJSON.d3 else L.GeoJSON
         layer = new layerType data, options.layerOptions
         thisModel.set "layer", layer
+        thisModel.trigger "layerLoaded", layer
 
       $.ajax
         url: jsonp
@@ -58,6 +64,11 @@ class app.models.GeoJSONLayer extends app.models.LayerModel
     else
       console.log "Error creating #{@get("layerName")}:\n\tMake sure to specify serviceUrl, typeName and layerOptions when creating a GeoJSONLayer."
       return
+
+  filterLayer: (filters) ->
+    f = new models.Filter filters
+    filterClause = "&filter=#{f.urlEncoded()}"
+    @createLayer _.extend { filterClause: filterClause }, @originalOptions
 
 class app.models.BingLayer extends app.models.LayerModel
   createLayer: (options) ->
