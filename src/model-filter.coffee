@@ -8,7 +8,9 @@ class models.Filter extends Backbone.Model
   initialize: (filters) ->
     makeFilter = (rule) ->
       for prop, val of rule
-        val = JSON.parse val
+        try
+          val = JSON.parse val
+
         if typeof val is "object"
           return between rule
 
