@@ -66,12 +66,18 @@ class app.views.SidebarView extends Backbone.View
     $(elId).collapse('toggle')
 
   showInfo: (e) ->
+    # Show this popover
     ele = $ e.currentTarget
     ele.popover "show"
-    $("body").on "click", (e) ->
+
+    # Setup to hide this one if someone clicks somewhere else
+    hideIt = (e) ->
       if not $(e.target).is(ele)
         ele.popover "hide"
-        $("body").off "click"
+        $("body").off "click", hideIt
+
+    # Bind an event to hide this popover if user clicks anywhere
+    $("body").on "click", hideIt
 
 class app.views.BasemapView extends Backbone.View
   initialize: (options) ->
