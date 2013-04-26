@@ -6,14 +6,27 @@ if not app.models then models = app.models = {} else models = app.models
 
 class models.Filter extends Backbone.Model
   initialize: (filters) ->
-    equals = (rule) ->
+    makeFilter = (rule) ->
       for prop, val of rule
+        val = JSON.parse val
+        if typeof val is "object"
+          return between rule
+
         return new OpenLayers.Filter.Comparison
           type: OpenLayers.Filter.Comparison.EQUAL_TO
           property: prop
           value: val
 
-    propFilters = ( equals(rule) for rule in filters or [] )
+    between = (rule) ->
+      for prop, val of rule
+        val = JSON.parse val
+        return new OpenLayers.Filter.Comparison
+          type: OpenLayers.Filter.Comparison.BETWEEN
+          property: prop
+          lowerBoundary: val[0]
+          upperBoundary: val[1]
+
+    propFilters = ( makeFilter(rule) for rule in filters or [] )
 
     @filterObj = new OpenLayers.Filter.Logical
       type: OpenLayers.Filter.Logical.OR

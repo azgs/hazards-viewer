@@ -86,64 +86,64 @@ dataLayers = [
       typeName: "azgs:earthquakedata"
       legend: new app.models.Legend [
           caption: "0 - 1"
-          attribute: "magnitude"
-          value: "hmm"
+          attribute: "calculated_magnitude"
+          value: "[-0.1, 1.1]"
           imageTemplateId: "quakeImage"
           imageInfo:
             radius: 5
             color: "#FFFF00"
         ,
           caption: "1 - 2"
-          attribute: "magnitude"
-          value: "hmm"
+          attribute: "calculated_magnitude"
+          value: "[0.9, 2.1]"
           imageTemplateId: "quakeImage"
           imageInfo:
             radius: 10
             color: "#FFDD00"
         ,
           caption: "2 - 3"
-          attribute: "magnitude"
-          value: "hmm"
+          attribute: "calculated_magnitude"
+          value: "[1.9, 3.1]"
           imageTemplateId: "quakeImage"
           imageInfo:
             radius: 15
             color: "#FFBF00"
         ,
           caption: "3 - 4"
-          attribute: "magnitude"
-          value: "hmm"
+          attribute: "calculated_magnitude"
+          value: "[2.9, 4.1]"
           imageTemplateId: "quakeImage"
           imageInfo:
             radius: 20
             color: "#FF9D00"
         ,
           caption: "4 - 5"
-          attribute: "magnitude"
-          value: "hmm"
+          attribute: "calculated_magnitude"
+          value: "[3.9, 5.1]"
           imageTemplateId: "quakeImage"
           imageInfo:
             radius: 25
             color: "#FF8000"
         ,
           caption: "5 - 6"
-          attribute: "magnitude"
-          value: "hmm"
+          attribute: "calculated_magnitude"
+          value: "[4.9, 6.1]"
           imageTemplateId: "quakeImage"
           imageInfo:
             radius: 30
             color: "#FF5E00"
         ,
           caption: "6 - 7"
-          attribute: "magnitude"
-          value: "hmm"
+          attribute: "calculated_magnitude"
+          value: "[5.9, 7.1]"
           imageTemplateId: "quakeImage"
           imageInfo:
             radius: 35
             color: "#FF4000"
         ,
           caption: "7 - 8"
-          attribute: "magnitude"
-          value: "hmm"
+          attribute: "calculated_magnitude"
+          value: "[6.9, 8.1]"
           imageTemplateId: "quakeImage"
           imageInfo:
             radius: 40
@@ -155,19 +155,7 @@ dataLayers = [
           markerOptions =
             fillOpacity: 0.2
 
-          # Try to make a float from the magnitude
-          if isNaN parseFloat feature.properties.magnitude
-            switch feature.properties.magnitude
-              when "I" then mag = 1
-              when "II" then mag = 3
-              when "III" then mag = 3
-              when "IV" then mag = 4
-              when "V" then mag = 4
-              when "VI" then mag = 5
-              when "VII" then mag = 6
-
-          else
-            mag = parseFloat feature.properties.magnitude
+          mag = feature.properties.calculated_magnitude
 
           if 0 < mag <= 1 then color = "#FFFF00" # Dead yellow, hsl: 60,100,100
           else if 1 < mag <= 2 then color = "#FFDD00"
