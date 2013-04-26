@@ -206,7 +206,7 @@ baseLayers = [
       layerName: "Road Map"
       apiKey: bingApiKey
       bingType: "Road"
-      #active: true
+      active: true
   ,
     new app.models.BingLayer
       id: "bingAerial"
