@@ -105,15 +105,15 @@ html(lang="en")
                         stroke="none", fill!="<%= info.color %>", fill-opacity="0.6")
 
         script#downloadBody(type="text/html")
-            .pull-right.btn-group.btn-group-vertical(data-toggle="buttons-checkbox")
+            .pull-right.btn-group.btn-group-vertical(data-toggle="buttons-radio")
                 <% for (i in layers) { %>
                 button.btn(id!="<%= layers[i].id %>-download-button", type="button",
                     style="width:200px;margin-left:10px;"): strong: <%= layers[i].get("layerName") %>
                 <% } %>
 
             p This tool allows you to download shapefiles for data layers in your area of interest.
-            p Select which layers you would like to download, then click "Continue".
-            p You'll be prompted to draw a box defining which data you are interested in.
+            p Select the layer you would like to download, then click "Continue".
+            p You'll be prompted to draw a box defining an area and your download will begin.
 
 
 

@@ -135,6 +135,7 @@ class views.DownloadView extends Backbone.View
 
     # jQuery to make the buttons change color when you click them
     body.find(".btn").on "click", (e) ->
+      body.find(".btn-success").toggleClass "btn-success"
       $(e.currentTarget).toggleClass "btn-success"
 
     # Setup a listener for leaflet.draw events
