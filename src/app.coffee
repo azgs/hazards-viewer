@@ -180,6 +180,7 @@ dataLayers = [
       id: "floodPotential"     
       layerName: "Flood Potential"
       serviceUrl: "http://data.usgin.org/arizona/gwc/service/wms"
+      wfsUrl: "http://data.usgin.org/arizona/ows"
       typeName: "azgs:floods"
       legend: new app.models.Legend [
           caption: "High"
@@ -238,8 +239,8 @@ navTools = [
   , 
     new app.models.NavToolModel
       id: "export"
-      toolName: "Export"
-      modalName: "Download Data"
+      toolName: "Download Data"
+      modalName: "Download Shapefiles"
       modalBody: "Not Implemented Yet"
   ,
     new app.models.NavToolModel
@@ -263,24 +264,17 @@ app.baseLayers = new app.views.BasemapView
   collection: app.baseLayerCollection
 app.baseLayers.render()
 
+# Render the Navbar tools
 app.navbar = new app.views.NavToolView
   el: $ "body"
   collection: app.navToolCollection
 app.navbar.render()
 
-# Setup the Leaflet Draw extension
-app.drawControl = new L.Control.Draw
-  position: "topleft"
-  rectangle:
-    shapeOptions:
-      color:"#33cc33"
-      weight:5
-  polygon: null
-  polyline: null
-  circle: null
-  marker: null
-
-app.map.addControl app.drawControl
+# Insert the export modal body
+app.exporter = new app.views.DownloadView
+  el: $ "#export-modal"
+  collection: app.dataLayerCollection
+app.exporter.render()
 
 # Setup the Geocoder
 app.geocodeView = new app.GeocodeView

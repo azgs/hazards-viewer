@@ -116,3 +116,43 @@ class app.views.BasemapView extends Backbone.View
 
     app.map.removeLayer activeModel.get "layer"
     activeModel.set "active", false
+
+class views.DownloadView extends Backbone.View
+  # Expects to be given a models.LayerCollection, and expects its el to be a modal
+  # leaflet-control-draw-rectangle
+  template: _.template $("#downloadBody").html()
+
+  initialize: () ->
+    # Setup a Leaflet.Draw handler
+    @drawHandler = new L.Rectangle.Draw app.map, {}
+
+  render: () ->
+    # Find the modal body and append the template
+    body = @$el.find ".modal-body"
+    body.empty()
+    body.append @template
+      layers: @collection.models
+
+    # jQuery to make the buttons change color when you click them
+    body.find(".btn").on "click", (e) ->
+      $(e.currentTarget).toggleClass "btn-success"
+
+    # Setup a listener for leaflet.draw events
+    thisCollection = @collection
+    app.map.on 'draw:rectangle-created', (e) ->
+      # Which layers were checked?
+      layers = ( thisCollection.get($(btn).attr("id").split("-")[0]) for btn in body.find "button.active" )
+
+      # Pass the drawn rectangle into a Leaflet LatLngBounds
+      bbox = new L.latLngBounds(e.rect._latlngs).toBBoxString()
+      ( l.downloadShapefile(bbox) for l in layers )
+
+    return @
+
+  events:
+    "click .btn-primary": "drawArea"
+
+  drawArea: (e) ->
+    # Click the Leaflet.draw control?!
+    @drawHandler.enable()
+

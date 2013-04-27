@@ -36,8 +36,8 @@ html(lang="en")
                     h3(id!="<%= model.get('id') %>-header") <%= model.get('modalName') %>
                 .modal-body <%= model.get('modalBody') %>
                 .modal-footer
-                    button.btn(data-dismiss="modal", aria-hidden="true") Close
-                    button.btn.btn-primary(data-dismiss="modal") Okay
+                    button.btn(data-dismiss="modal", aria-hidden="true") Cancel
+                    button.btn.btn-primary(data-dismiss="modal") Continue
 
         script#basemap-template(type="text/html")
             li(role="presentation")
@@ -103,6 +103,19 @@ html(lang="en")
             svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:50px;")
                 path(d="M 5 5 L 45 5 L 45 45 L 5 45 L 5 5",
                         stroke="none", fill!="<%= info.color %>", fill-opacity="0.6")
+
+        script#downloadBody(type="text/html")
+            .pull-right.btn-group.btn-group-vertical(data-toggle="buttons-checkbox")
+                <% for (i in layers) { %>
+                button.btn(id!="<%= layers[i].id %>-download-button", type="button",
+                    style="width:200px;margin-left:10px;"): strong: <%= layers[i].get("layerName") %>
+                <% } %>
+
+            p This tool allows you to download shapefiles for data layers in your area of interest.
+            p Select which layers you would like to download, then click "Continue".
+            p You'll be prompted to draw a box defining which data you are interested in.
+
+
 
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
         script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")

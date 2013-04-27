@@ -24,6 +24,25 @@ class app.models.LayerModel extends Backbone.Model
   filterLayer: (filters) ->
     return null
 
+  downloadShapefile: (bbox) ->
+    url = if @get("wfsUrl")? then @get("wfsUrl") else @get("serviceUrl")
+    url += "?service=WFS&version=1.0.0&request=GetFeature&outputFormat=SHAPE-ZIP"
+    url += "&typeName=#{@get("typeName")}"
+    url += "&bbox=#{bbox}"
+
+    # This way opens a new window for every download
+    #window.open url
+
+    # But this way moves too fast and you only get one file
+    window.location.assign url
+
+    # This doesn't work
+    #link = $("<a href='" + url + "'></a>").appendTo("body")
+    #link.click()
+
+    # Better way might be to send all the URLs to Node.js and have it bundle them into one zip file?
+    # No. Assemble the URLs then present a modal allowing users to click the links and get files individually
+
 class app.models.WmsLayer extends app.models.LayerModel
   createLayer: (options) ->
     if options.serviceUrl? and options.typeName?
