@@ -281,3 +281,6 @@ app.geocodeView = new app.GeocodeView
   model: new app.GeocodeModel
     apiKey: bingApiKey
   el: $ "#geocoder"
+
+# Add a scalebar
+app.map.addControl new L.Control.Scale()
