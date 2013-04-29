@@ -3,10 +3,13 @@ root = @
 if not root.app? then app = root.app = {} else app = root.app
 
 class app.GeocodeView extends Backbone.View
+
   initialize: (options) ->
+    popupTemplate = _.template $("#localHazards").html()
+
     @layer = new L.GeoJSON null,
       onEachFeature: (feature, layer) ->
-        layer.bindPopup feature.properties.name
+        popup = layer.bindPopup popupTemplate feature.properties
 
     @layer.addTo app.map
 
@@ -16,7 +19,8 @@ class app.GeocodeView extends Backbone.View
   geocode: (e) ->
     if e.keyCode is 13
       l = @layer
-      @model.getLocation $(e.currentTarget).val(), (bbox, point, name) ->
+      bufferDistance = 5000 # in meters
+      @model.getLocalHazards $(e.currentTarget).val(), bufferDistance, app.dataLayerCollection.models, (bbox, point, name, result) ->
         # Zoom to the given bounding box
         sw = [ bbox[0], bbox[1] ]
         ne = [ bbox[2], bbox[3] ]
@@ -26,7 +30,9 @@ class app.GeocodeView extends Backbone.View
         geojson = {
           type: "Feature"
           properties:
-            name: name
+            location: name
+            bufferDistance: bufferDistance
+            result: result
           geometry:
             type: "Point"
             coordinates: [ point.coordinates[1], point.coordinates[0] ]
@@ -34,3 +40,6 @@ class app.GeocodeView extends Backbone.View
 
         l.clearLayers()
         l.addData geojson
+
+        # Open the Popups immediately
+        ( layer.openPopup() for key, layer of l._layers )

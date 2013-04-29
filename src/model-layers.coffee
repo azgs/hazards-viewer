@@ -24,11 +24,15 @@ class app.models.LayerModel extends Backbone.Model
   filterLayer: (filters) ->
     return null
 
-  downloadShapefile: (bbox) ->
+  dataUrl: () ->
     url = if @get("wfsUrl")? then @get("wfsUrl") else @get("serviceUrl")
-    url += "?service=WFS&version=1.0.0&request=GetFeature&outputFormat=SHAPE-ZIP"
+    url += "?service=WFS&version=1.0.0&request=GetFeature"
     url += "&typeName=#{@get("typeName")}"
-    url += "&bbox=#{bbox}"
+    return url
+
+  downloadShapefile: (bbox) ->
+    url = @dataUrl()
+    url += "&outputFormat=SHAPE-ZIP&bbox=#{bbox}"
 
     # Download the file. Hopefully this is cross-browser compatible
     window.location.assign url
@@ -63,6 +67,7 @@ class app.models.GeoJSONLayer extends app.models.LayerModel
         layer = new layerType data, options.layerOptions
         thisModel.set "layer", layer
         thisModel.trigger "layerLoaded", layer
+        thisModel.set "currentData", data
 
       $.ajax
         url: jsonp

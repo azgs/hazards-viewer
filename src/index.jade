@@ -115,6 +115,14 @@ html(lang="en")
             p Select the layer you would like to download, then click "Continue".
             p You'll be prompted to draw a box defining an area and your download will begin.
 
+        script#localHazards(type="text/html")
+            h3 <%= location %>
+            p.muted Searched for hazards within <%= bufferDistance %> meters
+            <% for (var key in result) { if (result.hasOwnProperty(key) && result[key].count > 0) { %>
+            p
+                span Be afraid of
+                span: strong  <%= key %>
+            <% } } %>
 
 
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
@@ -127,6 +135,8 @@ html(lang="en")
         script(src="vendor/underscore-min.js")
         script(src="vendor/backbone-min.js")
         script(src="http://cdnjs.cloudflare.com/ajax/libs/openlayers/2.11/OpenLayers.js")
+        script(src="vendor/javascript.util.js")
+        script(src="vendor/jsts.js")
         script(src="scripts/model-filter.js")
         script(src="scripts/model-legend.js")
         script(src="scripts/view-legend.js")
