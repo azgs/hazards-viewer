@@ -5,6 +5,23 @@
 @gridGutterWidth1200: 0px;
 @gridGutterWidth768: 0px;
 
+@bingInterstate: #dac6e1;
+@bingHighway: #e6d8bb;
+@bingForest: #eaede2;
+@bingReservation: #f5f1e8;
+
+@themeColor: @bingForest;
+
+@navbarBackgroundHighlight: @themeColor;
+@linkColor: darken(@themeColor, 50%);
+@navbarText: @linkColor;
+@navbarLinkColor: @linkColor;
+@navbarLinkColorHover: darken(@linkColor, 15%);
+@navbarLinkColorActive: darken(@linkColor, 15%);
+@sidebarBackgroundColor: lighten(@themeColor, 6%);
+
+@btnPrimaryBackground: #08c;
+
 html, body, .fill {
   height: 100%;
 }
@@ -24,13 +41,13 @@ html, body, .fill {
 
 // Sidebar business
 @li-height: 40px;
-@guessed-back-color: rgb(250, 250, 250);
+
 @layerListMargin: 4px;
 
 .small-text { font-size: 10px; }
 
 #sidebar {
-  background-color: @guessed-back-color;
+  background-color: @sidebarBackgroundColor;
   overflow-y: hidden;
 
   //override some Bootstrappin'
@@ -46,6 +63,7 @@ html, body, .fill {
 
   .accordion-inner {
     border-top: none;
+    background-color: @sidebarBackgroundColor;
   }
 
   .legendItems {
@@ -63,6 +81,13 @@ html, body, .fill {
       line-height: @li-height;
       border-radius: 0px;
       margin-bottom: @layerListMargin;
+
+      > span > a {
+        font-weight: 400;
+        &:hover {
+          font-weight: 450;
+        }
+      }
 
       > span, > div > span {
         margin-left: 5px;
