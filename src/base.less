@@ -187,19 +187,20 @@ path[styler="2.13.4"] {
     -webkit-print-color-adjust:exact;
   }
   body * {
+    visibility:hidden;
   }
-  #printable * {
+  #print-area * {
     visibility:visible;
   }
   #map, #printmap-table-legend {
+    visibility:visible;
     display:table-cell;
   }
   #map * {
     visibility:visible;
   }
-  .leaflet-control-scale-line * {
-  }
   #printmap-table-legend * {
+    visibility:visible;
     white-space:nowrap;
   }
 }

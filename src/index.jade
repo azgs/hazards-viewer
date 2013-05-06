@@ -49,7 +49,7 @@ html(lang="en")
             li.navbar-inner
                 label.checkbox.inline
                     input.layerToggle(id!="<%= model.get('id') %>-toggle", type="checkbox")
-                    a.layer-info-button(href="#") <%= model.get('layerName') %>
+                    a.layer-info-button(href="#", id!="<%= model.get('id') %>-toggle") <%= model.get('layerName') %>
                 .pull-right
                     span
                         a(href="#", data-parent="#accordion-legend", id!="<%= model.get('datatarget') %>").icon-list
@@ -76,7 +76,7 @@ html(lang="en")
                 tbody.legendItems
 
         script#legendItem-template(type="text/html")
-            tr
+            tr(class!="legend-item-" + "<%= model.get('attribute') %>" + "<%= model.get('uid') %>")
                 <% if (filter) { %>
                 td
                     input.filter(type="checkbox",

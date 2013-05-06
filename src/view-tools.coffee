@@ -30,7 +30,6 @@ class views.PrintToolView extends Backbone.View
       previewBtn = '<button id="preview-btn" class="btn">Preview</button>'
       titleBtn = '<button id="title-btn" class="btn">Title</button>'
       closeBtn = '<button id="close-btn" data-dismiss="modal" aria-hidden="true" class="btn">Close</button>'
-      printBtn = '<button id="print-btn" class="btn btn-primary">Print</button>'
     ]
     newButtons.forEach (button) ->
       $("#print-modal .modal-footer").append(button)
@@ -59,7 +58,6 @@ class views.PrintToolView extends Backbone.View
       "max-height": "400px"
     domEl = $("#map")
 
-
     height = $("#map").height()
     width = $("#map").width()
     mDiv = $("#print-modal").get(0)
@@ -76,19 +74,23 @@ class views.PrintToolView extends Backbone.View
     $("#print-modal .modal-body #map").css "border","3px solid black"
     $(printArea).append "<div id='printmap-table-legend'></div>"
     printmapTableLegend = $("#printmap-table-legend")
+    $(printmapTableLegend).append "Legend"
     $(printmapTableLegend).append "<table class='printmap-table'><tbody class='printmap-legend'></tbody></table>"
 
     $("#layer-list input:checked").each ->
       layerId = $(@).attr("id")
+      layerName = $("#"+layerId).attr(".layer-info-button")
+      console.log layerName
       if layerId?
         modelId = layerId.split("-")[0]
         checkedItems = $("#"+modelId+"-legend .table .legendItems input:checked")
         checkedItems.each ->
           itemId = $(@).attr("column")
-          imgId = $("#"+modelId+"-legend .table .legendItems .legend-image-"+itemId)
+          imgId = $("#"+modelId+"-legend .table .legendItems .legend-item-"+itemId)
 #          imgTxt = $("#"+modelId+"-legend .table .legendItems .legend-image-"+itemId)
           tableObj = $(".printmap-legend")
           cloneObj = $(imgId).clone(true,true)
+
           squareSvgStyles =
             height:'30px'
             width:'30px'
@@ -105,14 +107,26 @@ class views.PrintToolView extends Backbone.View
             cy:10
             r:6
 
+          legendTextStyle =
+            "font-size":"10px"
+
           $(cloneObj).find('#square').css squareSvgStyles
           $(cloneObj).find('#circle').css circleSvgStyles
           $(cloneObj).find('path').attr dStyles
           $(cloneObj).find('circle').attr circleStyles
 
-
-          $(tableObj).append "<tr></tr>"
+          $(cloneObj).find(":checkbox").remove ":checkbox"
+          $(cloneObj).find(".legend-text").css legendTextStyle
           $(cloneObj).appendTo tableObj
+
+    top = $("#print-modal .modal-body #map")
+    $(top).before '<input id="title-input" type="text" name="title" value="Type a Title and Press Enter">'
+    $('input[name="title"]').change ->
+      value = $('input[name="title"]').val()
+      $(top).before "<p id='title' style='text-align:left; font-size:20px; font-weight:bold;'></p>"
+      $("#title").append value
+      $("#title-input").remove()
+
 
   printMap: () ->
     ele = $("#print-area").html()
@@ -123,9 +137,10 @@ class views.PrintToolView extends Backbone.View
       </head><body><div id="printable">'
     html2 = '</div></body></html>'
     string = htmlone + ele + html2
-    w=window.open()
-    w.document.write(string)
-    app.map.invalidateSize(false)
+
+    document.body.innerHTML = string
+    window.print()
+    location.reload()
 
   resetMap: () ->
     if $("#print-modal").modal "hide"
@@ -135,12 +150,3 @@ class views.PrintToolView extends Backbone.View
       $(".modal").css
         "margin-left": "-280px"
         "top":"10%"
-
-  insertTitle: () ->
-    top = $("#print-modal .modal-body #map")
-    $(top).before '<input id="title-input" type="text" name="title" value="Type a Title and Press Enter">'
-    $('input[name="title"]').change ->
-      value = $('input[name="title"]').val()
-      $(top).before "<p id='title' style='text-align:center; font-size:20px; font-weight:bold;'></p>"
-      $("#title").append value
-      $("#title-input").remove()
