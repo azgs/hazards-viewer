@@ -22,34 +22,39 @@ class views.NavToolView extends Backbone.View
         model: model
 
 class views.PrintToolView extends Backbone.View
+  template: _.template $("#print-tool").html()
+
   initialize: ->
-    @printTemplate = _.template $("#print-tool").html()
-    $("#print-modal .modal-body").empty()
-    $("#print-modal .modal-footer").empty()
+
+  render: ->
+    that=@
+    domEls = [
+      that.printBody = @$el.find ".modal-body"
+      printFooter = @$el.find ".modal-footer"
+    ]
+    domEls.forEach (el) ->
+      el.empty()
+    that.printBody.append @template
+    @collection.forEach (model) ->
+      if model.get "print"
+        printBody.append @template
+          model: model
+
     newButtons = [
-      previewBtn = '<button id="preview-btn" class="btn">Preview</button>'
-      titleBtn = '<button id="title-btn" class="btn">Title</button>'
+      resetBtn = '<button id="reset-btn" class="btn" style="float:left;">Reset</button>'
       closeBtn = '<button id="close-btn" data-dismiss="modal" aria-hidden="true" class="btn">Close</button>'
+      previewBtn = '<button id="preview-btn" class="btn btn-primary">Preview</button>'
     ]
     newButtons.forEach (button) ->
       $("#print-modal .modal-footer").append(button)
 
-  render: ->
-    printBody = @$el.find ".modal-body"
-    printTemplate = @printTemplate
-
-    @collection.forEach (model) ->
-      if model.get "print"
-        printBody.append printTemplate
-          model: model
-
   events: ->
     "click #preview-btn":"previewMap"
     "click #print-btn":"printMap"
-    "click #close-btn":"resetMap"
-    "click #title-btn":"insertTitle"
+    "click #reset-btn":"resetMap"
 
   previewMap: () ->
+    $("#preview-btn").replaceWith "<button id='print-btn' class='btn btn-primary'>Print</button>"
     $("#print-modal .modal-body").empty()
     $(".modal").css
       "margin-left": "-540px"
@@ -87,7 +92,6 @@ class views.PrintToolView extends Backbone.View
         checkedItems.each ->
           itemId = $(@).attr("column")
           imgId = $("#"+modelId+"-legend .table .legendItems .legend-item-"+itemId)
-#          imgTxt = $("#"+modelId+"-legend .table .legendItems .legend-image-"+itemId)
           tableObj = $(".printmap-legend")
           cloneObj = $(imgId).clone(true,true)
 
@@ -143,10 +147,9 @@ class views.PrintToolView extends Backbone.View
     location.reload()
 
   resetMap: () ->
-    if $("#print-modal").modal "hide"
-      $("#print-modal .modal-body").empty()
-      $(".modal-body").css
-        "max-height": "400px"
-      $(".modal").css
-        "margin-left": "-280px"
-        "top":"10%"
+    @render()
+    $(".modal-body").css
+      "max-height": "400px"
+    $(".modal").css
+      "margin-left": "-280px"
+      "top":"10%"

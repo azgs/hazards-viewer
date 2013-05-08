@@ -15,7 +15,7 @@ class app.models.NavToolModel extends Backbone.Model
 class app.models.printTool extends app.models.NavToolModel
   printMap: (options) ->
     if options.print?
-        console.log ""
+      console.log ""
 
 class app.models.NavToolCollection extends Backbone.Collection
   model: app.models.navToolModel
