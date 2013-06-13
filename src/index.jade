@@ -104,7 +104,7 @@ html(lang="en")
                         stroke-dasharray!="<%= info.dashed %>")
 
         script#floodImage(type="text/html")
-            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:50px;")
+            svg(id="square", xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:50px;")
                 path(d="M 5 5 L 45 5 L 45 45 L 5 45 L 5 5",
                         stroke="none", fill!="<%= info.color %>", fill-opacity="0.6")
 

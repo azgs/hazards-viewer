@@ -85,7 +85,7 @@ dataLayers = [
       ],
         heading: "Latest Motion"
       layerOptions:
-        styler: "activefaults"
+        styler: "symbol"
   ,
     new app.models.GeoJSONLayer
       id: "earthquakes"     
@@ -197,11 +197,13 @@ dataLayers = [
       wfsUrl: "http://data.usgin.org/arizona/ows"
       typeName: "azgs:floods"
       legend: new app.models.Legend [
+          uid: "floodshigh"
           caption: "High"
           imageTemplateId: "floodImage"
           imageInfo:
             color: "#0039BF"
         ,
+          uid: "floodsmedium"
           caption: "Medium"
           imageTemplateId: "floodImage"
           imageInfo:
