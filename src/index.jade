@@ -81,7 +81,7 @@ html(lang="en")
                 <% if (filter) { %>
                 td
                     input.filter(type="checkbox",
-                            column!="<%= model.get('attribute') %>" + "<%= model.get('uid') %>", columnvalue!="<%= model.get('value') %>")
+                            column!="<%= model.get('attribute') %>" , columnvalue!="<%= model.get('value') %>")
                 <% } %>
                 td(class!="legend-image-" + "<%= model.get('attribute') %>" + "<%= model.get('uid') %>")
                 td.legend-text <%= model.get("caption") %>
