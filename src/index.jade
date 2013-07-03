@@ -39,6 +39,9 @@ html(lang="en")
                     button.btn(data-dismiss="modal", aria-hidden="true") Cancel
                     button.btn.btn-primary(data-dismiss="modal") Continue
 
+        script#print-tool(type="text/html")
+            p This tool allows you to preview and print a static map.  Click 'preview' first to add some customization to your map, like a title.  Click reset at any time to reload this window.
+
         script#basemap-template(type="text/html")
             li(role="presentation")
                 a(role="menuitem",id!="<%= model.get('id') %>-toggle",href="#")<%= model.get('layerName') %>
@@ -47,7 +50,7 @@ html(lang="en")
             li.navbar-inner
                 label.checkbox.inline
                     input.layerToggle(id!="<%= model.get('id') %>-toggle", type="checkbox")
-                    a.layer-info-button(href="#") <%= model.get('layerName') %>
+                    a.layer-info-button(href="#", id!="<%= model.get('id') %>-toggle") <%= model.get('layerName') %>
                 .pull-right
                     span
                         a(href="#", data-parent="#accordion-legend", id!="<%= model.get('datatarget') %>").icon-list
@@ -74,34 +77,34 @@ html(lang="en")
                 tbody.legendItems
 
         script#legendItem-template(type="text/html")
-            tr
+            tr(class!="legend-item-" + "<%= model.get('attribute') %>" + "<%= model.get('uid') %>")
                 <% if (filter) { %>
                 td
                     input.filter(type="checkbox",
-                            column!="<%= model.get('attribute') %>", columnvalue!="<%= model.get('value') %>")
+                            column!="<%= model.get('attribute') %>" , columnvalue!="<%= model.get('value') %>")
                 <% } %>
-                td.legend-image
+                td(class!="legend-image-" + "<%= model.get('attribute') %>" + "<%= model.get('uid') %>")
                 td.legend-text <%= model.get("caption") %>
 
         script#quakeImage(type="text/html")
-            svg(xmlns="http://www.w3.org/2000/svg", version="1.1",
+            svg(id="circle", xmlns="http://www.w3.org/2000/svg", version="1.1",
                     style!="height:<%= 2 * (info.radius + 4) %>px;width:<%= 2 * (info.radius + 4) %>px")
                 circle(cx!="<%= info.radius + 4 %>", cy!="<%= info.radius + 4 %>", r!="<%= info.radius %>",
                         stroke!="<%= info.color %>", stroke-width!="2", fill-opacity="0.2", fill!="<%= info.color %>")
 
         script#faultImage(type="text/html")
-            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:48px;")
+            svg(id="square", xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:48px;")
                 path(d="M 5 40 q 20 -60 40 -20",
                         stroke-width="2", stroke!="<%= info.color %>", fill="none")
 
         script#fissureImage(type="text/html")
-            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:48px;")
+            svg(id="square", xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:48px;")
                 path(d="M 5 40 q 20 -60 40 -20",
                         stroke-width="2", stroke!="<%= info.color %>", fill="none",
                         stroke-dasharray!="<%= info.dashed %>")
 
         script#floodImage(type="text/html")
-            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:50px;")
+            svg(id="square", xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:50px;")
                 path(d="M 5 5 L 45 5 L 45 45 L 5 45 L 5 5",
                         stroke="none", fill!="<%= info.color %>", fill-opacity="0.6")
 

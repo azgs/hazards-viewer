@@ -175,3 +175,32 @@ path[styler="2.13.4"] {
     fill: @hoverColor;
   }
 }
+* {
+  -webkit-print-color-adjust:exact;
+}
+// Print map function
+@media print {
+  @page {
+    size:landscape;
+  }
+  * {
+    -webkit-print-color-adjust:exact;
+  }
+  body * {
+    visibility:hidden;
+  }
+  #print-area * {
+    visibility:visible;
+  }
+  #map, #printmap-table-legend {
+    visibility:visible;
+    display:table-cell;
+  }
+  #map * {
+    visibility:visible;
+  }
+  #printmap-table-legend * {
+    visibility:visible;
+    white-space:nowrap;
+  }
+}

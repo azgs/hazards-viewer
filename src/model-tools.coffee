@@ -12,5 +12,10 @@ class app.models.NavToolModel extends Backbone.Model
   initialize: (options) ->
     @id = options.id or "navTool-#{Math.floor(Math.random() * 101)}"
 
+class app.models.printTool extends app.models.NavToolModel
+  printMap: (options) ->
+    if options.print?
+      console.log ""
+
 class app.models.NavToolCollection extends Backbone.Collection
   model: app.models.navToolModel

@@ -24,7 +24,9 @@ class views.LegendView extends Backbone.View
       thisone = $(itemTemplate({model: model, filter: filterable}).replace(/\n|\t|  /g, "")).appendTo el
 
       # Append the legend image template
-      thisone.children(".legend-image").append model.get "image"
+      attribute = model.get "attribute"
+      uid = model.get "uid"
+      thisone.children(".legend-image-"+attribute+uid).append model.get "image"
 
     return @
 
