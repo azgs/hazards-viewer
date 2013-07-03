@@ -10,3 +10,5 @@ src/*.html
 src/*.css
 node_modules
 npm-debug.log
+.DS_Store
+

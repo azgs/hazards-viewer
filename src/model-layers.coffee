@@ -92,6 +92,12 @@ class app.models.BingLayer extends app.models.LayerModel
       return layer
     return
 
+class app.models.TileLayer extends app.models.LayerModel
+  createLayer: (options) ->
+    if options.url?
+      return new L.TileLayer options.url, options
+    return
+
 class app.models.LayerCollection extends Backbone.Collection
   model: app.models.LayerModel
   
