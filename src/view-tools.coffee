@@ -84,14 +84,15 @@ class views.PrintToolView extends Backbone.View
 
     $("#layer-list input:checked").each ->
       layerId = $(@).attr("id")
-      layerName = $("#"+layerId).attr(".layer-info-button")
-      console.log layerName
+      console.log layerId
       if layerId?
         modelId = layerId.split("-")[0]
         checkedItems = $("#"+modelId+"-legend .table .legendItems input:checked")
         checkedItems.each ->
           itemId = $(@).attr("column")
+          console.log itemId
           imgId = $("#"+modelId+"-legend .table .legendItems .legend-item-"+itemId)
+          console.log imgId
           tableObj = $(".printmap-legend")
           cloneObj = $(imgId).clone(true,true)
 

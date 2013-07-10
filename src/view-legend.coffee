@@ -25,8 +25,7 @@ class views.LegendView extends Backbone.View
 
       # Append the legend image template
       attribute = model.get "attribute"
-      uid = model.get "uid"
-      thisone.children(".legend-image-"+attribute+uid).append model.get "image"
+      thisone.children(".legend-image-"+attribute).append model.get "image"
 
     return @
 
