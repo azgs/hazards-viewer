@@ -23,7 +23,6 @@ dataLayers = [
       description: "Earth fissure maps are prepared by the Arizona Geological Survey (\"AZGS\") in accordance \
         with Ariz. Rev. Stat. § 27-152.01(3)."
       legend: new app.models.Legend [
-          uid: "continuousearthfissure"
           caption: "Continuous Earth Fissure"
           attribute: "fisstype"
           value: "Continuous Earth Fissure"
@@ -31,7 +30,6 @@ dataLayers = [
           imageInfo:
             color: "#000000"
         ,
-          uid: "discontinuousearthfissure"
           caption: "Discontinuous Earth Fissure"
           attribute: "fisstype"
           value: "Discontinuous Earth Fissure"
@@ -39,7 +37,6 @@ dataLayers = [
           imageInfo:
             color: "#FF0000"
         ,
-          uid: "reportedunconfirmedearthfissure"
           caption: "Reported, Unconfirmed Earth Fissure"
           attribute: "fisstype"
           value: "Reported, Unconfirmed Earth Fissure"
@@ -59,7 +56,6 @@ dataLayers = [
       typeName: "azgs:activefaults"
       useD3: true
       legend: new app.models.Legend [
-          uid: "holocene10ka"
           caption: "Holocene ( <10 ka )"
           attribute: "activefaults"
           value: "2.13.2"
@@ -67,7 +63,6 @@ dataLayers = [
           imageInfo:
             color: "#FFA500"
         ,
-          uid: "latequaternary750ka"
           caption: "Late Quaternary ( <750 ka )"
           attribute: "activefaults"
           value: "2.13.3"
@@ -75,7 +70,6 @@ dataLayers = [
           imageInfo:
             color: "#008000"
         ,
-          uid: "quaternaryundifferentiated"
           caption: "Quaternary (Undifferentiated)"
           attribute: "activefaults"
           value: "2.13.4"
@@ -93,7 +87,6 @@ dataLayers = [
       serviceUrl: geoserverUrl
       typeName: "azgs:earthquakedata"
       legend: new app.models.Legend [
-          uid: "0-1"
           caption: "0 - 1"
           attribute: "calculated_magnitude"
           value: "[-0.1, 1.1]"
@@ -102,7 +95,6 @@ dataLayers = [
             radius: 5
             color: "#FFFF00"
         ,
-          uid: "1-2"
           caption: "1 - 2"
           attribute: "calculated_magnitude"
           value: "[0.9, 2.1]"
@@ -111,7 +103,6 @@ dataLayers = [
             radius: 10
             color: "#FFDD00"
         ,
-          uid: "2-3"
           caption: "2 - 3"
           attribute: "calculated_magnitude"
           value: "[1.9, 3.1]"
@@ -120,7 +111,6 @@ dataLayers = [
             radius: 15
             color: "#FFBF00"
         ,
-          uid: "3-4"
           caption: "3 - 4"
           attribute: "calculated_magnitude"
           value: "[2.9, 4.1]"
@@ -129,7 +119,6 @@ dataLayers = [
             radius: 20
             color: "#FF9D00"
         ,
-          uid: "4-5"
           caption: "4 - 5"
           attribute: "calculated_magnitude"
           value: "[3.9, 5.1]"
@@ -138,7 +127,6 @@ dataLayers = [
             radius: 25
             color: "#FF8000"
         ,
-          uid: "5-6"
           caption: "5 - 6"
           attribute: "calculated_magnitude"
           value: "[4.9, 6.1]"
@@ -147,7 +135,6 @@ dataLayers = [
             radius: 30
             color: "#FF5E00"
         ,
-          uid: "6-7"
           caption: "6 - 7"
           attribute: "calculated_magnitude"
           value: "[5.9, 7.1]"
@@ -156,7 +143,6 @@ dataLayers = [
             radius: 35
             color: "#FF4000"
         ,
-          uid: "7-8"
           caption: "7 - 8"
           attribute: "calculated_magnitude"
           value: "[6.9, 8.1]"
@@ -197,13 +183,11 @@ dataLayers = [
       wfsUrl: "http://data.usgin.org/arizona/ows"
       typeName: "azgs:floods"
       legend: new app.models.Legend [
-          uid: "floodshigh"
           caption: "High"
           imageTemplateId: "floodImage"
           imageInfo:
             color: "#0039BF"
         ,
-          uid: "floodsmedium"
           caption: "Medium"
           imageTemplateId: "floodImage"
           imageInfo:
