@@ -27,6 +27,7 @@ dataLayers = [
           attribute: "fisstype"
           value: "Continuous Earth Fissure"
           imageTemplateId: "fissureImage"
+          active: true
           imageInfo:
             color: "#000000"
         ,
@@ -34,6 +35,7 @@ dataLayers = [
           attribute: "fisstype"
           value: "Discontinuous Earth Fissure"
           imageTemplateId: "fissureImage"
+          active: true
           imageInfo:
             color: "#FF0000"
         ,
@@ -41,6 +43,7 @@ dataLayers = [
           attribute: "fisstype"
           value: "Reported, Unconfirmed Earth Fissure"
           imageTemplateId: "fissureImage"
+          active: true
           imageInfo:
             color: "#008000"
             dashed: "10 4"
@@ -60,6 +63,7 @@ dataLayers = [
           attribute: "activefaults"
           value: "2.13.2"
           imageTemplateId: "faultImage"
+          active: true
           imageInfo:
             color: "#FFA500"
         ,
@@ -67,6 +71,7 @@ dataLayers = [
           attribute: "activefaults"
           value: "2.13.3"
           imageTemplateId: "faultImage"
+          active: true
           imageInfo:
             color: "#008000"
         ,
@@ -74,6 +79,7 @@ dataLayers = [
           attribute: "activefaults"
           value: "2.13.4"
           imageTemplateId: "faultImage"
+          active: true
           imageInfo:
             color: "#800080"
       ],
@@ -91,6 +97,7 @@ dataLayers = [
           attribute: "calculated_magnitude"
           value: "[-0.1, 1.1]"
           imageTemplateId: "quakeImage"
+          active: true
           imageInfo:
             radius: 5
             color: "#FFFF00"
@@ -99,6 +106,7 @@ dataLayers = [
           attribute: "calculated_magnitude"
           value: "[0.9, 2.1]"
           imageTemplateId: "quakeImage"
+          active: true
           imageInfo:
             radius: 10
             color: "#FFDD00"
@@ -107,6 +115,7 @@ dataLayers = [
           attribute: "calculated_magnitude"
           value: "[1.9, 3.1]"
           imageTemplateId: "quakeImage"
+          active: true
           imageInfo:
             radius: 15
             color: "#FFBF00"
@@ -115,6 +124,7 @@ dataLayers = [
           attribute: "calculated_magnitude"
           value: "[2.9, 4.1]"
           imageTemplateId: "quakeImage"
+          active: true
           imageInfo:
             radius: 20
             color: "#FF9D00"
@@ -123,6 +133,7 @@ dataLayers = [
           attribute: "calculated_magnitude"
           value: "[3.9, 5.1]"
           imageTemplateId: "quakeImage"
+          active: true
           imageInfo:
             radius: 25
             color: "#FF8000"
@@ -131,6 +142,7 @@ dataLayers = [
           attribute: "calculated_magnitude"
           value: "[4.9, 6.1]"
           imageTemplateId: "quakeImage"
+          active: true
           imageInfo:
             radius: 30
             color: "#FF5E00"
@@ -139,6 +151,7 @@ dataLayers = [
           attribute: "calculated_magnitude"
           value: "[5.9, 7.1]"
           imageTemplateId: "quakeImage"
+          active: true
           imageInfo:
             radius: 35
             color: "#FF4000"
@@ -147,6 +160,7 @@ dataLayers = [
           attribute: "calculated_magnitude"
           value: "[6.9, 8.1]"
           imageTemplateId: "quakeImage"
+          active: true
           imageInfo:
             radius: 40
             color: "#FF0000"

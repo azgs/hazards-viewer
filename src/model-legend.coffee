@@ -9,6 +9,7 @@ class models.LegendItemModel extends Backbone.Model
     attribute: "symbol" # Attribute from the dataset that determines this filter
     value: "x" # Value to filter on
     imageTemplateId: "imageTemplate"
+    active: "active"
     imageInfo: {} # Passed to the template to generate an image for the legend item
 
   initialize: (options) ->
@@ -17,6 +18,10 @@ class models.LegendItemModel extends Backbone.Model
     imageTemplate = if template.length > 0 then _.template template.html() else _.template "<div></div>"
     @set "image", imageTemplate
       info: options.imageInfo or {}
+    @set "active", @setActive()
+
+  setActive: () ->
+    if @get("active") then active = "active"
 
 class models.Legend extends Backbone.Collection
   model: models.LegendItemModel

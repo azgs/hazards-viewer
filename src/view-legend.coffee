@@ -48,3 +48,5 @@ class views.LegendView extends Backbone.View
     filters = ( filterObj(box) for box in @$el.find(".filter") when $(box).is(":checked") )
     @layerModel.filterLayer filters
 
+
+

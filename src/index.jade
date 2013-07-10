@@ -42,6 +42,15 @@ html(lang="en")
         script#print-tool(type="text/html")
             p This tool allows you to preview and print a static map.  Click 'preview' first to add some customization to your map, like a title.  Click reset at any time to reload this window.
 
+        script#print-container(type="text/html")
+            #print-container
+                input(id="title-input",type="text",name="title",value="Type a Title and Press Enter")
+                #preview-map-container(style="width:700px;height:600px")
+                #legend-container
+                    p Legend
+                    .printmap-table
+                    .printmap-legend
+
         script#basemap-template(type="text/html")
             li(role="presentation")
                 a(role="menuitem",id!="<%= model.get('id') %>-toggle",href="#")<%= model.get('layerName') %>
@@ -147,6 +156,7 @@ html(lang="en")
         script(src="scripts/model-layers.js")
         script(src="scripts/model-tools.js")
         script(src="scripts/view-tools.js")
+        script(src="scripts/view-print.js")
         script(src="scripts/view-layers.js")
         script(src="scripts/model-geocode.js")
         script(src="scripts/view-geocode.js")
