@@ -2,28 +2,6 @@ root = @
 if not root.app? then app = root.app = {} else app = root.app
 if not app.views? then app.views = views = {} else views = app.views
 
-class views.PrintToolMapContainer extends Backbone.View
-  render: ->
-    @bounds = app.map.getBounds().toBBoxString()
-
-    center = new L.LatLng 33.610044573695625, -111.50024414062501
-    zoom = 9
-    @previewMap = new L.Map "#map-container",
-      center: center
-      zoom: zoom
-    $("#map-container").append @previewMap
-
-    ###
-    printArea = $("#map-container")
-    $(map).clone(true,true).appendTo printArea
-    newMap = $("#print-modal .modal-body #map").get(0)
-    newMap.style.width = '700px'
-    newMap.style.height = '600px'
-
-    $("#print-modal .modal-body #map .leaflet-control-container .leaflet-top.leaflet-left").empty()
-    $("#print-modal .modal-body #map").css "border","3px solid black"
-    ###
-
 class views.PrintToolView extends Backbone.View
   initialize: ->
     @printTemplate = _.template $("#print-tool").html()
@@ -84,20 +62,22 @@ class views.PrintToolView extends Backbone.View
       $("#title").append @value
       $("#title-input").remove()
 
-    @bounds = app.map.getBounds().toBBoxString()
+    @bingType = app.activeBaseMap.split("-")[0]
+    @bounds = app.map.getBounds()
+    @center = app.map.getCenter()
+    @zoom = app.map.getZoom()
 
-    center = new L.LatLng 33.610044573695625, -111.50024414062501
-    zoom = 9
     @previewMap = new L.Map "preview-map-container",
-      center: center
-      zoom: zoom
-    @previewMapDiv = $("#preview-map-container")
-    @previewMapDiv.append @previewMap
+      center: @center
+      zoom: @zoom
+    @previewMap.setMaxBounds @bounds
 
-    ###
-    app.previewMap = new app.views.PrintToolMapContainer
-    app.previewMap.render()
-    ###
+    @bing = new L.BingLayer 'AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2',
+      type: @bingType
+    @previewMap.addLayer @bing
+
+    $("#preview-map-container").append @previewMap
+    $("#preview-map-container .leaflet-control-container .leaflet-top.leaflet-left").empty()
 
   printMap: () ->
     ele = $("#print-area").html()

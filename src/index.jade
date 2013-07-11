@@ -45,7 +45,7 @@ html(lang="en")
         script#print-container(type="text/html")
             #print-container
                 input(id="title-input",type="text",name="title",value="Type a Title and Press Enter")
-                #preview-map-container(style="width:700px;height:600px")
+                #preview-map-container(style="width:700px;height:600px;border-style:solid;border-color:black;border-width:3px;")
                 #legend-container
                     p Legend
                     .printmap-table
@@ -53,7 +53,7 @@ html(lang="en")
 
         script#basemap-template(type="text/html")
             li(role="presentation")
-                a(role="menuitem",id!="<%= model.get('id') %>-toggle",href="#")<%= model.get('layerName') %>
+                a(class!="active <%= model.get('active') %>",role!="menuitem",id!="<%= model.get('bingType') %>-toggle",href="#")<%= model.get('layerName') %>
 
         script#model-template(type="text/html")
             li.navbar-inner
@@ -156,8 +156,8 @@ html(lang="en")
         script(src="scripts/model-layers.js")
         script(src="scripts/model-tools.js")
         script(src="scripts/view-tools.js")
-        script(src="scripts/view-print.js")
         script(src="scripts/view-layers.js")
         script(src="scripts/model-geocode.js")
         script(src="scripts/view-geocode.js")
+        script(src="scripts/view-print.js")
         script(src="scripts/app.js")

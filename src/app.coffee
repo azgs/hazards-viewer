@@ -217,20 +217,20 @@ app.dataLayerCollection = new app.models.LayerCollection dataLayers
 bingApiKey = "AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
 baseLayers = [
     new app.models.BingLayer
-      id: "bingRoads"
+      id: "Road"
       layerName: "Road Map"
       apiKey: bingApiKey
       bingType: "Road"
       active: true
   ,
     new app.models.BingLayer
-      id: "bingAerial"
+      id: "Aerial"
       layerName: "Satellite Imagery"
       apiKey: bingApiKey
       bingType: "Aerial"
   ,
     new app.models.BingLayer
-      id: "bingAerialWithLabels"
+      id: "AerialWithLabels"
       layerName: "Imagery with Labels"
       apiKey: bingApiKey
       bingType: "AerialWithLabels"

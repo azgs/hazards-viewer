@@ -88,10 +88,18 @@ class app.views.BasemapView extends Backbone.View
   render: () ->
     el = @$el
     template = @template
+    baseMapMenu = $("#menu .dropdown")
 
     @collection.forEach (model) ->
       el.append template
         model: model
+
+    app.activeBaseMap = baseMapMenu.find(".true").attr("id")
+
+    baseMapMenu.find(".active").on "click", (e) ->
+      baseMapMenu.find(".true").toggleClass "true"
+      $(e.currentTarget).toggleClass "true"
+      app.activeBaseMap = baseMapMenu.find(".true").attr("id")
 
     return @
 

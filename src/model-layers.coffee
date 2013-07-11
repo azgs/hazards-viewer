@@ -88,7 +88,7 @@ class app.models.BingLayer extends app.models.LayerModel
   createLayer: (options) ->
     if options.apiKey? and options.bingType?
       layer = new L.BingLayer options.apiKey,
-        type: options.bingType
+        type: options.id
       return layer
     return
 
