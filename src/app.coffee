@@ -10,14 +10,14 @@ app.map = new L.Map "map",
   center: center
   zoom: zoom
 
-geoserverUrl = "http://data.usgin.org/arizona/ows"
+app.geoserverUrl = "http://data.usgin.org/arizona/ows"
 
 # Setup data layers
 dataLayers = [
     new app.models.GeoJSONLayer
       id: "earthFissures"
       layerName: "Earth Fissures"
-      serviceUrl: geoserverUrl
+      serviceUrl: app.geoserverUrl
       typeName: "azgs:earthfissures"
       useD3: true
       description: "Earth fissure maps are prepared by the Arizona Geological Survey (\"AZGS\") in accordance \
@@ -55,7 +55,7 @@ dataLayers = [
     new app.models.GeoJSONLayer
       id: "activeFaults"
       layerName: "Active Faults"
-      serviceUrl: geoserverUrl
+      serviceUrl: app.geoserverUrl
       typeName: "azgs:activefaults"
       useD3: true
       legend: new app.models.Legend [
@@ -90,7 +90,7 @@ dataLayers = [
     new app.models.GeoJSONLayer
       id: "earthquakes"     
       layerName: "Earthquake Hypocenters"
-      serviceUrl: geoserverUrl
+      serviceUrl: app.geoserverUrl
       typeName: "azgs:earthquakedata"
       legend: new app.models.Legend [
           caption: "0 - 1"
@@ -214,25 +214,25 @@ dataLayers = [
 app.dataLayerCollection = new app.models.LayerCollection dataLayers
 
 # Setup base layers
-bingApiKey = "AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
+app.bingApiKey = "AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
 baseLayers = [
     new app.models.BingLayer
       id: "Road"
       layerName: "Road Map"
-      apiKey: bingApiKey
+      apiKey: app.bingApiKey
       bingType: "Road"
       active: true
   ,
     new app.models.BingLayer
       id: "Aerial"
       layerName: "Satellite Imagery"
-      apiKey: bingApiKey
+      apiKey: app.bingApiKey
       bingType: "Aerial"
   ,
     new app.models.BingLayer
       id: "AerialWithLabels"
       layerName: "Imagery with Labels"
-      apiKey: bingApiKey
+      apiKey: app.bingApiKey
       bingType: "AerialWithLabels"
 ]
 
@@ -299,7 +299,7 @@ app.exporter.render()
 # Setup the Geocoder
 app.geocodeView = new app.GeocodeView
   model: new app.GeocodeModel
-    apiKey: bingApiKey
+    apiKey: app.bingApiKey
   el: $ "#geocoder"
 
 # Add a scalebar

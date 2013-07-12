@@ -62,7 +62,6 @@ class views.PrintToolView extends Backbone.View
       $("#title").append @value
       $("#title-input").remove()
 
-    @bingType = app.activeBaseMap.split("-")[0]
     @bounds = app.map.getBounds()
     @center = app.map.getCenter()
     @zoom = app.map.getZoom()
@@ -71,13 +70,16 @@ class views.PrintToolView extends Backbone.View
       center: @center
       zoom: @zoom
     @previewMap.setMaxBounds @bounds
+    @previewMap.addControl new L.Control.Scale()
 
-    @bing = new L.BingLayer 'AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2',
-      type: @bingType
-    @previewMap.addLayer @bing
+    @model = app.baseLayers.findActiveModel()
+    @layer = @model.get "layer"
+    @previewMap.addLayer @layer
+    @model.set "active", true
 
     $("#preview-map-container").append @previewMap
     $("#preview-map-container .leaflet-control-container .leaflet-top.leaflet-left").empty()
+
 
   printMap: () ->
     ele = $("#print-area").html()

@@ -178,6 +178,22 @@ path[styler="2.13.4"] {
 * {
   -webkit-print-color-adjust:exact;
 }
+
+// Print modal
+#preview-map-container {
+  display: inline;
+  float:left;
+  width: 700px;
+  height:600px;
+  border-style: solid;
+  border-color: black;
+  border-width:3px;
+}
+#legend-container {
+  display: inline;
+  float:left;
+}
+
 // Print map function
 @media print {
   @page {
@@ -189,18 +205,13 @@ path[styler="2.13.4"] {
   body * {
     visibility:hidden;
   }
-  #print-area * {
-    visibility:visible;
+  #preview-map-container * {
+    display: inline;
+    float:left;
+
   }
-  #map, #printmap-table-legend {
-    visibility:visible;
-    display:table-cell;
-  }
-  #map * {
-    visibility:visible;
-  }
-  #printmap-table-legend * {
-    visibility:visible;
-    white-space:nowrap;
+  #legend-container * {
+    display: inline;
+    float:left;
   }
 }
