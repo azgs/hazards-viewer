@@ -216,7 +216,8 @@ dataLayers = [
       id: "fireRisk"
       layerName: "Fire Risk Index"
       url: "http://{s}.tiles.usgin.org/fire-risk-index/{z}/{x}/{y}.png"
-      opacity: 0.5
+      opacity: 0.5,
+      downloadUrlTemplate: "http://data.usgin.org/arizona/wcs?service=WCS&version=1.0.0&request=GetCoverage&coverage=fireriskindex&crs=epsg:4326&bbox={{bbox}}&format=GeoTIFF&resy=3.0495095356186517E-4&resx=3.0495095356186517E-4",
       legend: new app.models.Legend [
           caption: "One thing"
           imageTemplateId: "floodImage"

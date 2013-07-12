@@ -25,14 +25,18 @@ class app.models.LayerModel extends Backbone.Model
     return null
 
   dataUrl: () ->
+    return @get("downloadUrlTemplate") if @get("downloadUrlTemplate")?
     url = if @get("wfsUrl")? then @get("wfsUrl") else @get("serviceUrl")
     url += "?service=WFS&version=1.0.0&request=GetFeature"
     url += "&typeName=#{@get("typeName")}"
     return url
 
-  downloadShapefile: (bbox) ->
+  download: (bbox) ->
     url = @dataUrl()
-    url += "&outputFormat=SHAPE-ZIP&bbox=#{bbox}"
+    if url.indexOf("{{bbox}}") isnt -1
+      url = url.replace("{{bbox}}", bbox)
+    else
+      url += "&outputFormat=SHAPE-ZIP&bbox=#{bbox}"
 
     # Download the file. Hopefully this is cross-browser compatible
     window.location.assign url

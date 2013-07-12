@@ -146,7 +146,7 @@ class views.DownloadView extends Backbone.View
 
       # Pass the drawn rectangle into a Leaflet LatLngBounds
       bbox = new L.latLngBounds(e.rect._latlngs).toBBoxString()
-      ( l.downloadShapefile(bbox) for l in layers )
+      ( l.download(bbox) for l in layers )
 
     return @
 
