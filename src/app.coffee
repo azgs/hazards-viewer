@@ -3,12 +3,14 @@ root = @
 if not root.app? then app = root.app = {} else app = root.app
 
 #Initialize the map
-center = new L.LatLng 33.610044573695625, -111.50024414062501
-zoom = 9
+center = new L.LatLng 34.11180455556899, -111.7144775390625
+zoom = 7
 
 app.map = new L.Map "map",
   center: center
   zoom: zoom
+  minZoom: 7
+  maxZoom: 12
 
 app.geoserverUrl = "http://data.usgin.org/arizona/ows"
 
@@ -208,6 +210,25 @@ dataLayers = [
             color: "#6FCFF7"
       ],
         heading: "Flood Potential"
+        filterable: false
+  ,
+    new app.models.TileLayer
+      id: "fireRisk"
+      layerName: "Fire Risk Index"
+      url: "http://{s}.tiles.usgin.org/fire-risk-index/{z}/{x}/{y}.png"
+      opacity: 0.5
+      legend: new app.models.Legend [
+          caption: "One thing"
+          imageTemplateId: "floodImage"
+          imageInfo:
+            color: "#000"
+        ,
+          caption: "Another"
+          imageTemplateId: "floodImage"
+          imageInfo:
+            color: "#fff"
+      ],
+        heading: "Risk Index"
         filterable: false
 ]
 
