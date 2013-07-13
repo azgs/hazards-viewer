@@ -124,7 +124,7 @@ class views.DownloadView extends Backbone.View
 
   initialize: () ->
     # Setup a Leaflet.Draw handler
-    @drawHandler = new L.Rectangle.Draw app.map, {}
+    @drawHandler = new L.Draw.Rectangle app.map, {}
 
   render: () ->
     # Find the modal body and append the template
@@ -140,12 +140,12 @@ class views.DownloadView extends Backbone.View
 
     # Setup a listener for leaflet.draw events
     thisCollection = @collection
-    app.map.on 'draw:rectangle-created', (e) ->
+    app.map.on 'draw:created', (e) ->
       # Which layers were checked?
       layers = ( thisCollection.get($(btn).attr("id").split("-")[0]) for btn in body.find "button.active" )
 
       # Pass the drawn rectangle into a Leaflet LatLngBounds
-      bbox = new L.latLngBounds(e.rect._latlngs).toBBoxString()
+      bbox = new L.latLngBounds(e.layer._latlngs).toBBoxString()
       ( l.download(bbox) for l in layers )
 
     return @
