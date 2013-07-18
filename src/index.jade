@@ -106,18 +106,18 @@ html(lang="en")
                 td.legend-text <%= model.get("caption") %>
 
         script#quakeImage(type="text/html")
-            svg(id="circle", xmlns="http://www.w3.org/2000/svg", version="1.1",
+            svg(xmlns="http://www.w3.org/2000/svg", version="1.1",
                     style!="height:<%= 2 * (info.radius + 4) %>px;width:<%= 2 * (info.radius + 4) %>px")
                 circle(cx!="<%= info.radius + 4 %>", cy!="<%= info.radius + 4 %>", r!="<%= info.radius %>",
                         stroke!="<%= info.color %>", stroke-width!="2", fill-opacity="0.2", fill!="<%= info.color %>")
 
         script#faultImage(type="text/html")
-            svg(id="square", xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:48px;")
+            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:48px;")
                 path(d="M 5 40 q 20 -60 40 -20",
                         stroke-width="2", stroke!="<%= info.color %>", fill="none")
 
         script#fissureImage(type="text/html")
-            svg(id="square", xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:48px;")
+            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:48px;")
                 path(d="M 5 40 q 20 -60 40 -20",
                         stroke-width="2", stroke!="<%= info.color %>", fill="none",
                         stroke-dasharray!="<%= info.dashed %>")
@@ -125,6 +125,11 @@ html(lang="en")
         script#floodImage(type="text/html")
             svg(id="square", xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:50px;")
                 path(d="M 5 5 L 45 5 L 45 45 L 5 45 L 5 5",
+                        stroke="none", fill!="<%= info.color %>", fill-opacity="0.6")
+
+        script#fireImage(type="text/html")
+            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:30px;")
+                path(d="M 5 5 L 45 5 L 45 25 L 5 25 L 5 5",
                         stroke="none", fill!="<%= info.color %>", fill-opacity="0.6")
 
         script#downloadBody(type="text/html")

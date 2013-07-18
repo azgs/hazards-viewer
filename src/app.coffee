@@ -219,17 +219,52 @@ dataLayers = [
       opacity: 0.5,
       downloadUrlTemplate: "http://data.usgin.org/arizona/wcs?service=WCS&version=1.0.0&request=GetCoverage&coverage=fireriskindex&crs=epsg:4326&bbox={{bbox}}&format=GeoTIFF&resy=3.0495095356186517E-4&resx=3.0495095356186517E-4",
       legend: new app.models.Legend [
-          caption: "One thing"
-          imageTemplateId: "floodImage"
+          caption: "Lowest"
+          imageTemplateId: "fireImage"
           imageInfo:
-            color: "#000"
+            color: "rgb(130,160,104)"
         ,
-          caption: "Another"
-          imageTemplateId: "floodImage"
+          caption: ""
+          imageTemplateId: "fireImage"
           imageInfo:
-            color: "#fff"
+            color: "rgb(177,207,158)"
+        ,
+          caption: ""
+          imageTemplateId: "fireImage"
+          imageInfo:
+            color: "rgb(205,197,138)"
+        ,
+          caption: ""
+          imageTemplateId: "fireImage"
+          imageInfo:
+            color: "rgb(255,255,175)"
+        ,
+          caption: ""
+          imageTemplateId: "fireImage"
+          imageInfo:
+            color: "rgb(254,202,104)"
+        ,
+          caption: ""
+          imageTemplateId: "fireImage"
+          imageInfo:
+            color: "rgb(253,154,8)"
+        ,
+          caption: ""
+          imageTemplateId: "fireImage"
+          imageInfo:
+            color: "rgb(251,61,8)"
+        ,
+          caption: ""
+          imageTemplateId: "fireImage"
+          imageInfo:
+            color: "rgb(193,0,6)"
+        ,
+          caption: "Highest"
+          imageTemplateId: "fireImage"
+          imageInfo:
+            color: "rgb(95,0,2)"
       ],
-        heading: "Risk Index"
+        heading: "Relative Risk"
         filterable: false
 ]
 
