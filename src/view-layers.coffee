@@ -33,6 +33,9 @@ class app.views.SidebarView extends Backbone.View
     # All filterable boxes should start checked
     el.find(".filter").prop "checked", true
 
+    # Turn checkboxs into iOS-style toggles
+    #el.find(".layerToggle ").iphoneStyle()
+
     return @
 
   events:
@@ -133,6 +136,9 @@ class views.DownloadView extends Backbone.View
     body.append @template
       layers: @collection.models
 
+    # Adjust the footer buttons
+    @$el.find(".modal-footer .btn-primary").remove()
+
     # jQuery to make the buttons change color when you click them
     body.find(".btn").on "click", (e) ->
       body.find(".btn-success").toggleClass "btn-success"
@@ -151,7 +157,7 @@ class views.DownloadView extends Backbone.View
     return @
 
   events:
-    "click .btn-primary": "drawArea"
+    "click #draw-a-box": "drawArea"
 
   drawArea: (e) ->
     # Click the Leaflet.draw control?!

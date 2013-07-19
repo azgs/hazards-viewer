@@ -311,7 +311,7 @@ navTools = [
     new app.models.NavToolModel
       id: "export"
       toolName: "Download Data"
-      modalName: "Download Shapefiles"
+      modalName: "Download Data"
       modalBody: "Not Implemented Yet"
   ,
     new app.models.NavToolModel

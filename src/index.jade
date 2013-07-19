@@ -4,9 +4,9 @@ html(lang="en")
         title Arizona Hazards
         meta(charset="utf-8")
         link(rel="stylesheet", href="vendor/leaflet/leaflet.css")
-        //link(rel="stylesheet", href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.css")
         link(rel="stylesheet", href="vendor/leaflet-draw/leaflet.draw.css")
         link(rel="stylesheet", href="styles/base.css")
+        link(rel="stylesheet", href="styles/switches.css")
     body
         .navbar.navbar-fixed-top
             #nav.navbar-inner
@@ -67,19 +67,15 @@ html(lang="en")
 
         script#model-template(type="text/html")
             li.navbar-inner
-                label.checkbox.inline
-                    input.layerToggle(id!="<%= model.get('id') %>-toggle", type="checkbox")
-                    a.layer-info-button(href="#", id!="<%= model.get('id') %>-toggle") <%= model.get('layerName') %>
+                .onoffswitch.inline
+                    input.layerToggle(id!="<%= model.get('id') %>-toggle", type="checkbox").onoffswitch-checkbox
+                    label.onoffswitch-label(for!="<%= model.get('id') %>-toggle")
+                        .onoffswitch-inner
+                        .onoffswitch-switch
+                a.layer-info-button(href="#", id!="<%= model.get('id') %>-toggle") <%= model.get('layerName') %>
                 .pull-right
                     span
                         a(href="#", data-parent="#accordion-legend", id!="<%= model.get('datatarget') %>").icon-list
-                    ///
-                        span
-                            a.icon-info-sign(href="#")
-                        span
-                            a(href="#")
-                                span.icon-adjust
-                            span.muted.small-text 100%
             div(id!="<%= model.get('id') %>", class="accordion-body collapse")
                 div(id!="<%= model.get('id') %>-legend", class="accordion-inner")
 
@@ -133,15 +129,37 @@ html(lang="en")
                         stroke="none", fill!="<%= info.color %>", fill-opacity="0.6")
 
         script#downloadBody(type="text/html")
-            .pull-right.btn-group.btn-group-vertical(data-toggle="buttons-radio")
-                <% for (i in layers) { %>
-                button.btn(id!="<%= layers[i].id %>-download-button", type="button",
-                    style="width:200px;margin-left:10px;"): strong: <%= layers[i].get("layerName") %>
-                <% } %>
+            #downloadModalBody
+                a(href="#", data-dismiss="modal").btn.btn-danger.tall-button.fixed-width.pull-left
+                    span Get All the Data
+                    i.icon-hdd.icon-white
+                .description
+                    p: strong You can download the entire data package:
+                    p.muted  This will provide a .zip file containing all the layers visible in this application.
+                .clear-fix
+                hr
 
-            p This tool allows you to download shapefiles for data layers in your area of interest.
-            p Select the layer you would like to download, then click "Continue".
-            p You'll be prompted to draw a box defining an area and your download will begin.
+                .pull-left.btn-group.btn-group-vertical(data-toggle="buttons-radio")
+                    <% for (i in layers) { %>
+                    button.btn(id!="<%= layers[i].id %>-download-button", type="button",
+                        class="fixed-width"): strong: <%= layers[i].get("layerName") %>
+                    <% } %>
+
+
+                p: strong You can download a single layer:
+                p.muted Select a layer from the left, then choose between downloading the whole layer, drawing a box to download a subset of the layer, or simply downloading metadata for the layer.
+                .clear-fix
+                .for-god-sakes-center-me
+                    .btn-group.layer-access
+                        a(href="#", data-dismiss="modal").btn.btn-primary.tall-button
+                            span Get the Layer
+                            i.icon-hdd.icon-white
+                        a#draw-a-box(href="#", data-dismiss="modal").btn.btn-info.tall-button
+                            span Draw a Box
+                            i.icon-fullscreen.icon-white
+                        a(href="#", data-dismiss="modal").btn.tall-button
+                            span Get Metadata
+                            i.icon-file
 
         script#localHazards(type="text/html")
             h3 <%= location %>
@@ -156,7 +174,6 @@ html(lang="en")
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
         script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")
         script(src="vendor/leaflet/leaflet.js")
-        //script(src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js")
         script(src="vendor/leaflet/leaflet.bing.js")
         script(src="vendor/leaflet-draw/leaflet.draw.js")
         script(src="http://d3js.org/d3.v3.min.js")
