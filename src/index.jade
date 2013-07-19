@@ -6,7 +6,6 @@ html(lang="en")
         link(rel="stylesheet", href="vendor/leaflet/leaflet.css")
         link(rel="stylesheet", href="vendor/leaflet-draw/leaflet.draw.css")
         link(rel="stylesheet", href="styles/base.css")
-        link(rel="stylesheet", href="styles/switches.css")
     body
         .navbar.navbar-fixed-top
             #nav.navbar-inner
@@ -49,6 +48,14 @@ html(lang="en")
                     button.btn(data-dismiss="modal", aria-hidden="true") Cancel
                     button.btn.btn-primary(data-dismiss="modal") Continue
 
+        script#layer-modal(type="text/html")
+            .modal.hide.fade(id!="<%= model.get('id') %>-modal", role="dialog", aria-labelledby!="<%= model.get('id') %>-header", aria-hidden="true")
+                .modal-header
+                    h3(id!="<%= model.get('id') %>-header") <%= model.get('layerName') %>
+                .modal-body <%= model.get('description') %>
+                .modal-footer
+                    button.btn.btn-primary(data-dismiss="modal") Close
+
         script#print-tool(type="text/html")
             p This tool allows you to preview and print a static map.  Click 'preview' first to add some customization to your map, like a title.  Click reset at any time to reload this window.
 
@@ -72,10 +79,10 @@ html(lang="en")
                     label.onoffswitch-label(for!="<%= model.get('id') %>-toggle")
                         .onoffswitch-inner
                         .onoffswitch-switch
-                a.layer-info-button(href="#", id!="<%= model.get('id') %>-toggle") <%= model.get('layerName') %>
+                a.layer-info-button(href="#", href!="#<%= model.get('id') %>-modal", role="button", data-toggle="modal") <%= model.get('layerName') %>
                 .pull-right
                     span
-                        a(href="#", data-parent="#accordion-legend", id!="<%= model.get('datatarget') %>").icon-list
+                        a(href="#", data-parent="#accordion-legend", id!="<%= model.get('datatarget') %>").icon-list-alt
             div(id!="<%= model.get('id') %>", class="accordion-body collapse")
                 div(id!="<%= model.get('id') %>-legend", class="accordion-inner")
 

@@ -6,10 +6,12 @@ if not app.views? then app.views = views = {} else views = app.views
 class app.views.SidebarView extends Backbone.View
   initialize: (options) ->
     @template = _.template $("#model-template").html()
+    @modalTemplate = _.template $("#layer-modal").html()
 
   render: () ->
     el = @$el
     template = @template
+    modal = @modalTemplate
 
     @collection.forEach (model) ->
       # Append the model's template
@@ -23,25 +25,18 @@ class app.views.SidebarView extends Backbone.View
         el: el.find("##{model.get("id")}-legend")
       legendView.render()
 
-      # Setup the info popover
-      el.find(".layer-info-button").popover
-        title: "Layer Information"
-        content: model.get "description"
-        placement: "bottom"
-        trigger: "manual"
+      # Setup a Modal dialog
+      $("body").append modal
+        model: model
 
     # All filterable boxes should start checked
     el.find(".filter").prop "checked", true
-
-    # Turn checkboxs into iOS-style toggles
-    #el.find(".layerToggle ").iphoneStyle()
 
     return @
 
   events:
     "click input.layerToggle": "toggleLayer"
-    "click .icon-list": "toggleLegend"
-    "click .layer-info-button": "showInfo"
+    "click .icon-list-alt": "toggleLegend"
 
   toggleLayer: (e) ->
     checkbox = $ e.currentTarget
@@ -67,20 +62,6 @@ class app.views.SidebarView extends Backbone.View
     element = $ e.currentTarget
     elId = element.attr "id"
     $(elId).collapse('toggle')
-
-  showInfo: (e) ->
-    # Show this popover
-    ele = $ e.currentTarget
-    ele.popover "show"
-
-    # Setup to hide this one if someone clicks somewhere else
-    hideIt = (e) ->
-      if not $(e.target).is(ele)
-        ele.popover "hide"
-        $("body").off "click", hideIt
-
-    # Bind an event to hide this popover if user clicks anywhere
-    $("body").on "click", hideIt
 
 class app.views.BasemapView extends Backbone.View
   initialize: (options) ->
