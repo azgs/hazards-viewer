@@ -73,12 +73,32 @@ class views.PrintToolView extends Backbone.View
     @previewMap.addControl new L.Control.Scale()
 
     @model = app.baseLayers.findActiveModel()
-    @layer = @model.get "layer"
+    @layer = @model.createLayer(@model.originalOptions)
     @previewMap.addLayer @layer
     @model.set "active", true
 
-    $("#preview-map-container").append @previewMap
+    @activeLayers = app.sidebar.findActiveLayers()
+
+    for layer in @activeLayers
+      @layer = layer
+      @layerLegend = @layer.get "legend"
+      @service = @layer.get "serviceType"
+      @d3 = @layer.get "useD3"
+      if @service is "WFS" and not @d3
+        @layerData = @layer.get "currentData"
+        @layerOptions = @layer.originalOptions.layerOptions
+        new L.GeoJSON(@layerData, @layerOptions).addTo @previewMap
+      else if @service is "WFS" and @d3
+        @layerData = @layer.get "currentData"
+        @layerOptions = @layer.originalOptions.layerOptions
+        new L.GeoJSON.d3(@layerData, @layerOptions).addTo @previewMap
+      else
+        @wms = @layer.createLayer(@layer.originalOptions)
+        @previewMap.addLayer @wms
+
     $("#preview-map-container .leaflet-control-container .leaflet-top.leaflet-left").empty()
+
+    @legend = $("#legend-container")
 
 
   printMap: () ->

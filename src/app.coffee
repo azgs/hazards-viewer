@@ -20,7 +20,9 @@ dataLayers = [
       id: "earthFissures"
       layerName: "Earth Fissures"
       serviceUrl: app.geoserverUrl
+      serviceType: "WFS"
       typeName: "azgs:earthfissures"
+      active: false
       useD3: true
       description: "Earth fissure maps are prepared by the Arizona Geological Survey (\"AZGS\") in accordance \
         with Ariz. Rev. Stat. § 27-152.01(3)."
@@ -58,7 +60,9 @@ dataLayers = [
       id: "activeFaults"
       layerName: "Active Faults"
       serviceUrl: app.geoserverUrl
+      serviceType: "WFS"
       typeName: "azgs:activefaults"
+      active: false
       useD3: true
       legend: new app.models.Legend [
           caption: "Holocene ( <10 ka )"
@@ -90,10 +94,12 @@ dataLayers = [
         styler: "symbol"
   ,
     new app.models.GeoJSONLayer
-      id: "earthquakes"     
+      id: "earthquakes"
       layerName: "Earthquake Hypocenters"
       serviceUrl: app.geoserverUrl
+      serviceType: "WFS"
       typeName: "azgs:earthquakedata"
+      active: false
       legend: new app.models.Legend [
           caption: "0 - 1"
           attribute: "calculated_magnitude"
@@ -193,11 +199,13 @@ dataLayers = [
           layer.bindPopup feature.properties.magnitude
   ,
     new app.models.WmsLayer
-      id: "floodPotential"     
+      id: "floodPotential"
       layerName: "Flood Potential"
       serviceUrl: "http://data.usgin.org/arizona/gwc/service/wms"
+      serviceType: "WMS"
       wfsUrl: "http://data.usgin.org/arizona/ows"
       typeName: "azgs:floods"
+      active: false
       legend: new app.models.Legend [
           caption: "High"
           imageTemplateId: "floodImage"
@@ -216,9 +224,11 @@ dataLayers = [
       id: "fireRisk"
       layerName: "Fire Risk Index"
       url: "http://{s}.tiles.usgin.org/fire-risk-index/{z}/{x}/{y}.png"
+      serviceType: "WMS"
       opacity: 0.5,
       downloadUrlTemplate: "http://data.usgin.org/arizona/wcs?service=WCS&version=1.0.0&request=GetCoverage&coverage=fireriskindex&crs=epsg:4326&bbox={{bbox}}&format=GeoTIFF&resy=3.0495095356186517E-4&resx=3.0495095356186517E-4",
       description: '<h4>Layer Description</h4><p>The Fire Risk Index (FRI) layer was developed to identify areas susceptible to wildfires in 17 western states and some U.S. affiliated Pacific Islands. This project, known at the West Wide Wildfire Risk Assessment (WWA), was implemented by the Oregon Department of Forestry (2013) on behalf of the Council of Western State Foresters and the Western Forestry Leadership Coalition. The goal of the project was to provide a wildfire risk assessment appropriate for comparing areas at risks to wildfires across geographic regions, or within individual states, and to aid in mitigation of areas at risk, to identify the level of risks within communities and to communicate those risks to the public. The FRI layer was created from the Fire Effect Index (FEI) and Fire Threat Index (FTI). FEI identifies areas that have important values at risk to wildfire and where wildland fires would be difficult and/or costly to suppress. FTI describes the likelihood of an acre burning and the expected final fire size based on conditions of fuels and potential fire behavior under different weather scenarios. FEI and FTI data were combined to create the FRI layer which describes relative probabilities of areas at risk to wildfires. The data used to develop FEI, FTI and FRI reflects conditions between 2008 and 2010, depending on the type of data (i.e. fuels, wildland development areas, and historic fire locations, etc.).</p><h4>Disclaimer</h4><p>The Oregon Department of Forestry implemented conducting this assessment on behalf of the Council of Western State Foresters with funding from the USDA Forest Service. Anyone utilizing this layer is asked to credit the Oregon Department of Forestry. Users must read and fully comprehend the metadata prior to data use. The spatial data to develop this layer were derived from a variety of sources. Care was taken in the creation of these themes, but they are provided "as is." The Oregon Department of Forestry, State of Oregon, WWA Project Partners, or any of the data providers cannot accept any responsibility for errors, omissions, or positional accuracy in the digital data or underlying records. There are no warranties, expressed or implied, including the warranty of merchantability or fitness for a particular purpose, accompanying any of these products. The West Wide Risk Assessment was conducted to support strategic planning at regional, state, and landscape scale. WWA data is intended for planning purposes only and should not to be used for engineering or legal purposes. Further investigation by local and regional experts should be conducted to inform decisions regarding local applicability. It is the sole responsibility of the local user, using product metadata and local knowledge, to determine if and/or how WWA data can be used for particular areas of interest. It is the responsibility of the user to be familiar with the value, assumptions, and limitations of WWA products. Managers and planners must evaluate WWA data according to the scale and requirements specific to their needs. Please note that the WWA Published Results may not match other assessments conducted that use different data, technical methods, or scale of analysis. Having two assessments that do not match does not mean that either one of them is incorrect. The use of different data sources, often from different collection dates and with spatial accuracy and resolutions, combined with different modeling assumptions or definitions will result in different results and can have different interpretations and uses. The WWA results are not intended to replace local and state products as a decision-making tool. The WWA is meant to serve as a regional policy analysis tool that provides results comparable across geographic areas in the West.</p><h4>Citation</h4><p>Oregon Department of Forestry, 2013, West wide wildfire risk assessment, final report, Prepared by The Sanborn Map Company, 108 pp.</p>',
+      active: false
       legend: new app.models.Legend [
           caption: "Lowest"
           imageTemplateId: "fireImage"
@@ -302,13 +312,13 @@ navTools = [
       toolName: "Add Layer"
       modalName: "Add a Layer"
       modalBody: "Not Implemented Yet"
-  , 
+  ,
     new app.models.NavToolModel
       id: "print"
       toolName: "Print"
       modalName: "Print a Map"
       modalBody: "Not Implemented Yet"
-  , 
+  ,
     new app.models.NavToolModel
       id: "export"
       toolName: "Download Data"
