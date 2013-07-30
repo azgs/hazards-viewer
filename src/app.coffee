@@ -24,8 +24,7 @@ dataLayers = [
       typeName: "azgs:earthfissures"
       active: false
       useD3: true
-      description: "Earth fissure maps are prepared by the Arizona Geological Survey (\"AZGS\") in accordance \
-        with Ariz. Rev. Stat. § 27-152.01(3)."
+      description: '<h4>Layer Description</h4><p>Earth fissures are open surface fractures that may be as much as a mile in length, up to 15 ft wide, and 10s of feet deep. In Arizona, earth fissures form as a result of land subsidence driven by groundwater withdrawal. The Arizona Geological Survey has mapped and reported earth fissures throughout south-central and southeastern Arizona since the 1990s and published earth fissure study area maps in accordance with Arizona Revised Statute § 27-152.01(3) since 2007.  Mapping of fissures involves incorporating mapped earth fissures from previous studies, examining remotely sensed subsidence data and aerial imagery, and on-site field mapping using high-precision GPS receivers. Between 2007 and 2012, AZGS identified 24 discreet areas throughout southern and central Arizona with concentrations of earth fissures totaling more than 150 miles of mapped fissures. These include uninterrupted open fissures and fissure gullies and discontinuous linear trends of potholes, abbreviated open cracks, elongated depressions, and other collapse features. An additional 180 miles of reported/unconfirmed earth fissures appear on AZGS maps. These features include fissures previously mapped by Professional Geologists appearing in published maps or figures which could not be confirmed through recent surface mapping by AZGS Geologists. A reasonable effort was made to identify all earth fissures in the study area although some fissures may remain unmapped due to overprinting or disturbance by development, agricultural tilling, or lack of surface expression along the fissure at the time mapping was conducted. For these reasons the State of Arizona does not guarantee the maps are error free. Blank areas within study area boundaries have been investigated and no surface evidence of fissures was found as of the date of map publication.</p><p>For additional information on the origin and impacts of earth fissures and free PDF maps of earth fissure study areas, visit the <a href="http://www.azgs.az.gov/EFC.shtml">Arizona Geological Survey’s Earth Fissure Center</a>.</p>'
       legend: new app.models.Legend [
           caption: "Continuous Earth Fissure"
           attribute: "fisstype"
@@ -100,6 +99,7 @@ dataLayers = [
       serviceType: "WFS"
       typeName: "azgs:earthquakedata"
       active: false
+      description: '<h4>Layer Description</h4><p>The earthquakes displayed are from the AZGS Earthquake Catalog, and are the minimum number of earthquakes that have occurred in historical times.  Older events are represented by estimated Modified Mercalli Intensity Scale (MMI) roman-numeral values which reflect the amount of shaking experienced by those who felt and reported the earthquake. For a full description of the MMI scale, please refer to: <a href="http://earthquake.usgs.gov/learn/topics/mercalli.php">http://earthquake.usgs.gov/learn/topics/mercalli.php</a></p><p>The earthquake layer in the AZGS Hazard Viewer includes an epicentral location denoted in Latitude and Longitude, depth (in kilometers), date and time (UTC; -7:00 for MST). There are several magnitude scales employed to estimate the size (i.e., energy release) of an earthquake, such as Md - duration magnitude, ML - local magnitude, Mw - moment magnitude.  AZGS calculates duration magnitude, Md; however, the catalog includes all three types of magnitude scales depending on who located the event. For example, northern Arizona earthquakes located by the University of Utah are frequently assigned a local magnitude (Ml).  Sources of earthquake data reported in the AZGS Earthquake Catalog, include: AZGS (Arizona Geological Survey), USGS (United States Geological Survey), AEIC (Arizona Earthquake Information Center), UU (University of Utah), CI (California Integrated Seismic Network), and ASU (thesis work by Lockridge, Arizona State University). The earthquake layer does not include small magnitude events (< 2.0) because of the difficulty inherent in identifying and locating such events.</p>'
       legend: new app.models.Legend [
           caption: "0 - 1"
           attribute: "calculated_magnitude"
@@ -279,6 +279,16 @@ dataLayers = [
         filterable: false
 ]
 
+###,
+  new app.models.TileLayer
+    id: "femaFloods"
+    layerName: "FEMA Flood Hazards"
+    url: "http://atlas.resources.ca.gov/arcgis/rest/services/GeoScience/Flood_Risk_FEMA/MapServer/tile/{z}/{y}/{x}"
+    downloadUrlTemplate: "problematic"
+    description: '<h4>Layer Description</h4><p>Senate Bill 5 (SB 5), which was enacted in 2007, authorized the California Department of Water Resources (DWR) to develop the Best Available Maps (BAM) displaying 100- and 200-year floodplains for areas located within the Sacramento-San Joaquin (SAC-SJ) Valley watershed. SB 5 requires that these maps contain the best available information on flood hazards and be provided to cities and counties in the SAC-SJ Valley watershed. This effort was completed by DWR in 2008. DWR has expanded the BAM to cover all counties in the State and to include 500-year floodplains.. The 100-, 200-, and 500-year floodplains are displayed on this web viewer. The web viewer allows users to view a particular area and identify their potential flood hazards. The following is a comprehensive list of the floodplains that are displayed on the web viewer and may be updated periodically. * 100-Year Floodplains * Federal Emergency Management Agency (FEMA )Digital Flood Insurance Rate Map (DFIRM) * Effective * Preliminary * FEMA Q3 Effective Flood Data (for areas lacking Effective DFIRM coverage) * DWR Awareness Mapping * United States Army Corps of Engineers (USACE) Sacramento and San Joaquin River Basins Comprehensive Study * Regional/Special Studies * 200-Year Floodplains * USACE Sacramento and San Joaquin River Basins Comprehensive Study * 500-Year Floodplains (for web viewer) * FEMA DFIRM * Effective * Preliminary * FEMA Q3 Effective Flood Data (for areas lacking Effective DFIRM coverage) * USACE Sacramento and San Joaquin River Basins Comprehensive Study * Regional/Special Studies Disclaimer The BAM does not replace existing FEMA regulatory floodplains shown on Flood Insurance Rate Maps (FIRM). For more information on the FEMA regulatory floodplains, please contact FEMA directly. The BAM floodplains identify potential flood risks that may warrant further studies or analyses for land use decision making. The floodplains shown delineate areas with potential exposure to flooding for three different storm events: one with storm flows that have a 1% chance of being equaled or exceeded in any year (100-year), one with storm flows that have a 0.5% chance of being equaled or exceeded in any year (200-year), and one with storms flows that have a 0.2% chance of being equaled or exceeded in any year (500-year). These flows and resulting flooded area are based on the best available floodplain information and may not identify all areas subject to flooding.</p><p>Copyright © <a href="http://www.fema.gov/index.shtm">FEMA</a></p>'
+    legend: new app.models.Legend [], { heading: "TBD", filterable: false }
+###
+  
 app.dataLayerCollection = new app.models.LayerCollection dataLayers
 
 # Setup base layers
@@ -306,16 +316,28 @@ baseLayers = [
 
 app.baseLayerCollection = new app.models.LayerCollection baseLayers
 
+###
+  new app.models.NavToolModel
+    id: "addLayer"
+    toolName: "Add Layer"
+    modalName: "Add a Layer"
+    modalBody: "Not Implemented Yet"
+,
+###
+
 navTools = [
     new app.models.NavToolModel
+<<<<<<< HEAD
       id: "addLayer"
       toolName: "Add Layer"
       modalName: "Add a Layer"
       modalBody: "Not Implemented Yet"
   ,
     new app.models.NavToolModel
+=======
+>>>>>>> 2a0a0434403e465205077fcf6606815e6e07d47b
       id: "print"
-      toolName: "Print"
+      toolName: "Print a Map"
       modalName: "Print a Map"
       modalBody: "Not Implemented Yet"
   ,
