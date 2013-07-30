@@ -94,25 +94,8 @@ dataLayers = [
       serviceUrl: app.geoserverUrl
       typeName: "azgs:earthquakedata"
       description: '<h4>Layer Description</h4><p>The earthquakes displayed are from the AZGS Earthquake Catalog, and are the minimum number of earthquakes that have occurred in historical times.  Older events are represented by estimated Modified Mercalli Intensity Scale (MMI) roman-numeral values which reflect the amount of shaking experienced by those who felt and reported the earthquake. For a full description of the MMI scale, please refer to: <a href="http://earthquake.usgs.gov/learn/topics/mercalli.php">http://earthquake.usgs.gov/learn/topics/mercalli.php</a></p><p>The earthquake layer in the AZGS Hazard Viewer includes an epicentral location denoted in Latitude and Longitude, depth (in kilometers), date and time (UTC; -7:00 for MST). There are several magnitude scales employed to estimate the size (i.e., energy release) of an earthquake, such as Md - duration magnitude, ML - local magnitude, Mw - moment magnitude.  AZGS calculates duration magnitude, Md; however, the catalog includes all three types of magnitude scales depending on who located the event. For example, northern Arizona earthquakes located by the University of Utah are frequently assigned a local magnitude (Ml).  Sources of earthquake data reported in the AZGS Earthquake Catalog, include: AZGS (Arizona Geological Survey), USGS (United States Geological Survey), AEIC (Arizona Earthquake Information Center), UU (University of Utah), CI (California Integrated Seismic Network), and ASU (thesis work by Lockridge, Arizona State University). The earthquake layer does not include small magnitude events (< 2.0) because of the difficulty inherent in identifying and locating such events.</p>'
+      filterClause: "&filter=#{(new app.models.Filter([{calculated_magnitude: "[2.0,9.0]"}])).urlEncoded()}"
       legend: new app.models.Legend [
-          caption: "0 - 1"
-          attribute: "calculated_magnitude"
-          value: "[-0.1, 1.1]"
-          imageTemplateId: "quakeImage"
-          active: true
-          imageInfo:
-            radius: 5
-            color: "#FFFF00"
-        ,
-          caption: "1 - 2"
-          attribute: "calculated_magnitude"
-          value: "[0.9, 2.1]"
-          imageTemplateId: "quakeImage"
-          active: true
-          imageInfo:
-            radius: 10
-            color: "#FFDD00"
-        ,
           caption: "2 - 3"
           attribute: "calculated_magnitude"
           value: "[1.9, 3.1]"

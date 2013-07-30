@@ -86,7 +86,7 @@ class app.models.GeoJSONLayer extends app.models.LayerModel
   filterLayer: (filters) ->
     f = new models.Filter filters
     filterClause = "&filter=#{f.urlEncoded()}"
-    @createLayer _.extend { filterClause: filterClause }, @originalOptions
+    @createLayer _.extend @originalOptions, { filterClause: filterClause }
 
 class app.models.BingLayer extends app.models.LayerModel
   createLayer: (options) ->
