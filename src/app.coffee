@@ -327,15 +327,12 @@ app.baseLayerCollection = new app.models.LayerCollection baseLayers
 
 navTools = [
     new app.models.NavToolModel
-<<<<<<< HEAD
       id: "addLayer"
       toolName: "Add Layer"
       modalName: "Add a Layer"
       modalBody: "Not Implemented Yet"
   ,
     new app.models.NavToolModel
-=======
->>>>>>> 2a0a0434403e465205077fcf6606815e6e07d47b
       id: "print"
       toolName: "Print a Map"
       modalName: "Print a Map"
