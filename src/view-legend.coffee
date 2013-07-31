@@ -20,6 +20,11 @@ class views.LegendView extends Backbone.View
     filterable = @collection.filterable
 
     @collection.forEach (model) ->
+      ###
+      legenditemview = new views.LegendItemView()
+        model: model
+      legenditemview.render()
+      ###
       # Append the legend item template
       thisone = $(itemTemplate({model: model, filter: filterable}).replace(/\n|\t|  /g, "")).appendTo el
 
@@ -50,3 +55,44 @@ class views.LegendView extends Backbone.View
 
 
 
+###
+class views.LegendItemView extends Backbone.View
+  initialize: (options) ->
+    @itemTemplate = _.template $("#legendItem-template").html()
+
+  render: () ->
+
+  events:
+    "click .filter": "setActive"
+
+  setActive: (e) ->
+    console.log @model
+###
+
+
+
+
+class views.PrintLegendView extends Backbone.View
+  initialize: (options) ->
+    @template = _.template $("#print-legend-template").html()
+    @itemTemplate = _.template $("#print-legend-items").html()
+    @layerModel = options.layerModel or null
+
+  render: () ->
+    # Append the legend container
+    @$el.append @template
+      model: @collection
+
+    # Setup to append legend item templates
+    el = @$el.find ".legendItems"
+    itemTemplate = @itemTemplate
+    filterable = @collection.filterable
+
+    @collection.forEach (model) ->
+      # Append the legend item template
+      thisone = $(itemTemplate({model: model, filter: filterable}).replace(/\n|\t|  /g, "")).appendTo el
+      # Append the legend image template
+      attribute = model.get "attribute"
+      thisone.children(".legend-image-"+attribute).append model.get "image"
+
+    return @

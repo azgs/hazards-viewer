@@ -18,7 +18,7 @@ class models.Filter extends Backbone.Model
             o = {}
             o[k] = v
             o
-            
+
           terms = val.replace("contains(","").replace(")","").split(",")
           return (equalTo(newRule(prop, term)) for term in terms)
 

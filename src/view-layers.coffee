@@ -38,6 +38,8 @@ class app.views.SidebarView extends Backbone.View
     "click input.layerToggle": "toggleLayer"
     "click .icon-list-alt": "toggleLegend"
 
+  findActiveLayers: () -> return (model for model in @collection.models when model.get("active"))
+
   toggleLayer: (e) ->
     checkbox = $ e.currentTarget
     boxId = checkbox.attr "id"
@@ -48,6 +50,7 @@ class app.views.SidebarView extends Backbone.View
       # Get the layer added to the map
       l = model.get "layer"
       app.map.addLayer l
+      model.set "active", true
 
       # Give an ID to the DOM representation of a GeoJSON layer
       for key, value of l._layers
@@ -57,7 +60,8 @@ class app.views.SidebarView extends Backbone.View
         p.attr "id", "#{model.id}-layer"
     else
       app.map.removeLayer model.get "layer"
-      
+      model.set "active", false
+
   toggleLegend: (e) ->
     element = $ e.currentTarget
     elId = element.attr "id"
