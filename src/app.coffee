@@ -97,7 +97,7 @@ dataLayers = [
   ,
     new app.models.GeoJSONLayer
       id: "earthquakes"
-      layerName: "Earthquake Hypocenters"
+      layerName: "Earthquake Epicenters"
       serviceUrl: app.geoserverUrl
       serviceType: "WFS"
       typeName: "azgs:earthquakedata"
