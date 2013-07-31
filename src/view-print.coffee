@@ -99,21 +99,41 @@ class views.PrintToolView extends Backbone.View
     $("#preview-map-container .leaflet-control-container .leaflet-top.leaflet-left").empty()
 
     @legend = $("#legend-container")
+    for layer in @activeLayers
+      @layer = layer
+      printLegend = new views.PrintLegendView
+        layerModel: @layer
+        collection: @layer.get "legend"
+        el: @legend
+      printLegend.render()
 
+    $("#legend-container .legendItems .legend-item-calculated_magnitude circle").attr "r",6
+    $("#legend-container .legendItems .legend-item-calculated_magnitude circle").attr "cx",10
+    $("#legend-container .legendItems .legend-item-calculated_magnitude circle").attr "cy",9
+    $("#legend-container .legendItems .legend-item-calculated_magnitude svg").css "height",16
+
+    $("#legend-container .legendItems .legend-item-activefaults path").attr "d", "M 5 20 q 10 -30 20 -10"
+    $("#legend-container .legendItems .legend-item-activefaults svg").css "height",20
+
+    $("#legend-container .legendItems .legend-item-fisstype path").attr "d", "M 5 20 q 10 -30 20 -10"
+    $("#legend-container .legendItems .legend-item-fisstype svg").css "height",20
+
+    $("#legend-container .legendItems .legend-item-symbol .legend-image-symbol path").attr "d", "M 5 5 L 25 5 L 25 25 L 5 25 L 5 5"
+    $("#legend-container .legendItems .legend-item-symbol .legend-image-symbol svg").css "height", 25
 
   printMap: () ->
-    ele = $("#print-area").html()
+    ele = $("#print-container").html()
     htmlone = '<html><head>
       <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
       <link rel="stylesheet" href="vendor/leaflet-draw/leaflet.draw.css">
       <link rel="stylesheet" href="styles/base.css">
-      </head><body><div id="printable">'
+      </head><body>'
     html2 = '</div></body></html>'
     string = htmlone + ele + html2
 
     document.body.innerHTML = string
-    window.print()
-    location.reload()
+    #window.print()
+    #location.reload()
 
   resetMap: () ->
     @render()

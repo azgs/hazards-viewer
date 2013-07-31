@@ -29,3 +29,4 @@ class models.Legend extends Backbone.Collection
   initialize: (items, options) ->
     @filterable = if options.filterable? then options.filterable else true
     @heading = options.heading or "Heading"
+    @legendHeading = options.legendHeading
