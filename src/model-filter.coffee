@@ -13,10 +13,16 @@ class models.Filter extends Backbone.Model
         if typeof val is "object"
           return between rule
 
-        return new OpenLayers.Filter.Comparison
-          type: OpenLayers.Filter.Comparison.EQUAL_TO
-          property: prop
-          value: val
+        if val.indexOf("contains(") is 0
+          newRule = (k, v) ->
+            o = {}
+            o[k] = v
+            o
+            
+          terms = val.replace("contains(","").replace(")","").split(",")
+          return (equalTo(newRule(prop, term)) for term in terms)
+
+        return equalTo rule
 
     between = (rule) ->
       for prop, val of rule
@@ -27,7 +33,20 @@ class models.Filter extends Backbone.Model
           lowerBoundary: val[0]
           upperBoundary: val[1]
 
-    propFilters = ( makeFilter(rule) for rule in filters or [] )
+    equalTo = (rule) ->
+      for prop, val of rule
+        return new OpenLayers.Filter.Comparison
+          type: OpenLayers.Filter.Comparison.EQUAL_TO
+          property: prop
+          value: val
+
+    propFilters = []
+    for rule in filters
+      filter = makeFilter rule
+      if _.isArray filter
+        propFilters = _.union propFilters, filter
+      else
+        propFilters.push filter
 
     @filterObj = new OpenLayers.Filter.Logical
       type: OpenLayers.Filter.Logical.OR

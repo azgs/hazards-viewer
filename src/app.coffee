@@ -98,7 +98,7 @@ dataLayers = [
       legend: new app.models.Legend [
           caption: "Older Earthquakes"
           attribute: "magnitude"
-          value: "unknown"
+          value: "contains(I,II,III,IV,V,VI,VII,VIII)"
           imageTemplateId: "quakeIntensityImage"
           active: true
         ,
