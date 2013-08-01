@@ -112,8 +112,8 @@ class views.PrintToolView extends Backbone.View
     $("#legend-container .legendItems .legend-item-calculated_magnitude circle").attr "cy",9
     $("#legend-container .legendItems .legend-item-calculated_magnitude svg").css "height",16
 
-    $("#legend-container .legendItems .legend-item-activefaults path").attr "d", "M 5 20 q 10 -30 20 -10"
-    $("#legend-container .legendItems .legend-item-activefaults svg").css "height",20
+    $("#legend-container .legendItems .legend-item-symbol .legend-image-symbol path").attr "d", "M 5 20 q 10 -30 20 -10"
+    $("#legend-container .legendItems .legend-item-symbol .legend-image-symbol svg").css "height",20
 
     $("#legend-container .legendItems .legend-item-fisstype path").attr "d", "M 5 20 q 10 -30 20 -10"
     $("#legend-container .legendItems .legend-item-fisstype svg").css "height",20
@@ -122,7 +122,8 @@ class views.PrintToolView extends Backbone.View
     $("#legend-container .legendItems .legend-item-symbol .legend-image-symbol svg").css "height", 25
 
   printMap: () ->
-    ele = $("#print-container").html()
+    ele = $("#print-modal .modal-body").html()
+    console.log ele
     htmlone = '<html><head>
       <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
       <link rel="stylesheet" href="vendor/leaflet-draw/leaflet.draw.css">

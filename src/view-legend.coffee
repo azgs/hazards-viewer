@@ -6,7 +6,7 @@ if not app.views? then app.views = views = {} else views = app.views
 class views.LegendView extends Backbone.View
   initialize: (options) ->
     @template = _.template $("#legend-template").html()
-    @itemTemplate = _.template $("#legendItem-template").html()
+    ##@itemTemplate = _.template $("#legendItem-template").html()
     @layerModel = options.layerModel or null
 
   render: () ->
@@ -14,23 +14,15 @@ class views.LegendView extends Backbone.View
     @$el.append @template
       model: @collection
 
-    # Setup to append legend item templates
-    el = @$el.find ".legendItems"
-    itemTemplate = @itemTemplate
-    filterable = @collection.filterable
+    children = @$el.find ".legendItems"
 
     @collection.forEach (model) ->
-      ###
-      legenditemview = new views.LegendItemView()
-        model: model
-      legenditemview.render()
-      ###
-      # Append the legend item template
-      thisone = $(itemTemplate({model: model, filter: filterable}).replace(/\n|\t|  /g, "")).appendTo el
-
-      # Append the legend image template
-      attribute = model.get "attribute"
-      thisone.children(".legend-image-"+attribute).append model.get "image"
+      child = children.append("<tr class='legend-item-fisstype'></tr>")
+      @model = model
+      @legenditemview = new views.LegendItemView
+        model: @model
+        el: child
+      @legenditemview.render()
 
     return @
 
@@ -55,19 +47,30 @@ class views.LegendView extends Backbone.View
 
 
 
-###
+
 class views.LegendItemView extends Backbone.View
   initialize: (options) ->
     @itemTemplate = _.template $("#legendItem-template").html()
+    @filterAttr = options.model.collection.filterable
+    @filterable = if @filterAttr? then @filterAttr else true
 
   render: () ->
+    itemTemplate = @itemTemplate
+    # Append the legend item template
+    thisone = $(itemTemplate({model: @model, filter: @filterable}).replace(/\n|\t|  /g, "")).appendTo @$el
+
+    # Append the legend image template
+    attribute = model.get "attribute"
+    thisone.children(".legend-image-"+attribute).append model.get "image"
+
+    return @
 
   events:
     "click .filter": "setActive"
 
   setActive: (e) ->
-    console.log @model
-###
+    @model.set "active", false
+    console.log @model.attributes
 
 
 
