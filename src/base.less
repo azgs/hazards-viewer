@@ -242,6 +242,12 @@ path[styler="2.13.4"] {
   }
 }
 
+// Scrollable legend ahhhhh!
+#sidebar {
+  height: 100%;
+  overflow: auto;
+}
+
 // Print modal
 #preview-map-container {
   display: inline;
@@ -266,7 +272,7 @@ path[styler="2.13.4"] {
   padding: 0px;
 }
 
-#print-container #legend-container .table .legendItems .legend-item-calculated_magnitude .legend-image-calculated_magnitude {
+#print-container #legend-container .table .legendItems .legend-item-magnitude .legend-image-magnitude {
   width: 75px;
   padding: 0px;
 }
@@ -294,15 +300,10 @@ path[styler="2.13.4"] {
   * {
     -webkit-print-color-adjust:exact;
   }
-  body * {
-  }
-  #preview-map-container * {
-    display: inline;
+  #print-container #preview-map-container * {
     float:left;
-
   }
-  #legend-container * {
-    display: inline;
+  #print-container #legend-container * {
     float:left;
   }
 }

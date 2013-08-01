@@ -62,7 +62,6 @@ class views.LegendItemView extends Backbone.View
     # Append the legend image template
     attribute = model.get "attribute"
     thisone.children(".legend-image-"+attribute).append model.get "image"
-
     return @
 
   events:
