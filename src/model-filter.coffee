@@ -60,3 +60,56 @@ class models.Filter extends Backbone.Model
 
   urlEncoded: () ->
     encodeURI @asXml()
+
+models.filters = {}
+class models.filters.BaseFilter extends Backbone.Model
+  filterObj: null
+
+  initialize: (params, options) ->
+    @set "version", options.version or "1.1.0"
+
+  asXml: () ->
+    xml = new OpenLayers.Format.XML()
+    writer = new OpenLayers.Format.Filter
+      version: @get "version"
+    xml.write writer.write @filterObj
+
+  urlEncoded: () ->
+    encodeURI @asXml()
+
+class models.filters.PropertyFilter extends models.filters.BaseFilter
+  initialize: (parameters) ->
+    # Parameters should be array [ propertyName, value ]
+    @filterObj = new OpenLayers.Filter.Comparison
+      type: OpenLayers.Filter.Comparison.EQUAL_TO
+      property: parameters[0]
+      value: parameters[1]
+
+class models.filters.RangeFilter extends models.filters.BaseFilter
+  initialize: (parameters) ->
+    # parameters should be arra [ propertyName, [ lowerBound, upperBound ] ]
+    @filterObj = new OpenLayers.Filter.Comparison
+      type: OpenLayers.Filter.Comparison.BETWEEN
+      property: parameters[0]
+      lowerBoundary: parameters[1][0]
+      upperBoundary: parameters[1][1]
+
+class models.filters.BBoxFilter extends models.filters.BaseFilter
+  initialize: (parameters) ->
+    # parameters should be array [ propertyName, [left, bottom, right, top] ]
+    @filterObj = new OpenLayers.Filter.Spatial
+      type: OpenLayers.Filter.Spatial.BBOX
+      property: parameters[0]
+      value: new OpenLayers.Bounds parameters[1][0], parameters[1][1], parameters[1][2], parameters[1][3]
+
+class models.filters.AndFilter extends models.filters.BaseFilter
+  initialize: (filters) ->
+    @filterObj = new OpenLayers.Filter.Logical
+      type: OpenLayers.Filter.Logical.AND
+      filters: ( f.filterObj for f in filters )
+
+class models.filters.OrFilter extends models.filters.BaseFilter
+  initialize: (filters) ->
+    @filterObj = new OpenLayers.Filter.Logical
+      type: OpenLayers.Filter.Logical.OR
+      filters: ( f.filterObj for f in filters )
