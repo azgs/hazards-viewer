@@ -25,7 +25,6 @@ class views.PrintToolView extends Backbone.View
           model: model
 
     newButtons = [
-      resetBtn = '<button id="reset-btn" class="btn" style="float:left;">Reset</button>'
       closeBtn = '<button id="close-btn" data-dismiss="modal" aria-hidden="true" class="btn">Close</button>'
       previewBtn = '<button id="preview-btn" class="btn btn-primary">Preview</button>'
     ]
@@ -36,7 +35,7 @@ class views.PrintToolView extends Backbone.View
   events: ->
     "click #preview-btn":"structureModal"
     "click #print-btn":"printMap"
-    "click #reset-btn":"resetMap"
+    "click #close-btn":"resetMap"
 
   structureModal: () ->
     printContainer = @printContainer
@@ -141,8 +140,9 @@ class views.PrintToolView extends Backbone.View
 
   resetMap: () ->
     @render()
-    $(".modal-body").css
-      "max-height": "400px"
+    $("#print-modal .modal-body").css
+      "height": "100px"
+      "width": "560px"
     $(".modal").css
       "margin-left": "-280px"
       "top":"10%"

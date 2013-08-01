@@ -300,11 +300,29 @@ path[styler="2.13.4"] {
   * {
     -webkit-print-color-adjust:exact;
   }
+  body * {
+    visibility: hidden;
+  }
+  #title {
+    visibility: visible;
+  }
+  #print-container #legend-container {
+    width: 200px;
+    padding: 0px;
+  }
+  #print-container {
+    visibility: visible;
+  }
+  #print-container #preview-map-container, #legend-container {
+    visibility: visible;
+    display: table-cell;
+  }
   #print-container #preview-map-container * {
-    float:left;
+    visibility: visible;
   }
   #print-container #legend-container * {
-    float:left;
+    visibility: visible;
+    white-space: nowrap;
   }
 }
 
