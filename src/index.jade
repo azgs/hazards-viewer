@@ -65,7 +65,7 @@ html(lang="en")
                 input(id="title-input",type="text",name="title",value="Type a Title and Press Enter")
                 #preview-map-container
                 #legend-container
-                    p Legend
+                    h4 Legend
 
         script#print-legend-items(type="text/html")
             tr(class!="legend-item-" + "<%= model.get('attribute') %>")
