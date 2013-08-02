@@ -96,7 +96,9 @@ class app.views.BasemapView extends Backbone.View
 
     return if model is activeModel
 
-    app.map.addLayer model.get "layer"
+    l = model.get "layer"
+    app.map.addLayer l
+    l.bringToBack()
     model.set "active", true
 
     app.map.removeLayer activeModel.get "layer"
