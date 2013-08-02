@@ -36,7 +36,6 @@ class app.views.SidebarView extends Backbone.View
 
   events:
     "click input.layerToggle": "toggleLayer"
-    "click .icon-list-alt": "toggleLegend"
 
   findActiveLayers: () -> return (model for model in @collection.models when model.get("active"))
 
@@ -45,6 +44,9 @@ class app.views.SidebarView extends Backbone.View
     boxId = checkbox.attr "id"
     modelId = boxId.split("-")[0]
     model = @collection.get modelId
+
+    # Toggle the legend
+    @$el.find("##{boxId.split("-")[0]}-legend-collapse").collapse "toggle"
 
     if checkbox.is ":checked"
       # Get the layer added to the map
@@ -61,11 +63,6 @@ class app.views.SidebarView extends Backbone.View
     else
       app.map.removeLayer model.get "layer"
       model.set "active", false
-
-  toggleLegend: (e) ->
-    element = $ e.currentTarget
-    elId = element.attr "id"
-    $(elId).collapse('toggle')
 
 class app.views.BasemapView extends Backbone.View
   initialize: (options) ->

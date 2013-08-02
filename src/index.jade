@@ -95,10 +95,7 @@ html(lang="en")
                         .onoffswitch-inner
                         .onoffswitch-switch
                 a.layer-info-button(href="#", href!="#<%= model.get('id') %>-modal", role="button", data-toggle="modal") <%= model.get('layerName') %>
-                .pull-right
-                    span
-                        a(href="#", data-parent="#accordion-legend", id!="<%= model.get('datatarget') %>").icon-list-alt
-            div(id!="<%= model.get('id') %>", class="accordion-body collapse")
+            div(id!="<%= model.get('id') %>-legend-collapse", class="accordion-body collapse")
                 div(id!="<%= model.get('id') %>-legend", class="accordion-inner")
 
         script#legend-template(type="text/html")
