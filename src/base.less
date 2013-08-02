@@ -19,11 +19,44 @@
 @navbarLinkColorHover: darken(@linkColor, 15%);
 @navbarLinkColorActive: darken(@linkColor, 15%);
 @sidebarBackgroundColor: lighten(@themeColor, 6%);
-
+@borderColor: #C3CCAD;
 @btnPrimaryBackground: #08c;
 
 html, body, .fill {
   height: 100%;
+  background-color: @themeColor;
+}
+
+#banner {
+  border-bottom: 2px solid @borderColor;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: @navbarLinkColorHover;
+  text-align: center;
+
+  h2 {
+    display: inline-block;
+  }
+
+  .fema-logo {
+    height: 40px;
+    width: 113px;
+    background-image: url("../img/fema-logo-40.png");
+    float: right;
+    margin-right: 20px;
+    margin-top: 12px;
+  }
+
+  .azgs-logo {
+    height: 40px;
+    width: 113px;
+    background-image: url("../img/azgs-logo-40.png");
+    float: left;
+    margin-left: 20px;
+    margin-top: 12px;
+    background-repeat: no-repeat;
+  }
 }
 
 #main-container {
@@ -33,7 +66,7 @@ html, body, .fill {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   position: absolute;
-  top: 40px;
+  top: 100px;
   bottom: 0px;
   right: 0px;
   left: 0px;

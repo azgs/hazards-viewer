@@ -9,8 +9,11 @@ html(lang="en")
         link(rel="stylesheet", href="styles/base.css")
     body
         .navbar.navbar-fixed-top
+            #banner
+                h2 Natural Hazards in Arizona
+                a(href="http://azgs.az.gov/").azgs-logo
+                a(href="http://www.fema.gov/").fema-logo
             #nav.navbar-inner
-                .brand Arizona Hazards Viewer
                 #geocoder.navbar-search.pull-right
                     input(type="text", placeholder="Find Location").search-query
                 ul#menu.nav
@@ -21,7 +24,7 @@ html(lang="en")
 
         #main-container
             .row-fluid.fill
-                #map.span9.fill                                
+                #map.span9.fill
                 #sidebar.span3.fill
                     #accordion-legend.accordion.navbar
                         .accordion-group
