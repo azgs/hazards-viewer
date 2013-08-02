@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<csw:GetRecordByIdResponse xmlns:csw="http://www.opengis.net/cat/csw/2.0.2">
+<gmd:MD_Metadata xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd">
+<gmd:fileIdentifier>
+<gco:CharacterString>4e6b8f72f7d6c3856f092c6b8500f41b</gco:CharacterString>
+</gmd:fileIdentifier>
+<gmd:language>
+<gco:CharacterString>eng</gco:CharacterString>
+</gmd:language>
+<gmd:characterSet>
+<gmd:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8">UTF-8</gmd:MD_CharacterSetCode>
+</gmd:characterSet>
+<gmd:hierarchyLevel>
+<gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="Dataset">Dataset</gmd:MD_ScopeCode>
+</gmd:hierarchyLevel>
+<gmd:hierarchyLevelName>
+<gco:CharacterString>Dataset</gco:CharacterString>
+</gmd:hierarchyLevelName>
+<gmd:contact>
+<gmd:CI_ResponsibleParty>
+<gmd:individualName>
+<gco:CharacterString>No Name Was Given</gco:CharacterString>
+</gmd:individualName>
+<gmd:organisationName>
+<gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+</gmd:organisationName>
+<gmd:contactInfo>
+<gmd:CI_Contact>
+<gmd:phone>
+<gmd:CI_Telephone>
+<gmd:voice>
+<gco:CharacterString>520-770-3500</gco:CharacterString>
+</gmd:voice>
+</gmd:CI_Telephone>
+</gmd:phone>
+<gmd:address>
+<gmd:CI_Address>
+<gmd:deliveryPoint>
+<gco:CharacterString>416 W. Congress St. Ste. 100</gco:CharacterString>
+</gmd:deliveryPoint>
+<gmd:city>
+<gco:CharacterString>Tucson</gco:CharacterString>
+</gmd:city>
+<gmd:administrativeArea>
+<gco:CharacterString>Arizona</gco:CharacterString>
+</gmd:administrativeArea>
+<gmd:postalCode>
+<gco:CharacterString>85701</gco:CharacterString>
+</gmd:postalCode>
+<gmd:electronicMailAddress>
+<gco:CharacterString>metadata@azgs.az.gov</gco:CharacterString>
+</gmd:electronicMailAddress>
+</gmd:CI_Address>
+</gmd:address>
+</gmd:CI_Contact>
+</gmd:contactInfo>
+<gmd:role>
+<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact">pointOfContact</gmd:CI_RoleCode>
+</gmd:role>
+</gmd:CI_ResponsibleParty>
+</gmd:contact>
+<gmd:dateStamp>
+<gco:DateTime>2012-10-02T19:13:48Z</gco:DateTime>
+</gmd:dateStamp>
+<gmd:metadataStandardName>
+<gco:CharacterString>ISO-USGIN</gco:CharacterString>
+</gmd:metadataStandardName>
+<gmd:metadataStandardVersion>
+<gco:CharacterString>1.2</gco:CharacterString>
+</gmd:metadataStandardVersion>
+<gmd:dataSetURI>
+<gco:CharacterString>http://repository.usgin.org/uri_gin/usgin/dlio/317</gco:CharacterString>
+</gmd:dataSetURI>
+<gmd:identificationInfo>
+<gmd:MD_DataIdentification>
+<gmd:citation>
+<gmd:CI_Citation>
+<gmd:title>
+<gco:CharacterString>Arizona Active Faults</gco:CharacterString>
+</gmd:title>
+<gmd:date>
+<gmd:CI_Date>
+<gmd:date>
+<gco:DateTime>2011-07-25T12:00:00</gco:DateTime>
+</gmd:date>
+<gmd:dateType>
+<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">publication</gmd:CI_DateTypeCode>
+</gmd:dateType>
+</gmd:CI_Date>
+</gmd:date>
+<gmd:citedResponsibleParty>
+<gmd:CI_ResponsibleParty>
+<gmd:individualName>
+<gco:CharacterString>Pearthree, Phil</gco:CharacterString>
+</gmd:individualName>
+<gmd:organisationName>
+<gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+</gmd:organisationName>
+<gmd:contactInfo>
+<gmd:CI_Contact>
+<gmd:phone>
+<gmd:CI_Telephone>
+<gmd:voice>
+<gco:CharacterString>520-770-3500</gco:CharacterString>
+</gmd:voice>
+</gmd:CI_Telephone>
+</gmd:phone>
+<gmd:address>
+<gmd:CI_Address>
+<gmd:deliveryPoint>
+<gco:CharacterString>416 W. Congress Street</gco:CharacterString>
+</gmd:deliveryPoint>
+<gmd:city>
+<gco:CharacterString>Tucson</gco:CharacterString>
+</gmd:city>
+<gmd:administrativeArea>
+<gco:CharacterString>Arizona</gco:CharacterString>
+</gmd:administrativeArea>
+<gmd:postalCode>
+<gco:CharacterString>85716</gco:CharacterString>
+</gmd:postalCode>
+<gmd:electronicMailAddress>
+<gco:CharacterString>phil.pearthree@azgs.az.gov</gco:CharacterString>
+</gmd:electronicMailAddress>
+</gmd:CI_Address>
+</gmd:address>
+</gmd:CI_Contact>
+</gmd:contactInfo>
+<gmd:role>
+<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator">originator</gmd:CI_RoleCode>
+</gmd:role>
+</gmd:CI_ResponsibleParty>
+</gmd:citedResponsibleParty>
+</gmd:CI_Citation>
+</gmd:citation>
+<gmd:abstract>
+<gco:CharacterString>This dataset is a compilation of Active Fault features compiled by the Arizona Geological Survey and United States Geological Survey, published as a Web feature service, a web map service, an ESRI service and as a downloadable document for the National Geothermal Data System. The document contains 7 worksheets, including information about the template, instructions on using the template, notes related to revisions of the template, Resource provider information, the data, a field list (data mapping view) and a worksheet with vocabularies for use in populating the spreadsheet (data valid terms). Each feature in an active fault data set (row in this spreadsheet) should be characterized by a unique combination of name, URI, geologic history, slip, locatability and orientation properties, as well as being physically connected or inferred to be connected in the Earth. For mapped active faults ,which are the scope of this scheme, the deformation style is assumed to be brittle (as opposed to ductile). Fields in the data table include FeatureURI, Name, FullName, ParentFeatureURI, Label, Description, Symbol, OtherID, SpecificationURI, FeatureType, GeologicHistory, RepresentativeAgeURI, YoungerAgeURI, OlderAgeURI, IntervalSinceMovement, Shape, ObservationMethod, PositionAccuracyMeters, PositionAccuracy, Displacement, SlipRate, SlipAccumulationInterval, MovementType, MovementSense, DipDirection, DateMostRecentEvent, RecurrenceInterval, TotalSlip, Source and MetadataURI.</gco:CharacterString>
+</gmd:abstract>
+<gmd:status>
+<gmd:MD_ProgressCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ProgressCode" codeListValue="completed">completed</gmd:MD_ProgressCode>
+</gmd:status>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>Active faults</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>fault activity</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>Geology</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>Geothermal</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>Quaternary</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>Arizona</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>Southwest</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme">theme</gmd:MD_KeywordTypeCode>
+</gmd:type>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>WMS Services</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>ESRI Services</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>WFS Services</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>Downloadable Files</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>Arizona</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>Active Faults</gco:CharacterString>
+</gmd:keyword>
+<gmd:thesaurusName xlink:href="/metadata/collection/">
+<gmd:CI_Citation>
+<gmd:title>
+<gco:CharacterString>Server Collections</gco:CharacterString>
+</gmd:title>
+<gmd:date>
+<gmd:CI_Date>
+<gmd:date>
+<gco:Date>2012-06-06</gco:Date>
+</gmd:date>
+<gmd:dateType>
+<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication"/>
+</gmd:dateType>
+</gmd:CI_Date>
+</gmd:date>
+</gmd:CI_Citation>
+</gmd:thesaurusName>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:language>
+<gco:CharacterString>eng</gco:CharacterString>
+</gmd:language>
+<gmd:topicCategory>
+<gmd:MD_TopicCategoryCode>geoscientificInformation</gmd:MD_TopicCategoryCode>
+</gmd:topicCategory>
+<gmd:extent>
+<gmd:EX_Extent>
+<gmd:geographicElement>
+<gmd:EX_GeographicBoundingBox>
+<gmd:westBoundLongitude>
+<gco:Decimal>-116.016</gco:Decimal>
+</gmd:westBoundLongitude>
+<gmd:eastBoundLongitude>
+<gco:Decimal>-107.578</gco:Decimal>
+</gmd:eastBoundLongitude>
+<gmd:southBoundLatitude>
+<gco:Decimal>30.2429</gco:Decimal>
+</gmd:southBoundLatitude>
+<gmd:northBoundLatitude>
+<gco:Decimal>37.669</gco:Decimal>
+</gmd:northBoundLatitude>
+</gmd:EX_GeographicBoundingBox>
+</gmd:geographicElement>
+</gmd:EX_Extent>
+</gmd:extent>
+</gmd:MD_DataIdentification>
+</gmd:identificationInfo>
+<gmd:distributionInfo>
+<gmd:MD_Distribution>
+<gmd:distributor>
+<gmd:MD_Distributor>
+<gmd:distributorContact>
+<gmd:CI_ResponsibleParty>
+<gmd:individualName>
+<gco:CharacterString>No Name Was Given</gco:CharacterString>
+</gmd:individualName>
+<gmd:organisationName>
+<gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+</gmd:organisationName>
+<gmd:contactInfo>
+<gmd:CI_Contact>
+<gmd:phone>
+<gmd:CI_Telephone>
+<gmd:voice>
+<gco:CharacterString>520-770-3500</gco:CharacterString>
+</gmd:voice>
+</gmd:CI_Telephone>
+</gmd:phone>
+<gmd:address>
+<gmd:CI_Address>
+<gmd:deliveryPoint>
+<gco:CharacterString>416 W. Congress St. Ste. 100</gco:CharacterString>
+</gmd:deliveryPoint>
+<gmd:city>
+<gco:CharacterString>Tucson</gco:CharacterString>
+</gmd:city>
+<gmd:administrativeArea>
+<gco:CharacterString>Arizona</gco:CharacterString>
+</gmd:administrativeArea>
+<gmd:postalCode>
+<gco:CharacterString>85701</gco:CharacterString>
+</gmd:postalCode>
+<gmd:electronicMailAddress>
+<gco:CharacterString>metadata@usgin.org</gco:CharacterString>
+</gmd:electronicMailAddress>
+</gmd:CI_Address>
+</gmd:address>
+</gmd:CI_Contact>
+</gmd:contactInfo>
+<gmd:role>
+<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="distributor">distributor</gmd:CI_RoleCode>
+</gmd:role>
+</gmd:CI_ResponsibleParty>
+</gmd:distributorContact>
+</gmd:MD_Distributor>
+</gmd:distributor>
+<gmd:transferOptions>
+<gmd:MD_DigitalTransferOptions id="http___services_azgs_az_gov_ArcGIS_services_aasggeothermal_AZActiveFaults_MapServer_WFSServer_request_GetCapabilities_service_WFS">
+<gmd:onLine>
+<gmd:CI_OnlineResource>
+<gmd:linkage>
+<gmd:URL>http://services.azgs.az.gov/ArcGIS/services/aasggeothermal/AZActiveFaults/MapServer/WFSServer?request=GetCapabilities&amp;service=WFS</gmd:URL>
+</gmd:linkage>
+<gmd:protocol>
+<gco:CharacterString>OGC:WFS</gco:CharacterString>
+</gmd:protocol>
+<gmd:name>
+<gco:CharacterString>Service Description</gco:CharacterString>
+</gmd:name>
+<gmd:function>
+<gmd:CI_OnLineFunctionCode codeList="http://www.fgdc.gov/nap/metadata/register/registerItemClasses.html#IC_88" codeListValue="381">webService</gmd:CI_OnLineFunctionCode>
+</gmd:function>
+</gmd:CI_OnlineResource>
+</gmd:onLine>
+</gmd:MD_DigitalTransferOptions>
+</gmd:transferOptions>
+<gmd:transferOptions>
+<gmd:MD_DigitalTransferOptions id="http___services_azgs_az_gov_ArcGIS_services_aasggeothermal_AZActiveFaults_MapServer_WMSServer_request_GetCapabilities_service_WMS">
+<gmd:onLine>
+<gmd:CI_OnlineResource>
+<gmd:linkage>
+<gmd:URL>http://services.azgs.az.gov/ArcGIS/services/aasggeothermal/AZActiveFaults/MapServer/WMSServer?request=GetCapabilities&amp;service=WMS</gmd:URL>
+</gmd:linkage>
+<gmd:protocol>
+<gco:CharacterString>OGC:WMS</gco:CharacterString>
+</gmd:protocol>
+<gmd:name>
+<gco:CharacterString>Service Description</gco:CharacterString>
+</gmd:name>
+<gmd:function>
+<gmd:CI_OnLineFunctionCode codeList="http://www.fgdc.gov/nap/metadata/register/registerItemClasses.html#IC_88" codeListValue="381">webService</gmd:CI_OnLineFunctionCode>
+</gmd:function>
+</gmd:CI_OnlineResource>
+</gmd:onLine>
+</gmd:MD_DigitalTransferOptions>
+</gmd:transferOptions>
+<gmd:transferOptions>
+<gmd:MD_DigitalTransferOptions id="http___services_azgs_az_gov_ArcGIS_rest_services_aasggeothermal_AZActiveFaults_MapServer">
+<gmd:onLine>
+<gmd:CI_OnlineResource>
+<gmd:linkage>
+<gmd:URL>http://services.azgs.az.gov/ArcGIS/rest/services/aasggeothermal/AZActiveFaults/MapServer</gmd:URL>
+</gmd:linkage>
+<gmd:protocol>
+<gco:CharacterString>ESRI</gco:CharacterString>
+</gmd:protocol>
+<gmd:name>
+<gco:CharacterString>Service Description</gco:CharacterString>
+</gmd:name>
+<gmd:function>
+<gmd:CI_OnLineFunctionCode codeList="http://www.fgdc.gov/nap/metadata/register/registerItemClasses.html#IC_88" codeListValue="381">webService</gmd:CI_OnLineFunctionCode>
+</gmd:function>
+</gmd:CI_OnlineResource>
+</gmd:onLine>
+</gmd:MD_DigitalTransferOptions>
+</gmd:transferOptions>
+<gmd:transferOptions>
+<gmd:MD_DigitalTransferOptions id="http___repository_stategeothermaldata_org_metadata_record_4e6b8f72f7d6c3856f092c6b8500f41b_file_arizonaactivefaults_zip">
+<gmd:onLine>
+<gmd:CI_OnlineResource>
+<gmd:linkage>
+<gmd:URL>http://repository.stategeothermaldata.org/metadata/record/4e6b8f72f7d6c3856f092c6b8500f41b/file/arizonaactivefaults.zip</gmd:URL>
+</gmd:linkage>
+<gmd:name>
+<gco:CharacterString>Zipped Access Database (.mdb) containing Arizona Active Fault data1.2</gco:CharacterString>
+</gmd:name>
+<gmd:function>
+<gmd:CI_OnLineFunctionCode codeList="http://www.fgdc.gov/nap/metadata/register/registerItemClasses.html#IC_88" codeListValue="375">download</gmd:CI_OnLineFunctionCode>
+</gmd:function>
+</gmd:CI_OnlineResource>
+</gmd:onLine>
+</gmd:MD_DigitalTransferOptions>
+</gmd:transferOptions>
+<gmd:transferOptions>
+<gmd:MD_DigitalTransferOptions id="http___repository_stategeothermaldata_org_metadata_record_4e6b8f72f7d6c3856f092c6b8500f41b_file_azactivefaultcontentelements1_2_zip">
+<gmd:onLine>
+<gmd:CI_OnlineResource>
+<gmd:linkage>
+<gmd:URL>http://repository.stategeothermaldata.org/metadata/record/4e6b8f72f7d6c3856f092c6b8500f41b/file/azactivefaultcontentelements1.2.zip</gmd:URL>
+</gmd:linkage>
+<gmd:name>
+<gco:CharacterString>Zipped 2007 Excel spreadsheet containing Active Fault data1.2</gco:CharacterString>
+</gmd:name>
+<gmd:function>
+<gmd:CI_OnLineFunctionCode codeList="http://www.fgdc.gov/nap/metadata/register/registerItemClasses.html#IC_88" codeListValue="375">download</gmd:CI_OnLineFunctionCode>
+</gmd:function>
+</gmd:CI_OnlineResource>
+</gmd:onLine>
+</gmd:MD_DigitalTransferOptions>
+</gmd:transferOptions>
+</gmd:MD_Distribution>
+</gmd:distributionInfo>
+</gmd:MD_Metadata>
+</csw:GetRecordByIdResponse>
