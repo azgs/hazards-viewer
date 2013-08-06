@@ -32,6 +32,15 @@ html, body, .fill {
   color: @navbarLinkColorHover;
 }
 
+.logo(@logoUrl, @width) {
+  height: 40px;
+  width: @width;
+  background-image: @logoUrl;
+  float: right;
+  margin-right: 20px;
+  margin-top: 12px;
+}
+
 #banner {
   border-bottom: 2px solid @borderColor;
   -webkit-box-sizing: border-box;
@@ -43,45 +52,23 @@ html, body, .fill {
     display: inline-block;
     font-family: Georgia;
     text-shadow: -1px -1px white;
-    color: #435F7D; //@navbarLinkColorHover;
+    color: @navbarLinkColorHover; //#435F7D;
   }
 
   .fema-logo {
-    height: 40px;
-    width: 113px;
-    background-image: url("../img/fema-logo-40.png");
-    float: right;
-    margin-right: 20px;
-    margin-top: 12px;
+    .logo(url("../img/fema-logo-40.png"), 113px);
   }
 
   .azgs-logo {
-    height: 40px;
-    width: 113px;
-    background-image: url("../img/azgs-logo-40.png");
-    float: left;
-    margin-left: 20px;
-    margin-top: 12px;
-    background-repeat: no-repeat;
+    .logo(url("../img/azgs-logo-40.png"), 104px);
   }
 
   .azein-logo {
-    height: 40px;
-    width: 113px;
-    background-image: url("../img/azein-logo-40.png");
-    float: left;
-    margin-left: 20px;
-    margin-top: 12px;
-    background-repeat: no-repeat;
+    .logo(url("../img/azein-logo-40.png"), 84px);
   }
 
   .adem-logo {
-    height: 40px;
-    width: 96px;
-    background-image: url("../img/adem-logo-40.png");
-    float: right;
-    margin-right: 20px;
-    margin-top: 12px;
+    .logo(url("../img/adem-logo-40.png"), 96px);
   }
 }
 
