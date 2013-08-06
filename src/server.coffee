@@ -35,4 +35,4 @@ app.get "/proxy", (req, res) ->
   return
 
 # Application listens on port 3000
-app.listen 3000
+app.listen 3001
