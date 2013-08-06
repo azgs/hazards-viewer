@@ -1,24 +1,37 @@
+@import "../vendor/bootstrap/less/bootstrap.less";
+
 @eqColor: purple;
 
 * {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-/*
-@font-face {
-  font-family: Wingdings;
-  src: url("../fnt/wingdings.ttf");
+
+.hazard(@color, @img) {
+  h1 { background-color: @color; }
+  h2 { color: @color; }
+  li:before { color: @color; }
+  .haz-image {
+    background-image: @img;
+    width: 288px;
+    height: 120px;
+    float: left;
+  }
 }
-*/
+
+.earthquakes {
+  .hazard(@eqColor, url("./eq.png"));
+}
+
+body {
+  padding: 0 10px;
+}
+
 h1 {
   color: white;
-  background-color: @eqColor;
   height: 120px;
   line-height: 120px;
   padding-left: 30px;
-}
-
-h2 {
-  color: @eqColor;
+  margin-left: 288px;
 }
 
 ul {
@@ -27,6 +40,9 @@ ul {
   li:before {
     content: "v ";
     font-family: Wingdings;
-    color: @eqColor;
   }
+}
+
+p {
+  .lead();
 }

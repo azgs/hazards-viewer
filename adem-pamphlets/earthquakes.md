@@ -1,7 +1,5 @@
 # EARTHQUAKES
 
-## EARTHQUAKES
-
 Many people do not know about Arizona's earthquake dangers. The entire state has been susceptible to some ground-shaking from time to time, although the southwestern and northwestern part of the state are typically more vulnerable. Earthquakes which occur in neighboring areas, such as California and northern Mexico can also put us at risk depending on their magnitude.
 
 Although there are no guarantees of safety during an earthquake, you can reduce earthquake caused injuries and property damage by following these basic tips:
