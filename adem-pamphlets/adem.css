@@ -1,0 +1,27 @@
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/*
+@font-face {
+  font-family: Wingdings;
+  src: url("../fnt/wingdings.ttf");
+}
+*/
+h1 {
+  color: white;
+  background-color: #800080;
+  height: 120px;
+  line-height: 120px;
+  padding-left: 30px;
+}
+h2 {
+  color: #800080;
+}
+ul {
+  list-style-type: none;
+}
+ul li:before {
+  content: "v ";
+  font-family: Wingdings;
+  color: #800080;
+}

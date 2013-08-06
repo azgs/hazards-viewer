@@ -32,12 +32,27 @@ class app.views.SidebarView extends Backbone.View
     # All filterable boxes should start checked
     el.find(".filter").prop "checked", true
 
+    # Hacky -- bind event to part of the modals
+    $(".info-collapse").on "click", @toggleCollapseIcon
+
     return @
 
   events:
     "click input.layerToggle": "toggleLayer"
+    "click .info-collapse": "toggleCollapseIcon"
 
   findActiveLayers: () -> return (model for model in @collection.models when model.get("active"))
+
+  toggleCollapseIcon: (e) ->
+    console.log "are, are we here?"
+    id = "#{$(e.currentTarget).attr("data-target")}-icon"
+    icon = $ id
+    if icon.hasClass "icon-chevron-down"
+      icon.removeClass "icon-chevron-down"
+      icon.addClass "icon-chevron-right"
+    else if icon.hasClass "icon-chevron-right"
+      icon.removeClass "icon-chevron-right"
+      icon.addClass "icon-chevron-down"
 
   toggleLayer: (e) ->
     checkbox = $ e.currentTarget

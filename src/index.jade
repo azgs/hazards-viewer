@@ -12,6 +12,7 @@ html(lang="en")
             #banner
                 h2 Natural Hazards in Arizona
                 a(href="http://azgs.az.gov/").azgs-logo
+                a(href="http://www.azein.gov/azein/default.aspx").azein-logo
                 a(href="http://www.dem.azdema.gov/").adem-logo
                 a(href="http://www.fema.gov/").fema-logo
             #nav.navbar-inner
@@ -58,7 +59,33 @@ html(lang="en")
             .modal.hide.fade(id!="<%= model.get('id') %>-modal", role="dialog", aria-labelledby!="<%= model.get('id') %>-header", aria-hidden="true")
                 .modal-header
                     h3(id!="<%= model.get('id') %>-header") <%= model.get('layerName') %>
-                .modal-body <%= model.get('description') %>
+                .modal-body
+                    p <%= model.get('brief') %>
+
+                    table.table
+                        tr
+                            th Source
+                            td <%= model.get('citation') %>
+                        tr
+                            th Last updated
+                            td <%= model.get('lastUpdate') %>
+
+                    h4 Related Information
+                    <% if (model.get('links')) { %>
+                    ul
+                        <% for (i in model.get('links')) { %>
+                        li: a(href!="<%= model.get('links')[i].url %>") <%= model.get('links')[i].text %>
+                        <% } %>
+                    <% } %>
+
+                    hr
+
+                    h4
+                        i(id!="<%= model.get('id') %>-details-collapse-icon").icon-chevron-right
+                        a(href="#", data-toggle="collapse", data-target!="#<%= model.get('id') %>-details-collapse").info-collapse Further Reading
+                    div(id!="<%= model.get('id') %>-details-collapse", class="accordion-body collapse")
+                        div(id!="<%= model.get('id') %>-details", class="accordion-inner") <%= model.get('details') %>
+
                 .modal-footer
                     button.btn.btn-primary(data-dismiss="modal") Close
 
