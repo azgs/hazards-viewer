@@ -1,0 +1,515 @@
+
+<?xml version="1.0" encoding="UTF-8" ?><!--**********************************************************
+*** ISO 19139 geospatial dataset metadata record
+*** based on the USGIN v1.1 Profile for ISO 19139
+*** U.S. Geoscience Information System (USGIN)
+*** http://lab.usgin.org/profiles/usgin-iso-19139-profile
+***********************************************************-->
+<gmd:MD_Metadata
+  xmlns:gmd="http://www.isotc211.org/2005/gmd"
+  xmlns:gco="http://www.isotc211.org/2005/gco"
+  xmlns:gml="http://www.opengis.net/gml"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd">
+  <gmd:fileIdentifier>
+    <gco:CharacterString>5c98f08f-4f13-11e0-a556-355302104941</gco:CharacterString>
+  </gmd:fileIdentifier>
+  <gmd:language>
+    <gco:CharacterString>eng</gco:CharacterString>
+  </gmd:language>
+  <gmd:characterSet>
+    <gmd:MD_CharacterSetCode
+      codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode"
+      codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
+  </gmd:characterSet>
+  <gmd:hierarchyLevel>
+    <gmd:MD_ScopeCode
+      codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ScopeCode"
+      codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+  </gmd:hierarchyLevel>
+  <gmd:hierarchyLevelName>
+    <gco:CharacterString>Dataset</gco:CharacterString>
+  </gmd:hierarchyLevelName>
+  <!-- Metadata point of contact - Point of contact for the metadata record, e.g. for users to report errors, updates to metadata, etc. -->
+  <gmd:contact>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>Missing</gco:CharacterString>
+      </gmd:individualName>
+            <gmd:organisationName>
+        <gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+      </gmd:organisationName>
+                  <gmd:contactInfo>
+        <gmd:CI_Contact>
+                    <gmd:phone>
+            <gmd:CI_Telephone>
+                            <gmd:voice>
+                <gco:CharacterString>520.770.3500</gco:CharacterString>
+              </gmd:voice>
+                                        </gmd:CI_Telephone>
+          </gmd:phone>
+                    <gmd:address>
+            <gmd:CI_Address>
+                            <gmd:deliveryPoint>
+                <gco:CharacterString>416 W. Congress, Ste # 100</gco:CharacterString>
+              </gmd:deliveryPoint>
+              <gmd:city>
+                <gco:CharacterString>Tucson</gco:CharacterString>
+              </gmd:city>
+              <gmd:administrativeArea>
+                <gco:CharacterString>AZ</gco:CharacterString>
+              </gmd:administrativeArea>
+              <gmd:postalCode>
+                <gco:CharacterString>85701-1381</gco:CharacterString>
+              </gmd:postalCode>
+              <gmd:country>
+                <gco:CharacterString>USA</gco:CharacterString>
+              </gmd:country>
+                            <gmd:electronicMailAddress>
+                <gco:CharacterString>michael.conway@azgs.az.gov</gco:CharacterString>
+              </gmd:electronicMailAddress>
+            </gmd:CI_Address>
+          </gmd:address>
+                    <gmd:onlineResource>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>http://www.azgs.az.gov</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol>
+                <gco:CharacterString>http</gco:CharacterString>
+              </gmd:protocol>
+                          </gmd:CI_OnlineResource>
+          </gmd:onlineResource>
+
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode
+          codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+          codeListValue="pointOfContact">point of contact</gmd:CI_RoleCode>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+    <gmd:dateStamp>
+    <gco:DateTime>2012-12-29T16:18:58</gco:DateTime>
+  </gmd:dateStamp>
+  <gmd:metadataStandardName>
+    <gco:CharacterString>ISO-NAP-USGIN</gco:CharacterString>
+  </gmd:metadataStandardName>
+  <gmd:metadataStandardVersion>
+    <gco:CharacterString>1.1</gco:CharacterString>
+  </gmd:metadataStandardVersion>
+   <gmd:dataSetURI>
+    <gco:CharacterString>http://repository.azgs.az.gov/uri_gin/usgin/dlio/997</gco:CharacterString>
+  </gmd:dataSetURI>
+  <!-- **************** -->
+  <gmd:identificationInfo>
+    <gmd:MD_DataIdentification>
+      <gmd:citation>
+        <gmd:CI_Citation>
+          <gmd:title>
+            <gco:CharacterString>Locations of Mapped Earth Fissure Traces in Arizona v. 12.27.12</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime>2011-03-11T12:00:00</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode
+                  codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode"
+                  codeListValue="publication">publication</gmd:CI_DateTypeCode>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+                    <gmd:identifier>
+            <gmd:MD_Identifier>
+              <gmd:code>
+                <gco:CharacterString>DI-39 v. 12.27.12</gco:CharacterString>
+              </gmd:code>
+            </gmd:MD_Identifier>
+          </gmd:identifier>
+                    <!-- (M) Resource Ciatation (Responsible Party) - The citation attribute provides information for citing the described resource. Citation is defined by Webster as "an act of quoting". The precise semantics of what an identification/citation is supposed to be are not very well articulated in ISO19115. For USGIN purposes, this should be viewed as information to identify the intellectual origin (or property) of the content in the described resource, along the lines of a citation in a scientific journal. -->
+          <!-- Citation Originators/Authors -->
+                        <gmd:citedResponsibleParty>
+                <gmd:CI_ResponsibleParty>
+                  <gmd:individualName>
+                    <gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+                  </gmd:individualName>
+                  <gmd:role>
+                    <gmd:CI_RoleCode
+                      codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+                      codeListValue="originator">originator</gmd:CI_RoleCode>
+                  </gmd:role>
+                </gmd:CI_ResponsibleParty>
+              </gmd:citedResponsibleParty>
+                      <!-- Citation Point of Contact -->
+          <gmd:citedResponsibleParty>
+            <gmd:CI_ResponsibleParty>
+              <gmd:individualName>
+                <gco:CharacterString>Missing</gco:CharacterString>
+              </gmd:individualName>
+                            <gmd:organisationName>
+                <gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+              </gmd:organisationName>
+                                                        <gmd:contactInfo>
+                <gmd:CI_Contact>
+                                    <gmd:phone>
+                    <gmd:CI_Telephone>
+                                            <gmd:voice>
+                        <gco:CharacterString>520.770.3500</gco:CharacterString>
+                      </gmd:voice>
+                                                                  <gmd:facsimile>
+                        <gco:CharacterString>520.770.3505</gco:CharacterString>
+                      </gmd:facsimile>
+                                          </gmd:CI_Telephone>
+                  </gmd:phone>
+                                                      <gmd:address>
+                    <gmd:CI_Address>
+                                            <gmd:deliveryPoint>
+                        <gco:CharacterString>416 W. Congress, Ste 100</gco:CharacterString>
+                      </gmd:deliveryPoint>
+                      <gmd:city>
+                        <gco:CharacterString>Tucson</gco:CharacterString>
+                      </gmd:city>
+                      <gmd:administrativeArea>
+                        <gco:CharacterString>Arizona</gco:CharacterString>
+                      </gmd:administrativeArea>
+                      <gmd:postalCode>
+                        <gco:CharacterString>85701</gco:CharacterString>
+                      </gmd:postalCode>
+                      <gmd:country>
+                        <gco:CharacterString>USA</gco:CharacterString>
+                      </gmd:country>
+                                                                </gmd:CI_Address>
+                  </gmd:address>
+                                                      <gmd:onlineResource>
+                    <gmd:CI_OnlineResource>
+                      <gmd:linkage>
+                        <gmd:URL>http://www.azgs.az.gov</gmd:URL>
+                      </gmd:linkage>
+                      <gmd:protocol>
+                        <gco:CharacterString>http</gco:CharacterString>
+                      </gmd:protocol>
+                                          </gmd:CI_OnlineResource>
+                  </gmd:onlineResource>
+                                                                      </gmd:CI_Contact>
+              </gmd:contactInfo>
+                            <gmd:role>
+                <gmd:CI_RoleCode
+                  codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+                  codeListValue="pointOfContact">point of contact</gmd:CI_RoleCode>
+              </gmd:role>
+            </gmd:CI_ResponsibleParty>
+          </gmd:citedResponsibleParty>
+                  </gmd:CI_Citation>
+      </gmd:citation>
+      <gmd:abstract>
+        <gco:CharacterString>These earth fissure data were prepared by the Arizona Geological Survey (“AZGS”) in accordance with Ariz. Rev. Stat. § 27-152.01(3).
+Shapefiles – This product includes two shapefiles for viewing using ESRI ArcGIS Desktop software.
+• EarthFissureTrace v.04.05.12.zip file: This line shapefile displays the surface trace of earth fissures mapped by the AZGS, as well as reported, unconfirmed earth fissures within study area boundaries.
+Attribute Information:
+  FissType: Classification of an earth fissure trace.
+• Continuous earth fissures manifested as open cracks or gullies.
+• Discontinuous earth fissures manifested as elongated to circular depressions or as abbreviated or irregular linear depressions. These discontinuous surface features frequently represent an incipient surface expression of an earth fissure.
+• Reported, unconfirmed earth fissures are defined as fissures which could not be confirmed by surface investigations by AZGS geologists, but which have been previously reported by Professional Geologists in published documents or maps.
+  MappedDate: Date of most recent fissure observation.
+
+• MapExtent04.05.12: This polygon shapefile displays the extent of study areas included in the current version of DI-39.  A blank area on the map does not guarantee earth fissures are not present. However, blank areas within a study area boundary have been investigated, and no surface evidence of fissures was found as of the date of publication for that particular study area. Determining the presence or absence of a fissure at any specific site may require additional mapping and/or geotechnical analysis.
+ Attribute Information:
+  MappedDate: Date of most recent mapping in Study Area.
+
+Metadata – Text file containing FGDC standard metadata for the EarthFissureTrace062209 shapefile.</gco:CharacterString>
+      </gmd:abstract>
+      <gmd:status>
+        <gmd:MD_ProgressCode
+          codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ProgressCode"
+          codeListValue="completed">completed</gmd:MD_ProgressCode>
+      </gmd:status>
+            <!-- (C) Resource point of contact (access contact) - CI_ResponsibleParty element here would contain information for point of contact to access the resource. This information is mandatory for physical resources such as core, cuttings, samples, manuscripts. -->
+      <gmd:pointOfContact>
+        <gmd:CI_ResponsibleParty>
+          <gmd:individualName>
+            <gco:CharacterString>Missing</gco:CharacterString>
+          </gmd:individualName>
+                    <gmd:organisationName>
+            <gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+          </gmd:organisationName>
+                                        <gmd:contactInfo>
+            <gmd:CI_Contact>
+                            <gmd:phone>
+                <gmd:CI_Telephone>
+                                    <gmd:voice>
+                    <gco:CharacterString>520.770.3500</gco:CharacterString>
+                  </gmd:voice>
+                                                      <gmd:facsimile>
+                    <gco:CharacterString>520.770.3505</gco:CharacterString>
+                  </gmd:facsimile>
+                                  </gmd:CI_Telephone>
+              </gmd:phone>
+                                          <gmd:address>
+                <gmd:CI_Address>
+                                    <gmd:deliveryPoint>
+                    <gco:CharacterString>416 W. Congress, Ste. 100</gco:CharacterString>
+                  </gmd:deliveryPoint>
+                  <gmd:city>
+                    <gco:CharacterString>t</gco:CharacterString>
+                  </gmd:city>
+                  <gmd:administrativeArea>
+                    <gco:CharacterString>Arizona</gco:CharacterString>
+                  </gmd:administrativeArea>
+                  <gmd:postalCode>
+                    <gco:CharacterString>85701</gco:CharacterString>
+                  </gmd:postalCode>
+                  <gmd:country>
+                    <gco:CharacterString>USA</gco:CharacterString>
+                  </gmd:country>
+                                                    </gmd:CI_Address>
+              </gmd:address>
+                                          <gmd:onlineResource>
+                <gmd:CI_OnlineResource>
+                  <gmd:linkage>
+                    <gmd:URL>http://www.azgs.az.gov</gmd:URL>
+                  </gmd:linkage>
+                  <gmd:protocol>
+                    <gco:CharacterString>http</gco:CharacterString>
+                  </gmd:protocol>
+                                  </gmd:CI_OnlineResource>
+              </gmd:onlineResource>
+                                                      </gmd:CI_Contact>
+          </gmd:contactInfo>
+                    <gmd:role>
+            <gmd:CI_RoleCode
+              codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+              codeListValue="pointOfContact">point of contact</gmd:CI_RoleCode>
+          </gmd:role>
+        </gmd:CI_ResponsibleParty>
+      </gmd:pointOfContact>
+                  <gmd:descriptiveKeywords>
+        <gmd:MD_Keywords>
+                    <gmd:keyword>
+            <gco:CharacterString>earth fissures</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Geohazards</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>GIS</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>shapefiles</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>subsidence</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>surficial cracks</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:type>
+            <gmd:MD_KeywordTypeCode
+              codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
+              codeListValue="theme">theme</gmd:MD_KeywordTypeCode>
+          </gmd:type>
+        </gmd:MD_Keywords>
+      </gmd:descriptiveKeywords>
+                  <gmd:descriptiveKeywords>
+        <gmd:MD_Keywords>
+                    <gmd:keyword>
+            <gco:CharacterString>Holocene</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Recent</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:type>
+            <gmd:MD_KeywordTypeCode
+              codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
+              codeListValue="temporal">temporal</gmd:MD_KeywordTypeCode>
+          </gmd:type>
+        </gmd:MD_Keywords>
+      </gmd:descriptiveKeywords>
+                  <gmd:descriptiveKeywords>
+        <gmd:MD_Keywords>
+                    <gmd:keyword>
+            <gco:CharacterString>Chandler Height</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Cochise County</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Dragoon Road</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Luke</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Maricopa County</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Mesa</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Pima County</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Pinal County</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Queen Creek</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Sacaton Butte</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Scottsdale</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Tator Hills</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:keyword>
+            <gco:CharacterString>Three Sisters Buttes</gco:CharacterString>
+          </gmd:keyword>
+                    <gmd:type>
+            <gmd:MD_KeywordTypeCode
+              codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode"
+              codeListValue="place">place</gmd:MD_KeywordTypeCode>
+          </gmd:type>
+        </gmd:MD_Keywords>
+      </gmd:descriptiveKeywords>
+                  <gmd:resourceConstraints>
+        <gmd:MD_LegalConstraints>
+          <gmd:useLimitation>
+            <gco:CharacterString>Arizona Geological Survey all rights reserved.</gco:CharacterString>
+          </gmd:useLimitation>
+        </gmd:MD_LegalConstraints>
+      </gmd:resourceConstraints>
+                  <gmd:language>
+        <gco:CharacterString>eng</gco:CharacterString>
+      </gmd:language>
+      <gmd:topicCategory>
+        <gmd:MD_TopicCategoryCode>geoscientificInformation</gmd:MD_TopicCategoryCode>
+      </gmd:topicCategory>
+      <gmd:extent>
+        <gmd:EX_Extent>
+                              <gmd:geographicElement>
+            <gmd:EX_GeographicBoundingBox>
+              <gmd:extentTypeCode>
+                <gco:Boolean>1</gco:Boolean>
+              </gmd:extentTypeCode>
+              <gmd:westBoundLongitude>
+                <gco:Decimal>-113.225</gco:Decimal>
+              </gmd:westBoundLongitude>
+              <gmd:eastBoundLongitude>
+                <gco:Decimal>-109.27</gco:Decimal>
+              </gmd:eastBoundLongitude>
+              <gmd:southBoundLatitude>
+                <gco:Decimal>31.4314</gco:Decimal>
+              </gmd:southBoundLatitude>
+              <gmd:northBoundLatitude>
+                <gco:Decimal>33.6539</gco:Decimal>
+              </gmd:northBoundLatitude>
+            </gmd:EX_GeographicBoundingBox>
+          </gmd:geographicElement>
+                  </gmd:EX_Extent>
+      </gmd:extent>
+                </gmd:MD_DataIdentification>
+  </gmd:identificationInfo>
+  <!-- **************** -->
+  <!-- Distribution Information -->
+    <gmd:distributionInfo>
+    <gmd:MD_Distribution>
+      <gmd:distributor>
+        <gmd:MD_Distributor>
+                    <!-- (C) Distribution responsible party -->
+          <gmd:distributorContact>
+            <gmd:CI_ResponsibleParty>
+                                          <gmd:organisationName>
+                <gco:CharacterString>Arizona Geological Survey</gco:CharacterString>
+              </gmd:organisationName>
+                                                        <gmd:role>
+                <gmd:CI_RoleCode
+                  codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_RoleCode"
+                  codeListValue="distributor">distributor</gmd:CI_RoleCode>
+              </gmd:role>
+            </gmd:CI_ResponsibleParty>
+          </gmd:distributorContact>
+                                        <!-- Resource distributor transfer options - Provides information about the technical means and media used by the distributor. -->
+          <gmd:distributorTransferOptions>
+            <gmd:MD_DigitalTransferOptions>
+              <gmd:onLine>
+                <gmd:CI_OnlineResource>
+                  <gmd:linkage>
+                    <gmd:URL>http://repository.azgs.az.gov/uri_gin/azgs/dlio/997</gmd:URL>
+                  </gmd:linkage>
+                  <gmd:protocol>
+                    <gco:CharacterString>http</gco:CharacterString>
+                  </gmd:protocol>
+                  <gmd:description>
+                    <gco:CharacterString></gco:CharacterString>
+                  </gmd:description>
+                  <gmd:function>
+                    <gmd:CI_OnLineFunctionCode
+                      codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode"
+                      codeListValue="information">information</gmd:CI_OnLineFunctionCode>
+                  </gmd:function>
+                </gmd:CI_OnlineResource>
+              </gmd:onLine>
+            </gmd:MD_DigitalTransferOptions>
+          </gmd:distributorTransferOptions>
+                  </gmd:MD_Distributor>
+      </gmd:distributor>
+            <gmd:transferOptions>
+        <gmd:MD_DigitalTransferOptions>
+              <gmd:onLine>
+                <gmd:CI_OnlineResource>
+                  <gmd:linkage>
+                    <gmd:URL>http://repository.azgs.az.gov/uri_gin/azgs/dlio/997</gmd:URL>
+                  </gmd:linkage>
+                  <gmd:protocol>
+                    <gco:CharacterString>http</gco:CharacterString>
+                  </gmd:protocol>
+                  <gmd:description>
+                    <gco:CharacterString></gco:CharacterString>
+                  </gmd:description>
+                  <gmd:function>
+                    <gmd:CI_OnLineFunctionCode
+                      codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#CI_OnLineFunctionCode"
+                      codeListValue="information">information</gmd:CI_OnLineFunctionCode>
+                  </gmd:function>
+                </gmd:CI_OnlineResource>
+              </gmd:onLine>
+        </gmd:MD_DigitalTransferOptions>
+      </gmd:transferOptions>
+          </gmd:MD_Distribution>
+  </gmd:distributionInfo>
+        <!-- (C-C) Data quality Information - NAP requires either dataQualityInfo/DQ_DataQuality/report or dataQualityInfo/ DQ_DataQuality/lineage   if dataQualityInfo/DQ_DataQuality/scope/DQ_Scope/level = 'dataset'.   -->
+    <gmd:dataQualityInfo>
+      <gmd:DQ_DataQuality>
+        <gmd:scope>
+          <gmd:DQ_Scope>
+            <gmd:level>
+              <gmd:MD_ScopeCode
+                codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/gmxCodelists.xml#MD_ScopeCode"
+                codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+            </gmd:level>
+          </gmd:DQ_Scope>
+        </gmd:scope>
+                          <gmd:lineage>
+            <gmd:LI_Lineage>
+              <gmd:statement>
+                <gco:CharacterString>•      Version 12.27.12: With Elfrida and Croton Springs, Cochise County, added on 27 December 2012.
+• Version 04.06.08: The Chandler Heights and Apache Junction study areas, completed Apr. 4th, 2008, released Apr. 23, 2008.
+• Version 08.13.08: Addition of Mesa, Scottsdale and Toltec Buttes study areas. Also updated the Earth Fissure network in Chandler Heights study area, and updated the extent of Apache Junction study area. Completed Aug. 13th, 2008.
+• Version 11.26.08: Addition of Luke and Pete&#039;s Corner study areas. Completed Nov. 11th, 2008, released Dec. 8, 2008.
+• Version 2.11.09: Addition of Heaton, Wintersburg and Picacho study areas. Update to Luke study area. Completed Feb 11th, 2009, released Feb. 24, 2009.
+• Version 6.22.09: Addition of Tator Hills, Friendly Corners, Harquahala and Signal Peak study areas. Completed 6/22/09.
+• Version 11.30.09: Addition of Greene Wash and Dragoon Road study areas.
+• Version 03.11.11: Addition of Sacaton Butte, White Horse Pass, Santa Rosa Wash and Three Sisters Buttes study areas.
+•  Version 04.05.12:  Addition of Bowie San Simon study area in Cochise County.</gco:CharacterString>
+              </gmd:statement>
+            </gmd:LI_Lineage>
+          </gmd:lineage>
+              </gmd:DQ_DataQuality>
+    </gmd:dataQualityInfo>
+  </gmd:MD_Metadata>
+
