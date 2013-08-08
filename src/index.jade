@@ -9,10 +9,16 @@ html(lang="en")
         link(rel="stylesheet", href="styles/base.css")
     body
         .navbar.navbar-fixed-top
+            #banner
+                h2 Natural Hazards in Arizona
+                a(href="http://azgs.az.gov/").azgs-logo
+                a(href="http://www.azein.gov/azein/default.aspx").azein-logo
+                a(href="http://www.dem.azdema.gov/").adem-logo
+                a(href="http://www.fema.gov/").fema-logo
             #nav.navbar-inner
-                .brand Arizona Hazards Viewer
                 #geocoder.navbar-search.pull-right
-                    input(type="text", placeholder="Find Location").search-query
+                    span.bold-theme Find Local Hazards:
+                    input(type="text", placeholder="Enter an Address").search-query
                 ul#menu.nav
                     li.dropdown
                         a(href="#", data-toggle="dropdown").dropdown-toggle Base Layers
@@ -21,7 +27,7 @@ html(lang="en")
 
         #main-container
             .row-fluid.fill
-                #map.span9.fill                                
+                #map.span9.fill
                 #sidebar.span3.fill
                     #accordion-legend.accordion.navbar
                         .accordion-group
@@ -53,7 +59,33 @@ html(lang="en")
             .modal.hide.fade(id!="<%= model.get('id') %>-modal", role="dialog", aria-labelledby!="<%= model.get('id') %>-header", aria-hidden="true")
                 .modal-header
                     h3(id!="<%= model.get('id') %>-header") <%= model.get('layerName') %>
-                .modal-body <%= model.get('description') %>
+                .modal-body
+                    p <%= model.get('brief') %>
+
+                    table.table
+                        tr
+                            th Source
+                            td <%= model.get('citation') %>
+                        tr
+                            th Last updated
+                            td <%= model.get('lastUpdate') %>
+
+                    h4 Related Information
+                    <% if (model.get('links')) { %>
+                    ul
+                        <% for (i in model.get('links')) { %>
+                        li: a(href!="<%= model.get('links')[i].url %>") <%= model.get('links')[i].text %>
+                        <% } %>
+                    <% } %>
+
+                    hr
+
+                    h4
+                        i(id!="<%= model.get('id') %>-details-collapse-icon").icon-chevron-right
+                        a(href="#", data-toggle="collapse", data-target!="#<%= model.get('id') %>-details-collapse").info-collapse Further Reading
+                    div(id!="<%= model.get('id') %>-details-collapse", class="accordion-body collapse")
+                        div(id!="<%= model.get('id') %>-details", class="accordion-inner") <%= model.get('details') %>
+
                 .modal-footer
                     button.btn.btn-primary(data-dismiss="modal") Close
 
@@ -92,10 +124,7 @@ html(lang="en")
                         .onoffswitch-inner
                         .onoffswitch-switch
                 a.layer-info-button(href="#", href!="#<%= model.get('id') %>-modal", role="button", data-toggle="modal") <%= model.get('layerName') %>
-                .pull-right
-                    span
-                        a(href="#", data-parent="#accordion-legend", id!="<%= model.get('datatarget') %>").icon-list-alt
-            div(id!="<%= model.get('id') %>", class="accordion-body collapse")
+            div(id!="<%= model.get('id') %>-legend-collapse", class="accordion-body collapse")
                 div(id!="<%= model.get('id') %>-legend", class="accordion-inner")
 
         script#legend-template(type="text/html")
@@ -194,6 +223,13 @@ html(lang="en")
                 span: strong  <%= key %>
             <% } } %>
 
+        script#defaultPopup(type="text/html")
+            table.table.table-striped.table-bordered
+                <% for (i in properties) { %>
+                tr
+                    th <%= properties[i].key %>
+                    td <%= properties[i].value %>
+                <% } %>
 
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
         script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")
@@ -208,6 +244,7 @@ html(lang="en")
         script(src="http://cdnjs.cloudflare.com/ajax/libs/openlayers/2.11/OpenLayers.js")
         script(src="vendor/javascript.util.js")
         script(src="vendor/jsts.js")
+        script(src="scripts/L.Draw.BoundedRectangle.js")
         script(src="scripts/model-filter.js")
         script(src="scripts/model-legend.js")
         script(src="scripts/view-legend.js")

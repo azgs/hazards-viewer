@@ -7,6 +7,9 @@ app = express()
 app.get "/", (req, res) ->
   res.sendfile "index.html"
 
+app.get "/favicon.ico", (req, res) ->
+  res.sendfile "favicon.ico"
+
 app.use "/scripts", express.static "#{__dirname}/scripts"
 app.use "/styles", express.static "#{__dirname}/styles"
 app.use "/vendor", express.static "#{__dirname}/vendor"

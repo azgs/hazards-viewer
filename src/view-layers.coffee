@@ -32,19 +32,36 @@ class app.views.SidebarView extends Backbone.View
     # All filterable boxes should start checked
     el.find(".filter").prop "checked", true
 
+    # Hacky -- bind event to part of the modals
+    $(".info-collapse").on "click", @toggleCollapseIcon
+
     return @
 
   events:
     "click input.layerToggle": "toggleLayer"
-    "click .icon-list-alt": "toggleLegend"
+    "click .info-collapse": "toggleCollapseIcon"
 
   findActiveLayers: () -> return (model for model in @collection.models when model.get("active"))
+
+  toggleCollapseIcon: (e) ->
+    console.log "are, are we here?"
+    id = "#{$(e.currentTarget).attr("data-target")}-icon"
+    icon = $ id
+    if icon.hasClass "icon-chevron-down"
+      icon.removeClass "icon-chevron-down"
+      icon.addClass "icon-chevron-right"
+    else if icon.hasClass "icon-chevron-right"
+      icon.removeClass "icon-chevron-right"
+      icon.addClass "icon-chevron-down"
 
   toggleLayer: (e) ->
     checkbox = $ e.currentTarget
     boxId = checkbox.attr "id"
     modelId = boxId.split("-")[0]
     model = @collection.get modelId
+
+    # Toggle the legend
+    @$el.find("##{boxId.split("-")[0]}-legend-collapse").collapse "toggle"
 
     if checkbox.is ":checked"
       # Get the layer added to the map
@@ -61,11 +78,6 @@ class app.views.SidebarView extends Backbone.View
     else
       app.map.removeLayer model.get "layer"
       model.set "active", false
-
-  toggleLegend: (e) ->
-    element = $ e.currentTarget
-    elId = element.attr "id"
-    $(elId).collapse('toggle')
 
 class app.views.BasemapView extends Backbone.View
   initialize: (options) ->
@@ -99,7 +111,9 @@ class app.views.BasemapView extends Backbone.View
 
     return if model is activeModel
 
-    app.map.addLayer model.get "layer"
+    l = model.get "layer"
+    app.map.addLayer l
+    l.bringToBack()
     model.set "active", true
 
     app.map.removeLayer activeModel.get "layer"
@@ -112,7 +126,7 @@ class views.DownloadView extends Backbone.View
 
   initialize: () ->
     # Setup a Leaflet.Draw handler
-    @drawHandler = new L.Draw.Rectangle app.map, {}
+    @drawHandler = new L.Draw.BoundedRectangle app.map, {}
 
   render: () ->
     # Find the modal body and append the template
@@ -131,12 +145,15 @@ class views.DownloadView extends Backbone.View
 
     # Setup a listener for leaflet.draw events
     thisCollection = @collection
+    thisDrawHandler = @drawHandler
+
     app.map.on 'draw:created', (e) ->
       # Which layers were checked?
       layers = ( thisCollection.get($(btn).attr("id").split("-")[0]) for btn in body.find "button.active" )
 
       # Pass the drawn rectangle into a Leaflet LatLngBounds
-      bbox = new L.latLngBounds(e.layer._latlngs).toBBoxString()
+      bounds = new L.latLngBounds(e.layer._latlngs)
+      bbox = bounds.toBBoxString()
       ( l.download(bbox) for l in layers )
 
     return @

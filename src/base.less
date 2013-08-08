@@ -19,13 +19,64 @@
 @navbarLinkColorHover: darken(@linkColor, 15%);
 @navbarLinkColorActive: darken(@linkColor, 15%);
 @sidebarBackgroundColor: lighten(@themeColor, 6%);
-
+@borderColor: #C3CCAD;
 @btnPrimaryBackground: #08c;
 
 html, body, .fill {
   height: 100%;
+  background-color: @themeColor;
 }
 
+.bold-theme {
+  font-weight: bold;
+  color: @navbarLinkColorHover;
+}
+
+.logo(@logoUrl, @width) {
+  height: 40px;
+  width: @width;
+  background-image: @logoUrl;
+  float: right;
+  margin-right: 20px;
+  margin-top: 12px;
+}
+
+#banner {
+  border-bottom: 2px solid @borderColor;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: center;
+
+  h2 {
+    display: inline-block;
+    font-family: Georgia;
+    text-shadow: -1px -1px white;
+    color: @navbarLinkColorHover; //#435F7D;
+  }
+
+  .fema-logo {
+    .logo(url("../img/fema-logo-40.png"), 113px);
+  }
+
+  .azgs-logo {
+    .logo(url("../img/azgs-logo-40.png"), 104px);
+  }
+
+  .azein-logo {
+    .logo(url("../img/azein-logo-40.png"), 84px);
+  }
+
+  .adem-logo {
+    .logo(url("../img/adem-logo-40.png"), 96px);
+  }
+}
+
+#geocoder {
+  input {
+    margin-left: 10px;
+  }
+}
 #main-container {
   //padding-top: 40px; // Get out of the way of the navbar
   // Some trick to get the padding included in the container height and rid yourself of scrollbars                 
@@ -33,7 +84,7 @@ html, body, .fill {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   position: absolute;
-  top: 40px;
+  top: 100px;
   bottom: 0px;
   right: 0px;
   left: 0px;
@@ -400,4 +451,32 @@ path[styler="2.13.4"] {
 
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px;
+}
+
+// Layer info modals
+.modal-body {
+  h4 {
+    a {
+      &:visited {
+        color: black;
+      }
+      margin-left: 5px;
+    }
+    i {
+      margin-top: 4px;
+    }
+  }
+}
+
+// Popups
+.leaflet-popup {
+  .leaflet-popup-content-wrapper, .table, tr th, tr td {
+    .border-radius(0px) !important;
+  }
+  th {
+    vertical-align: middle;
+  }
+  th, td {
+    min-width: 40px;
+  }
 }

@@ -66,7 +66,7 @@ dataLayers = [
       useD3: true
       description: '<h4>Layer Description</h4><p>This layer summarizes available data on active Arizona faults. If faults have been active during the past 2.5 million years (Quaternary period), then we consider that there is some chance they could generate large earthquakes. Generally, the more active the fault zone is, the more likely it is to generate earthquakes, and earthquakes are more likely to occur in regions with many Quaternary faults.</p><p>These data were originally compiled in 1998 as part of an effort coordinated by the USGS to compile data and map information on Quaternary faults throughout the world. The database has recently been revised with much more accurate fault mapping, incorporation of new data on fault activity, and inclusion of additional fault zones, primarily in northern Arizona. This database depends heavily on several previous compilations of data on Quaternary faults in Arizona. The first and most comprehensive of these is the state-wide compilation of neotectonic faults by Menges and Pearthree (1983), supplemented by a state-wide compilation of young faults by Euge and others (1992). More detailed regional geologic maps provided most of the data in northern Arizona and southeastern Arizona. The database includes information from all detailed investigations of fault zones in Arizona.</p><p>The data structure is set up to provide systematic information on each fault zone. Fault names are based primarily on published maps or reports. In cases where different names have been used for the fault, the alternative names are listed within the database. All of the faults are listed by name and number in the table on the following page. This table indicates where the data summary for each fault can be found, as well as the age of youngest activity and fault slip rate category. The individual fault data sheets include information on map and data sources, fault location, geologic setting of the fault, the geomorphic expression of the fault, recency of fault movement, fault slip rate(s), and fault zone length and orientation. Faults are grouped into slip rate categories of <0.02 mm/yr, < 0.2 mm/yr, and <1 mm/yr. Most faults in Arizona fall into the lowest slip-rate category, with a few faults in the higher categories. Reported lengths are for the whole fault zone, not cumulative length of each individual fault in the zone, and orientations are averages for the fault zone.</p><p>Citations:</p><p>Euge, K.M., Schell, B.A. and Lam, I.P., 1992, Development of seismic acceleration maps for Arizona: Arizona Department of Transportation Report No. AZ92-344, 327 p., 5 sheets, scale 1:1,000,000. </p><p>Menges, C.M. and Pearthree, P.A., 1983, Map of neotectonic (latest Pliocene - Quaternary) deformation in Arizona: Arizona Bureau of Geology and Mineral Technology Open-File Report 83-22, 48 p., map scale 1:500,000, 4 map sheets.</p>'
       legend: new app.models.Legend [
-          caption: "Holocene ( <10 ka )"
+          caption: "Within 10,000 years"
           attribute: "symbol"
           value: "2.13.2"
           imageTemplateId: "faultImage"
@@ -74,7 +74,7 @@ dataLayers = [
           imageInfo:
             color: "#FFA500"
         ,
-          caption: "Late Quaternary ( <750 ka )"
+          caption: "Within 750,000 years"
           attribute: "symbol"
           value: "2.13.3"
           imageTemplateId: "faultImage"
@@ -82,7 +82,7 @@ dataLayers = [
           imageInfo:
             color: "#008000"
         ,
-          caption: "Quaternary (Undifferentiated)"
+          caption: "Within 2.5 million years"
           attribute: "symbol"
           value: "2.13.4"
           imageTemplateId: "faultImage"
@@ -91,7 +91,7 @@ dataLayers = [
             color: "#800080"
       ],
         legendHeading: "Active Faults Latest Motion"
-        heading: "Latest Motion"
+        heading: "Most Recent Motion"
       layerOptions:
         styler: "symbol"
   ,
@@ -195,7 +195,36 @@ dataLayers = [
           return L.circleMarker latlng, markerOptions
 
         onEachFeature: (feature, layer) ->
-          layer.bindPopup feature.properties.magnitude
+
+          d = new Date Date.parse feature.properties.date
+
+          props = [
+            key: "Date"
+            value: d.toDateString()
+          ]
+
+          if isNaN feature.properties.magnitude
+            lookup =
+              I: "<strong>I.</strong> Not felt except by a very few under especially favorable conditions."
+              II: "<strong>II.</strong> Felt only by a few persons at rest, especially on upper floors of buildings."
+              III: "<strong>III.</strong> Felt quite noticeably by persons indoors, especially on upper floors of buildings. Many people do not recognize it as an earthquake. Standing motor cars may rock slightly. Vibrations similar to the passing of a truck. Duration estimated."
+              IV: "<strong>IV.</strong> Felt indoors by many, outdoors by few during the day. At night, some awakened. Dishes, windows, doors disturbed; walls make cracking sound. Sensation like heavy truck striking building. Standing motor cars rocked noticeably."
+              V: "<strong>V.</strong> Felt by nearly everyone; many awakened. Some dishes, windows broken. Unstable objects overturned. Pendulum clocks may stop."
+              VI: "<strong>VI.</strong> Felt by all, many frightened. Some heavy furniture moved; a few instances of fallen plaster. Damage slight."
+              VII: "<strong>VII.</strong> Damage negligible in buildings of good design and construction; slight to moderate in well-built ordinary structures; considerable damage in poorly built or badly designed structures; some chimneys broken."
+              VIII: "<strong>VIII.</strong> Damage slight in specially designed structures; considerable damage in ordinary substantial buildings with partial collapse. Damage great in poorly built structures. Fall of chimneys, factory stacks, columns, monuments, walls. Heavy furniture overturned."
+              IX: "<strong>IX.</strong> Damage considerable in specially designed structures; well-designed frame structures thrown out of plumb. Damage great in substantial buildings, with partial collapse. Buildings shifted off foundations."
+
+            props.push
+              key: "Intensity"
+              value: "<p>#{lookup[feature.properties.magnitude]}</p><p><a href='http://earthquake.usgs.gov/learn/topics/mercalli.php' target='_blank'>Read more about Intensity...</a></p>"
+          else
+            props.push
+              key: "Magnitude"
+              value: "#{feature.properties.magnitude}"
+
+          layer.bindPopup _.template $("#defaultPopup").html(),
+            properties: props
   ,
     new app.models.WmsLayer
       id: "floodPotential"
@@ -228,7 +257,10 @@ dataLayers = [
       serviceType: "WMS"
       opacity: 0.5,
       downloadUrlTemplate: "http://data.usgin.org/arizona/wcs?service=WCS&version=1.0.0&request=GetCoverage&coverage=fireriskindex&crs=epsg:4326&bbox={{bbox}}&format=GeoTIFF&resy=3.0495095356186517E-4&resx=3.0495095356186517E-4",
-      description: '<h4>Layer Description</h4><p>The Fire Risk Index (FRI) layer, as shown here, depicts relative risks of areas susceptible to wildfires with 1 (dark green) representing the lowest risk and 9 (dark red) representing the highest risk. The data was developed through the West Wide Wildfire Risk Assessment (WWA) project to identify areas susceptible to wildfires in 17 western states and some U.S. affiliated Pacific Islands. The Oregon Department of Forestry (2013) implemented this project on behalf of the Council of Western State Foresters and the Western Forestry Leadership Coalition. The goal of the project was to provide a wildfire risk assessment appropriate for comparing areas at risks to wildfires across geographic regions, or within individual states, and to aid in mitigation of areas at risk, to identify the level of risks within communities and to communicate those risks to the public.</p><p>The FRI layer was created from the Fire Effect Index (FEI) and Fire Threat Index (FTI). FEI identifies areas that have important values at risk to wildfire and where wildland fires would be difficult and/or costly to suppress. FTI describes the likelihood of an acre burning and the expected final fire size based on conditions of fuels and potential fire behavior under different weather scenarios. FEI and FTI data were combined to create the FRI layer which describes relative probabilities of areas at risk to wildfires. The data used to develop FEI, FTI and FRI reflects conditions between 2008 and 2010, depending on the type of data (i.e. fuels, wildland development areas, and historic fire locations, etc.).</p><p>Disclaimer</p><p>The Oregon Department of Forestry implemented conducting this assessment on behalf of the Council of Western State Foresters with funding from the USDA Forest Service. Anyone utilizing this layer is asked to credit the Oregon Department of Forestry. Users must read and fully comprehend the metadata prior to data use. The spatial data to develop this layer were derived from a variety of sources. Care was taken in the creation of these themes, but they are provided "as is." The Oregon Department of Forestry, State of Oregon, WWA Project Partners, or any of the data providers cannot accept any responsibility for errors, omissions, or positional accuracy in the digital data or underlying records. There are no warranties, expressed or implied, including the warranty of merchantability or fitness for a particular purpose, accompanying any of these products.</p><p>The West Wide Risk Assessment was conducted to support strategic planning at regional, state, and landscape scale. WWA data is intended for planning purposes only and should not to be used for engineering or legal purposes. Further investigation by local and regional experts should be conducted to inform decisions regarding local applicability. It is the sole responsibility of the local user, using product metadata and local knowledge, to determine if and/or how WWA data can be used for particular areas of interest. It is the responsibility of the user to be familiar with the value, assumptions, and limitations of WWA products. Managers and planners must evaluate WWA data according to the scale and requirements specific to their needs. Please note that the WWA Published Results may not match other assessments conducted that use different data, technical methods, or scale of analysis. Having two assessments that do not match does not mean that either one of them is incorrect. The use of different data sources, often from different collection dates and with spatial accuracy and resolutions, combined with different modeling assumptions or definitions will result in different results and can have different interpretations and uses. The WWA results are not intended to replace local and state products as a decision-making tool. The WWA is meant to serve as a regional policy analysis tool that provides results comparable across geographic areas in the West.</p><p>Citation</p><p>Oregon Department of Forestry, 2013, West Wide Wildfire Risk Assessment, final report, Prepared by the Sanborn Map Company.</p>',
+      citation: 'Oregon Department of Forestry, 2013, West Wide Wildfire Risk Assessment, final report, Prepared by the Sanborn Map Company.'
+      details: '<p>The Fire Risk Index (FRI) layer, as shown here, depicts relative risks of areas susceptible to wildfires with 1 (dark green) representing the lowest risk and 9 (dark red) representing the highest risk. The data was developed through the West Wide Wildfire Risk Assessment (WWA) project to identify areas susceptible to wildfires in 17 western states and some U.S. affiliated Pacific Islands. The Oregon Department of Forestry (2013) implemented this project on behalf of the Council of Western State Foresters and the Western Forestry Leadership Coalition. The goal of the project was to provide a wildfire risk assessment appropriate for comparing areas at risks to wildfires across geographic regions, or within individual states, and to aid in mitigation of areas at risk, to identify the level of risks within communities and to communicate those risks to the public.</p><p>The FRI layer was created from the Fire Effect Index (FEI) and Fire Threat Index (FTI). FEI identifies areas that have important values at risk to wildfire and where wildland fires would be difficult and/or costly to suppress. FTI describes the likelihood of an acre burning and the expected final fire size based on conditions of fuels and potential fire behavior under different weather scenarios. FEI and FTI data were combined to create the FRI layer which describes relative probabilities of areas at risk to wildfires. The data used to develop FEI, FTI and FRI reflects conditions between 2008 and 2010, depending on the type of data (i.e. fuels, wildland development areas, and historic fire locations, etc.).</p><hr /><h4>Disclaimer</h4><p>The Oregon Department of Forestry implemented conducting this assessment on behalf of the Council of Western State Foresters with funding from the USDA Forest Service. Anyone utilizing this layer is asked to credit the Oregon Department of Forestry. Users must read and fully comprehend the metadata prior to data use. The spatial data to develop this layer were derived from a variety of sources. Care was taken in the creation of these themes, but they are provided "as is." The Oregon Department of Forestry, State of Oregon, WWA Project Partners, or any of the data providers cannot accept any responsibility for errors, omissions, or positional accuracy in the digital data or underlying records. There are no warranties, expressed or implied, including the warranty of merchantability or fitness for a particular purpose, accompanying any of these products.</p><p>The West Wide Risk Assessment was conducted to support strategic planning at regional, state, and landscape scale. WWA data is intended for planning purposes only and should not to be used for engineering or legal purposes. Further investigation by local and regional experts should be conducted to inform decisions regarding local applicability. It is the sole responsibility of the local user, using product metadata and local knowledge, to determine if and/or how WWA data can be used for particular areas of interest. It is the responsibility of the user to be familiar with the value, assumptions, and limitations of WWA products. Managers and planners must evaluate WWA data according to the scale and requirements specific to their needs. Please note that the WWA Published Results may not match other assessments conducted that use different data, technical methods, or scale of analysis. Having two assessments that do not match does not mean that either one of them is incorrect. The use of different data sources, often from different collection dates and with spatial accuracy and resolutions, combined with different modeling assumptions or definitions will result in different results and can have different interpretations and uses. The WWA results are not intended to replace local and state products as a decision-making tool. The WWA is meant to serve as a regional policy analysis tool that provides results comparable across geographic areas in the West.</p>',
+      brief: 'Shows the relative risks of wildfire based on values at risk (i.e. development, infrastructure, etc.), the likelihood of an acre to burn, the expected final fire size based on fuels conditions and potential fire behavior and the difficulty or expense of suppression.'
+      links: [{"text": "ADEM EIN Page", "url": ""}, {"text": "Be prepared pamphlet", "url": ""}]
       active: false
       legend: new app.models.Legend [
           caption: "Lowest"
