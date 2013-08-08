@@ -10,7 +10,7 @@ app.map = new L.Map "map",
   center: center
   zoom: zoom
   minZoom: 7
-  maxZoom: 12
+  maxZoom: 13
 
 app.geoserverUrl = "http://data.usgin.org/arizona/ows"
 
