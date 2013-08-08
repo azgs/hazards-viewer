@@ -46,14 +46,12 @@ class views.PrintToolView extends Backbone.View
 
     $(".modal").css
       "margin-left": "-540px"
-      "top":"5%"
+      "top":"2%"
     $(".modal-body").css
-      "max-height": "400px"
+      "max-height": "610px"
 
     div = $("#print-modal").get(0)
-    body = $("#print-modal .modal-body").get(0)
     div.style.width = '1000px'
-    body.style.height = '600px'
 
     $('input[name="title"]').change ->
       @value = $('input[name="title"]').val()
@@ -124,7 +122,10 @@ class views.PrintToolView extends Backbone.View
     $("#legend-container .legendItems .legend-item-symbol .legend-image-symbol svg").css "height", 25
 
   printMap: () ->
-    ele = $("#print-modal .modal-body").html()
+
+    ele = $("#print-modal .modal-body")
+    ele.focus()
+    ###
     console.log ele
     htmlone = '<html><head>
       <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
@@ -135,7 +136,8 @@ class views.PrintToolView extends Backbone.View
     string = htmlone + ele + html2
 
     document.body.innerHTML = string
-    #window.print()
+    ###
+    window.print()
     #location.reload()
 
   resetMap: () ->

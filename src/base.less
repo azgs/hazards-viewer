@@ -348,21 +348,15 @@ path[styler="2.13.4"] {
   @page {
     size:landscape;
   }
-  * {
-    -webkit-print-color-adjust:exact;
-  }
   body * {
     visibility: hidden;
   }
-  #title {
-    visibility: visible;
-  }
-  #print-container #legend-container {
-    width: 200px;
-    padding: 0px;
-  }
   #print-container {
     visibility: visible;
+    margin-left: 200px;
+    margin-right: none;
+    margin-bottom: none;
+    margin-top: -50px;
   }
   #print-container #preview-map-container, #legend-container {
     visibility: visible;
