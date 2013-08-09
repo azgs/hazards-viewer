@@ -41,14 +41,15 @@ class views.PrintToolView extends Backbone.View
     printContainer = @printContainer
     @modalBody = $("#print-modal .modal-body")
     @modalBody.empty().append printContainer
+    $("#print-modal .modal-header").remove()
 
     $("#preview-btn").replaceWith "<button id='print-btn' class='btn btn-primary'>Print</button>"
 
     $(".modal").css
-      "margin-left": "-540px"
+      "margin-left": "-35%"
       "top":"2%"
     $(".modal-body").css
-      "max-height": "610px"
+      "max-height": "700px"
 
     div = $("#print-modal").get(0)
     div.style.width = '1000px'

@@ -338,25 +338,37 @@ path[styler="2.13.4"] {
   padding: 0px;
 }
 
-#legend-container {
-  display: inline;
-  float:left;
-}
+
 
 // Print map function
 @media print {
   @page {
     size:landscape;
+    margin:0;
   }
   body * {
     visibility: hidden;
+    margin: 0;
+  }
+  #print-modal .modal-body * {
+    visibility: visible;
+    padding:0;
+  }
+  #print-modal .modal-footer * {
+    display: none;
+  }
+  #title {
+    visibility: visible;
   }
   #print-container {
     visibility: visible;
-    margin-left: 200px;
+    margin-left: -100px;
+    /*
     margin-right: none;
+    margin-left: 160px;
     margin-bottom: none;
-    margin-top: -50px;
+    margin-top: none;
+    */
   }
   #print-container #preview-map-container, #legend-container {
     visibility: visible;
@@ -365,9 +377,14 @@ path[styler="2.13.4"] {
   #print-container #preview-map-container * {
     visibility: visible;
   }
-  #print-container #legend-container * {
+  #print-container #legend-container {
     visibility: visible;
     white-space: nowrap;
+    border-color: black;
+    border-style: solid;
+    border-width:1px;
+    max-width:200px;
+    overflow: auto;
   }
 }
 
