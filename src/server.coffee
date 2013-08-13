@@ -14,6 +14,7 @@ app.use "/scripts", express.static "#{__dirname}/scripts"
 app.use "/styles", express.static "#{__dirname}/styles"
 app.use "/vendor", express.static "#{__dirname}/vendor"
 app.use "/img", express.static "#{__dirname}/img"
+app.use "/mitigation", express.static "#{__dirname}/mitigation"
 
 # Provide a proxy for cross-origin information
 app.get "/proxy", (req, res) ->
