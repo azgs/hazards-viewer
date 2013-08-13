@@ -9,10 +9,52 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.bullet(@side: 20px, @bg: #000, @line-x: 1px, @line: #fff) {
+  @full: @side + @line-x;
+  background-color: @bg;
+  height: @full;
+  width: @full;
+  position: relative;
+  display: inline-block;
+  margin-right: 6px;  
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  
+  &:before, &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-color: @line;
+    border-style: solid;
+    border-width: 0px;
+  }
+  
+  &:before {
+    content: "";
+    height: @side / 2;
+    right: 0;
+    border-bottom-width: @line-x
+  }
+  
+  &:after {
+    content: "";
+    bottom: 0;
+    width: @side / 2;
+    border-right-width: @line-x;
+  }
+  
+}
+
 .hazard(@color, @img) {
   h1 { background-color: @color; }
   h2 { color: @color; }
   li:before { color: @color; }
+  
+  .bul {
+    .bullet(8px; @color; 1px;);
+  }
+  
   .haz-image {
     background-image: @img;
     width: 288px;
@@ -51,11 +93,6 @@ h1 {
 
 ul {
   list-style-type: none;
-
-  li:before {
-    content: "v ";
-    font-family: Wingdings;
-  }
 }
 
 p {

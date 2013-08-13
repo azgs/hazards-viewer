@@ -5265,6 +5265,38 @@ a.badge:focus {
 .earthquakes li:before {
   color: #800080;
 }
+.earthquakes .bul {
+  background-color: #800080;
+  height: 9px;
+  width: 9px;
+  position: relative;
+  display: inline-block;
+  margin-right: 6px;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.earthquakes .bul:before,
+.earthquakes .bul:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: 0px;
+}
+.earthquakes .bul:before {
+  content: "";
+  height: 4px;
+  right: 0;
+  border-bottom-width: 1px;
+}
+.earthquakes .bul:after {
+  content: "";
+  bottom: 0;
+  width: 4px;
+  border-right-width: 1px;
+}
 .earthquakes .haz-image {
   background-image: url("./eq.png");
   width: 288px;
@@ -5279,6 +5311,38 @@ a.badge:focus {
 }
 .fires li:before {
   color: #8c4637;
+}
+.fires .bul {
+  background-color: #8c4637;
+  height: 9px;
+  width: 9px;
+  position: relative;
+  display: inline-block;
+  margin-right: 6px;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.fires .bul:before,
+.fires .bul:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: 0px;
+}
+.fires .bul:before {
+  content: "";
+  height: 4px;
+  right: 0;
+  border-bottom-width: 1px;
+}
+.fires .bul:after {
+  content: "";
+  bottom: 0;
+  width: 4px;
+  border-right-width: 1px;
 }
 .fires .haz-image {
   background-image: url("./fires.png");
@@ -5295,6 +5359,38 @@ a.badge:focus {
 .floods li:before {
   color: #37778c;
 }
+.floods .bul {
+  background-color: #37778c;
+  height: 9px;
+  width: 9px;
+  position: relative;
+  display: inline-block;
+  margin-right: 6px;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.floods .bul:before,
+.floods .bul:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: 0px;
+}
+.floods .bul:before {
+  content: "";
+  height: 4px;
+  right: 0;
+  border-bottom-width: 1px;
+}
+.floods .bul:after {
+  content: "";
+  bottom: 0;
+  width: 4px;
+  border-right-width: 1px;
+}
 .floods .haz-image {
   background-image: url("./floods.png");
   width: 288px;
@@ -5309,6 +5405,38 @@ a.badge:focus {
 }
 .fissures li:before {
   color: #82a644;
+}
+.fissures .bul {
+  background-color: #82a644;
+  height: 9px;
+  width: 9px;
+  position: relative;
+  display: inline-block;
+  margin-right: 6px;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.fissures .bul:before,
+.fissures .bul:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: 0px;
+}
+.fissures .bul:before {
+  content: "";
+  height: 4px;
+  right: 0;
+  border-bottom-width: 1px;
+}
+.fissures .bul:after {
+  content: "";
+  bottom: 0;
+  width: 4px;
+  border-right-width: 1px;
 }
 .fissures .haz-image {
   background-image: url("./fissures.png");
@@ -5328,10 +5456,6 @@ h1 {
 }
 ul {
   list-style-type: none;
-}
-ul li:before {
-  content: "v ";
-  font-family: Wingdings;
 }
 p {
   margin-bottom: 20px;
