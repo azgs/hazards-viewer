@@ -74,7 +74,7 @@ html(lang="en")
                     <% if (model.get('links')) { %>
                     ul
                         <% for (i in model.get('links')) { %>
-                        li: a(href!="<%= model.get('links')[i].url %>") <%= model.get('links')[i].text %>
+                        li: a(href!="<%= model.get('links')[i].url %>", target="_blank") <%= model.get('links')[i].text %>
                         <% } %>
                     <% } %>
 
@@ -91,6 +91,7 @@ html(lang="en")
 
         script#print-tool(type="text/html")
             p This tool allows you to preview and print a static map.  Click 'preview' first to add some customization to your map, like a title.  Click reset at any time to reload this window.
+            input(id="title-input",type="text",name="title",value="Type a Title and Press Enter")
 
         script#print-container(type="text/html")
             #print-container
@@ -223,6 +224,13 @@ html(lang="en")
                 span: strong  <%= key %>
             <% } } %>
 
+        script#defaultPopup(type="text/html")
+            table.table.table-striped.table-bordered
+                <% for (i in properties) { %>
+                tr
+                    th <%= properties[i].key %>
+                    td <%= properties[i].value %>
+                <% } %>
 
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
         script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")

@@ -338,31 +338,37 @@ path[styler="2.13.4"] {
   padding: 0px;
 }
 
-#legend-container {
-  display: inline;
-  float:left;
-}
+
 
 // Print map function
 @media print {
   @page {
     size:landscape;
-  }
-  * {
-    -webkit-print-color-adjust:exact;
+    margin:0;
   }
   body * {
     visibility: hidden;
+    margin: 0;
+  }
+  #print-modal .modal-body * {
+    visibility: visible;
+    padding:0;
+  }
+  #print-modal .modal-footer * {
+    display: none;
   }
   #title {
     visibility: visible;
   }
-  #print-container #legend-container {
-    width: 200px;
-    padding: 0px;
-  }
   #print-container {
     visibility: visible;
+    margin-left: -100px;
+    /*
+    margin-right: none;
+    margin-left: 160px;
+    margin-bottom: none;
+    margin-top: none;
+    */
   }
   #print-container #preview-map-container, #legend-container {
     visibility: visible;
@@ -371,9 +377,14 @@ path[styler="2.13.4"] {
   #print-container #preview-map-container * {
     visibility: visible;
   }
-  #print-container #legend-container * {
+  #print-container #legend-container {
     visibility: visible;
     white-space: nowrap;
+    border-color: black;
+    border-style: solid;
+    border-width:1px;
+    max-width:200px;
+    overflow: auto;
   }
 }
 
@@ -465,5 +476,18 @@ path[styler="2.13.4"] {
     i {
       margin-top: 4px;
     }
+  }
+}
+
+// Popups
+.leaflet-popup {
+  .leaflet-popup-content-wrapper, .table, tr th, tr td {
+    .border-radius(0px) !important;
+  }
+  th {
+    vertical-align: middle;
+  }
+  th, td {
+    min-width: 40px;
   }
 }
