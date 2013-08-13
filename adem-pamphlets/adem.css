@@ -5271,6 +5271,21 @@ a.badge:focus {
   height: 120px;
   float: left;
 }
+.fires h1 {
+  background-color: #8c4637;
+}
+.fires h2 {
+  color: #8c4637;
+}
+.fires li:before {
+  color: #8c4637;
+}
+.fires .haz-image {
+  background-image: url("./fires.png");
+  width: 288px;
+  height: 120px;
+  float: left;
+}
 body {
   padding: 0 10px;
 }
