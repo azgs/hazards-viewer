@@ -102,10 +102,10 @@ class app.GeocodeModel extends Backbone.Model
           filter = new app.models.filters.AndFilter [bboxFilter, attrFilter], version: "1.0.0"
           dataUrl += "&filter=#{filter.urlEncoded()}"
           floodCount = thisOne
+          thisOne.mitigationUrl = layer.get "mitigationUrl"
 
           app.data[callbackName] = (data) ->
             output["Flood Potential"].count = data.features.length
-
             # Now we've looped through everything, respond via callback
             callback box, point, name, output
 
@@ -126,6 +126,7 @@ class app.GeocodeModel extends Backbone.Model
 
           # Append the count to the output obj
           thisOne.count = count
+          thisOne.mitigationUrl = layer.get "mitigationUrl"
 
 
       return

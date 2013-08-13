@@ -91,11 +91,11 @@ html(lang="en")
 
         script#print-tool(type="text/html")
             p This tool allows you to preview and print a static map.  Click 'preview' first to add some customization to your map, like a title.  Click reset at any time to reload this window.
-            input(id="title-input",type="text",name="title",value="Type a Title and Press Enter")
+            input(id="title-input",type="text",name="title",placeholder="Type a Title and Press Enter")
 
         script#print-container(type="text/html")
             #print-container
-                input(id="title-input",type="text",name="title",value="Type a Title and Press Enter")
+                input(id="title-input",type="text",name="title",placeholder="Type a Title and Press Enter")
                 #preview-map-container
                 #legend-container
                     h4 Legend
@@ -216,12 +216,14 @@ html(lang="en")
                             i.icon-file
 
         script#localHazards(type="text/html")
-            h3 <%= location %>
-            p.muted Searched for hazards within <%= bufferDistance %> meters
+            h4 Nearby Natural Hazards
+            p.muted Searched for hazards near <%= location %>
+            p View suggestions to prepare and protect yourself from natural hazards in your area:
             <% for (var key in result) { if (result.hasOwnProperty(key) && result[key].count > 0) { %>
             p
-                span Be afraid of
                 span: strong  <%= key %>
+                span : 
+                  a(href!="<%= result[key].mitigationUrl %>", target="_blank") Mitigation tips
             <% } } %>
 
         script#defaultPopup(type="text/html")
