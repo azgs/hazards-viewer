@@ -5286,6 +5286,36 @@ a.badge:focus {
   height: 120px;
   float: left;
 }
+.floods h1 {
+  background-color: #37778c;
+}
+.floods h2 {
+  color: #37778c;
+}
+.floods li:before {
+  color: #37778c;
+}
+.floods .haz-image {
+  background-image: url("./floods.png");
+  width: 288px;
+  height: 120px;
+  float: left;
+}
+.fissures h1 {
+  background-color: #82a644;
+}
+.fissures h2 {
+  color: #82a644;
+}
+.fissures li:before {
+  color: #82a644;
+}
+.fissures .haz-image {
+  background-image: url("./fissures.png");
+  width: 288px;
+  height: 120px;
+  float: left;
+}
 body {
   padding: 0 10px;
 }

@@ -2,6 +2,8 @@
 
 @eqColor: purple;
 @fireColor: #8C4637;
+@floodColor: #37778C;
+@fissureColor: #82A644;
 
 * {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -25,6 +27,14 @@
 
 .fires {
   .hazard(@fireColor, url("./fires.png"));
+}
+
+.floods {
+  .hazard(@floodColor, url("./floods.png"));
+}
+
+.fissures {
+  .hazard(@fissureColor, url("./fissures.png"));
 }
 
 body {

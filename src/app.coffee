@@ -30,6 +30,9 @@ dataLayers = [
       links: [
           text: "AZGS Earth Fissure Center"
           url: "http://www.azgs.az.gov/EFC.shtml"
+        , 
+          text: "Mitigation Tips"
+          url: "mitigation/fissures.html"
       ]
       lastUpdate: "Summer, 2013"
       description: '<h4>Layer Description</h4>'
@@ -120,6 +123,12 @@ dataLayers = [
       links: [
           text: "Description of Modified Mercalli Intensity Scale"
           url: "http://earthquake.usgs.gov/learn/topics/mercalli.php"
+        , 
+          text: "Mitigation Tips"
+          url: "mitigation/earthquakes.html"
+        ,
+          text: "Arizona Emergency Information Network"
+          url: "http://www.azein.gov/azein/Hazards%20%20Arizona/Earthquake.aspx?PageView=Shared"
       ]
       lastUpdate: "Aug. 7, 2013"
       description: '<h4>Layer Description</h4>'
@@ -261,6 +270,12 @@ dataLayers = [
       links: [
           text: "2010 State of Arizona Multi-Hazard Mitigation Plan"
           url: "http://www.dem.azdema.gov/operations/mitigation/hazmitplan/hazmitplan.html"
+        , 
+          text: "Mitigation Tips"
+          url: "mitigation/floods.html"
+        ,
+          text: "Arizona Emergency Information Network"
+          url: "http://www.azein.gov/azein/Hazards%20%20Arizona/Flooding.aspx?PageView=Shared"
       ]
       lastUpdate: "May, 2010"
       legend: new app.models.Legend [
@@ -288,7 +303,13 @@ dataLayers = [
       citation: 'Oregon Department of Forestry, 2013, West Wide Wildfire Risk Assessment, final report, Prepared by the Sanborn Map Company.'
       details: '<p>The Fire Risk Index (FRI) layer, as shown here, depicts relative risks of areas susceptible to wildfires with 1 (dark green) representing the lowest risk and 9 (dark red) representing the highest risk. The data was developed through the West Wide Wildfire Risk Assessment (WWA) project to identify areas susceptible to wildfires in 17 western states and some U.S. affiliated Pacific Islands. The Oregon Department of Forestry (2013) implemented this project on behalf of the Council of Western State Foresters and the Western Forestry Leadership Coalition. The goal of the project was to provide a wildfire risk assessment appropriate for comparing areas at risks to wildfires across geographic regions, or within individual states, and to aid in mitigation of areas at risk, to identify the level of risks within communities and to communicate those risks to the public.</p><p>The FRI layer was created from the Fire Effect Index (FEI) and Fire Threat Index (FTI). FEI identifies areas that have important values at risk to wildfire and where wildland fires would be difficult and/or costly to suppress. FTI describes the likelihood of an acre burning and the expected final fire size based on conditions of fuels and potential fire behavior under different weather scenarios. FEI and FTI data were combined to create the FRI layer which describes relative probabilities of areas at risk to wildfires. The data used to develop FEI, FTI and FRI reflects conditions between 2008 and 2010, depending on the type of data (i.e. fuels, wildland development areas, and historic fire locations, etc.).</p><hr /><h4>Disclaimer</h4><p>The Oregon Department of Forestry implemented conducting this assessment on behalf of the Council of Western State Foresters with funding from the USDA Forest Service. Anyone utilizing this layer is asked to credit the Oregon Department of Forestry. Users must read and fully comprehend the metadata prior to data use. The spatial data to develop this layer were derived from a variety of sources. Care was taken in the creation of these themes, but they are provided "as is." The Oregon Department of Forestry, State of Oregon, WWA Project Partners, or any of the data providers cannot accept any responsibility for errors, omissions, or positional accuracy in the digital data or underlying records. There are no warranties, expressed or implied, including the warranty of merchantability or fitness for a particular purpose, accompanying any of these products.</p><p>The West Wide Risk Assessment was conducted to support strategic planning at regional, state, and landscape scale. WWA data is intended for planning purposes only and should not to be used for engineering or legal purposes. Further investigation by local and regional experts should be conducted to inform decisions regarding local applicability. It is the sole responsibility of the local user, using product metadata and local knowledge, to determine if and/or how WWA data can be used for particular areas of interest. It is the responsibility of the user to be familiar with the value, assumptions, and limitations of WWA products. Managers and planners must evaluate WWA data according to the scale and requirements specific to their needs. Please note that the WWA Published Results may not match other assessments conducted that use different data, technical methods, or scale of analysis. Having two assessments that do not match does not mean that either one of them is incorrect. The use of different data sources, often from different collection dates and with spatial accuracy and resolutions, combined with different modeling assumptions or definitions will result in different results and can have different interpretations and uses. The WWA results are not intended to replace local and state products as a decision-making tool. The WWA is meant to serve as a regional policy analysis tool that provides results comparable across geographic areas in the West.</p>',
       brief: 'Shows the relative risks of wildfire based on values at risk (i.e. development, infrastructure, etc.), the likelihood of an acre to burn, the expected final fire size based on fuels conditions and potential fire behavior and the difficulty or expense of suppression.'
-      links: [{"text": "ADEM EIN Page", "url": ""}, {"text": "Be prepared pamphlet", "url": ""}]
+      links: [ 
+          text: "Mitigation Tips"
+          url: "mitigation/fires.html"
+        ,
+          text: "Arizona Emergency Information Network"
+          url: "http://www.azein.gov/azein/Hazards%20%20Arizona/Wildfire.aspx"
+      ]
       lastUpdate: "Fall 2013"
       active: false
       legend: new app.models.Legend [
