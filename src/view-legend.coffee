@@ -86,7 +86,7 @@ class views.PrintLegendView extends Backbone.View
       model: @collection
 
     # Setup to append legend item templates
-    el = @$el.find ".legendItems"
+    el = @$el
     itemTemplate = @itemTemplate
     filterable = @collection.filterable
 

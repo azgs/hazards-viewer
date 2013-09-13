@@ -173,12 +173,12 @@ html(lang="en")
                         stroke-dasharray!="<%= info.dashed %>")
 
         script#floodImage(type="text/html")
-            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:50px;")
+            svg.rect(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:50px;")
                 rect(width="40", height="40",
                         stroke="none", fill!="<%= info.color %>", fill-opacity="0.6")
 
         script#fireImage(type="text/html")
-            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:30px;")
+            svg.rect(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:30px;")
                 rect(y="6", width="40", height="20",
                         stroke="none", fill!="<%= info.color %>", fill-opacity="0.6")
 

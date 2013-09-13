@@ -1,4 +1,7 @@
 # Setup a global object to stash our work in
+
+console.log = () -> window.buff_temp = arguments
+
 root = @
 if not root.app? then app = root.app = {} else app = root.app
 
@@ -378,7 +381,6 @@ baseLayers = [
       layerName: "Road Map"
       apiKey: app.bingApiKey
       bingType: "Road"
-      active: true
   ,
     new app.models.BingLayer
       id: "Aerial"
@@ -391,6 +393,7 @@ baseLayers = [
       layerName: "Imagery with Labels"
       apiKey: app.bingApiKey
       bingType: "AerialWithLabels"
+      active: true
 ]
 
 app.baseLayerCollection = new app.models.LayerCollection baseLayers

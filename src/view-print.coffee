@@ -50,6 +50,8 @@ class views.PrintToolView extends Backbone.View
       "top":"2%"
     $(".modal-body").css
       "max-height": "700px"
+    $("#legend-container").css
+      "max-height": "600px"
 
     div = $("#print-modal").get(0)
     div.style.width = '1000px'
@@ -97,7 +99,7 @@ class views.PrintToolView extends Backbone.View
     $("#preview-map-container .leaflet-control-container .leaflet-top.leaflet-left").empty()
 
     @legend = $("#legend-container")
-    if layer in @activeLayers
+    for layer in @activeLayers
       @layer = layer
       printLegend = new views.PrintLegendView
         layerModel: @layer
@@ -105,44 +107,33 @@ class views.PrintToolView extends Backbone.View
         el: @legend
       printLegend.render()
 
-    $("#legend-container .legendItems .legend-item-magnitude .legend-image-magnitude circle").attr "r",6
-    $("#legend-container .legendItems .legend-item-magnitude .legend-image-magnitude circle").attr "cx",10
-    $("#legend-container .legendItems .legend-item-magnitude .legend-image-magnitude circle").attr "cy",9
-    $("#legend-container .legendItems .legend-item-magnitude .legend-image-magnitude svg").css "height",16
-    $("#legend-container .legendItems .legend-item-magnitude .legend-image-magnitude polygon").attr "points","2,10 6,2 10,10"
+    $("#legend-container .legend-item-magnitude .legend-image-magnitude circle").attr "r",6
+    $("#legend-container .legend-item-magnitude .legend-image-magnitude circle").attr "cx",10
+    $("#legend-container .legend-item-magnitude .legend-image-magnitude circle").attr "cy",9
+    $("#legend-container .legend-item-magnitude .legend-image-magnitude svg").css "height",16
+    $("#legend-container .legend-item-magnitude .legend-image-magnitude polygon").attr "points","2,10 6,2 10,10"
 
-    $("#legend-container .legendItems .legend-item-symbol .legend-image-symbol path").attr "d", "M 5 20 q 10 -30 20 -10"
-    $("#legend-container .legendItems .legend-item-symbol .legend-image-symbol svg").css "height",20
+    $("#legend-container .legend-item-symbol .legend-image-symbol path").attr "d", "M 5 20 q 10 -30 20 -10"
+    $("#legend-container .legend-item-symbol .legend-image-symbol svg").css "height",20
 
-    $("#legend-container .legendItems .legend-item-fisstype path").attr "d", "M 5 20 q 10 -30 20 -10"
-    $("#legend-container .legendItems .legend-item-fisstype svg").css "height",20
+    $("#legend-container .legend-item-fisstype path").attr "d", "M 5 20 q 10 -30 20 -10"
+    $("#legend-container .legend-item-fisstype svg").css "height",20
 
-    $("#legend-container .legendItems .legend-item-symbol .legend-image-symbol rect").attr "width", "20"
-    $("#legend-container .legendItems .legend-item-symbol .legend-image-symbol rect").attr "height", "10"
-    $("#legend-container .legendItems .legend-item-symbol .legend-image-symbol rect").attr "y", "12"
-    $("#legend-container .legendItems .legend-item-symbol .legend-image-symbol svg").css "height", 25
+    $("#legend-container .legend-item-symbol .legend-image-symbol rect").attr "width", "20"
+    $("#legend-container .legend-item-symbol .legend-image-symbol rect").attr "height", "10"
+    $("#legend-container .legend-item-symbol .legend-image-symbol rect").attr "y", "0"
+    $("#legend-container .legend-item-symbol .legend-image-symbol .rect").css "height", 10
 
   printMap: () ->
 
     ele = $("#print-modal .modal-body")
     ele.focus()
-    ###
-    console.log ele
-    htmlone = '<html><head>
-      <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
-      <link rel="stylesheet" href="vendor/leaflet-draw/leaflet.draw.css">
-      <link rel="stylesheet" href="styles/base.css">
-      </head><body>'
-    html2 = '</div></body></html>'
-    string = htmlone + ele + html2
 
-    document.body.innerHTML = string
-    ###
     window.print()
-    #location.reload()
 
   resetMap: () ->
     @render()
+
     $("#print-modal .modal-body").css
       "height": "100px"
       "width": "560px"
