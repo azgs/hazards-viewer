@@ -214,41 +214,41 @@ html, body, .fill {
   }
 }
 
-path[styler="Reported, Unconfirmed Earth Fissure"] {
+path[styler="Reported/Unconfirmed"] {
   .line();
-  .hover();
+  //.hover();
   stroke: green;
   stroke-dasharray: 10 4;
 }
 
-path[styler="Discontinuous Earth Fissure"] {
+path[styler="Discontinuous"] {
   .line();
-  .hover();
+  //.hover();
   stroke: red;
 }
 
-path[styler="Continuous Earth Fissure"] {
+path[styler="Continuous"] {
   .line();
-  .hover();
+  //.hover();
   stroke: black;
 }
 
 // Styles for Active Faults Layer
 path[styler="2.13.2"] {
   .line();
-  .hover();
+  //.hover();
   stroke: orange;
 }
 
 path[styler="2.13.3"] {
   .line();
-  .hover();
+  //.hover();
   stroke: green;
 }
 
 path[styler="2.13.4"] {
   .line();
-  .hover();
+  //.hover();
   stroke: purple;
 }
 
@@ -260,6 +260,7 @@ path[styler="2.13.4"] {
     fill: @hoverColor;
   }
 }
+
 * {
   -webkit-print-color-adjust:exact;
 }

@@ -49,15 +49,15 @@ dataLayers = [
           imageInfo:
             color: "#000000"
         ,
-          caption: "Discontinuous Earth Fissure"
+          caption: "Discontinuous"
           attribute: "fisstype"
-          value: "Discontinuous Earth Fissure"
+          value: "Discontinuous"
           imageTemplateId: "fissureImage"
           active: true
           imageInfo:
             color: "#FF0000"
         ,
-          caption: "Reported, Unconfirmed Earth Fissure"
+          caption: "Reported/Unconfirmed"
           attribute: "fisstype"
           value: "Reported, Unconfirmed Earth Fissure"
           imageTemplateId: "fissureImage"
