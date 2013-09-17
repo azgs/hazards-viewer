@@ -12,8 +12,8 @@ zoom = 7
 app.map = new L.Map "map",
   center: center
   zoom: zoom
-  minZoom: 7
-  maxZoom: 14
+  minZoom: 6
+  maxZoom: 15
 
 app.geoserverUrl = "http://data.usgin.org/arizona/ows"
 
@@ -381,6 +381,7 @@ baseLayers = [
       layerName: "Road Map"
       apiKey: app.bingApiKey
       bingType: "Road"
+      active: true
   ,
     new app.models.BingLayer
       id: "Aerial"
@@ -393,7 +394,6 @@ baseLayers = [
       layerName: "Imagery with Labels"
       apiKey: app.bingApiKey
       bingType: "AerialWithLabels"
-      active: true
 ]
 
 app.baseLayerCollection = new app.models.LayerCollection baseLayers
