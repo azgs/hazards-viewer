@@ -293,6 +293,12 @@ path[styler="2.13.4"] {
   }
 }
 
+// Center earthquakes legend symbology
+#earthquakes-legend .legend-image-magnitude svg {
+  display:block;
+  margin:auto;
+}
+
 // Scrollable legend ahhhhh!
 #sidebar {
   height: 100%;
@@ -310,45 +316,29 @@ path[styler="2.13.4"] {
   border-width:3px;
 }
 
+#print-container #legend-container {
+  visibility: visible;
+  white-space: wrap;
+  max-width:250px;
+  overflow: auto;
+}
+
 #print-container #legend-container .table {
-  width: 250px;
+  margin-bottom: 0mm;
 }
 
-#print-container #legend-container .table .legendItems .legend-text {
-  font-size: 11px;
-}
-
-#print-container #legend-container .table .legendItems .legend-item-activefaults .legend-image-activefaults {
-  width: 75px;
-  padding: 0px;
-}
-
-#print-container #legend-container .table .legendItems .legend-item-magnitude .legend-image-magnitude {
-  width: 75px;
-  padding: 0px;
-}
-
-#print-container #legend-container .table .legendItems .legend-item-fisstype .legend-image-fisstype {
-  width: 75px;
-  padding: 0px;
-}
-
-#print-container #legend-container .table .legendItems .legend-item-symbol .legend-image-symbol {
-  width: 75px;
-  padding: 0px;
-}
-
-
-
-// Print map function
+// Print map function ////////////////////////////////////////
 @media print {
   @page {
     size:landscape;
-    margin:0;
+    margin-top: -5mm;
+    margin-bottom: 0mm;
+    margin-right: 0mm;
+    margin-left: -35mm;
   }
+
   body * {
     visibility: hidden;
-    margin: 0;
   }
   #print-modal .modal-body * {
     visibility: visible;
@@ -362,13 +352,6 @@ path[styler="2.13.4"] {
   }
   #print-container {
     visibility: visible;
-    margin-left: -100px;
-    /*
-    margin-right: none;
-    margin-left: 160px;
-    margin-bottom: none;
-    margin-top: none;
-    */
   }
   #print-container #preview-map-container, #legend-container {
     visibility: visible;
@@ -379,15 +362,15 @@ path[styler="2.13.4"] {
   }
   #print-container #legend-container {
     visibility: visible;
-    white-space: nowrap;
-    border-color: black;
-    border-style: solid;
-    border-width:1px;
-    max-width:200px;
+    white-space: wrap;
+    max-width:350mm;
     overflow: auto;
   }
+  #print-container #legend-container .legend-text {
+    font-size: 11px;
+  }
 }
-
+/////////////////////////////////////////////////////////////
 .clear-fix {
   clear: both;
 }

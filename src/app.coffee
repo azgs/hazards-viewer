@@ -1,4 +1,7 @@
 # Setup a global object to stash our work in
+
+console.log = () -> window.buff_temp = arguments
+
 root = @
 if not root.app? then app = root.app = {} else app = root.app
 
@@ -10,7 +13,7 @@ app.map = new L.Map "map",
   center: center
   zoom: zoom
   minZoom: 7
-  maxZoom: 13
+  maxZoom: 14
 
 app.geoserverUrl = "http://data.usgin.org/arizona/ows"
 
@@ -34,6 +37,7 @@ dataLayers = [
           text: "Mitigation Tips"
           url: "mitigation/fissures.html"
       ]
+      mitigationUrl: "mitigation/fissures.html"
       lastUpdate: "Summer, 2013"
       description: '<h4>Layer Description</h4>'
       legend: new app.models.Legend [
@@ -79,6 +83,7 @@ dataLayers = [
       details: '<p>This layer summarizes available data on active Arizona faults. If faults have been active during the past 2.5 million years (Quaternary period), then we consider that there is some chance they could generate large earthquakes. Generally, the more active the fault zone is, the more likely it is to generate earthquakes, and earthquakes are more likely to occur in regions with many Quaternary faults.</p><p>These data were originally compiled in 1998 as part of an effort coordinated by the USGS to compile data and map information on Quaternary faults throughout the world. The database has recently been revised with much more accurate fault mapping, incorporation of new data on fault activity, and inclusion of additional fault zones, primarily in northern Arizona. This database depends heavily on several previous compilations of data on Quaternary faults in Arizona. The first and most comprehensive of these is the state-wide compilation of neotectonic faults by Menges and Pearthree (1983), supplemented by a state-wide compilation of young faults by Euge and others (1992). More detailed regional geologic maps provided most of the data in northern Arizona and southeastern Arizona. The database includes information from all detailed investigations of fault zones in Arizona.</p><p>The data structure is set up to provide systematic information on each fault zone. Fault names are based primarily on published maps or reports. In cases where different names have been used for the fault, the alternative names are listed within the database. All of the faults are listed by name and number in the table on the following page. This table indicates where the data summary for each fault can be found, as well as the age of youngest activity and fault slip rate category. The individual fault data sheets include information on map and data sources, fault location, geologic setting of the fault, the geomorphic expression of the fault, recency of fault movement, fault slip rate(s), and fault zone length and orientation. Faults are grouped into slip rate categories of <0.02 mm/yr, < 0.2 mm/yr, and <1 mm/yr. Most faults in Arizona fall into the lowest slip-rate category, with a few faults in the higher categories. Reported lengths are for the whole fault zone, not cumulative length of each individual fault in the zone, and orientations are averages for the fault zone.</p><p>Citations:</p><p>Euge, K.M., Schell, B.A. and Lam, I.P., 1992, Development of seismic acceleration maps for Arizona: Arizona Department of Transportation Report No. AZ92-344, 327 p., 5 sheets, scale 1:1,000,000. </p><p>Menges, C.M. and Pearthree, P.A., 1983, Map of neotectonic (latest Pliocene - Quaternary) deformation in Arizona: Arizona Bureau of Geology and Mineral Technology Open-File Report 83-22, 48 p., map scale 1:500,000, 4 map sheets.</p>'
       brief: 'Faults that are known to have been active within the last 2.5 million years (Quaternary period), and thus have some chance that they could generate a large earthquake.'
       links: []
+      mitigationUrl: ""
       lastUpdate: "Fall, 2012"
       description: '<h4>Layer Description</h4>'
       legend: new app.models.Legend [
@@ -130,6 +135,7 @@ dataLayers = [
           text: "Arizona Emergency Information Network"
           url: "http://www.azein.gov/azein/Hazards%20%20Arizona/Earthquake.aspx?PageView=Shared"
       ]
+      mitigationUrl: "mitigation/earthquakes.html"
       lastUpdate: "Aug. 7, 2013"
       description: '<h4>Layer Description</h4>'
       filterClause: "&filter=#{(new app.models.Filter([{calculated_magnitude: "[2.0,9.0]"}])).urlEncoded()}"
@@ -277,6 +283,7 @@ dataLayers = [
           text: "Arizona Emergency Information Network"
           url: "http://www.azein.gov/azein/Hazards%20%20Arizona/Flooding.aspx?PageView=Shared"
       ]
+      mitigationUrl: "mitigation/floods.html"
       lastUpdate: "May, 2010"
       legend: new app.models.Legend [
           caption: "High"
@@ -310,6 +317,7 @@ dataLayers = [
           text: "Arizona Emergency Information Network"
           url: "http://www.azein.gov/azein/Hazards%20%20Arizona/Wildfire.aspx"
       ]
+      mitigationUrl: "mitigation/fires.html"
       lastUpdate: "Fall 2013"
       active: false
       legend: new app.models.Legend [
@@ -373,7 +381,6 @@ baseLayers = [
       layerName: "Road Map"
       apiKey: app.bingApiKey
       bingType: "Road"
-      active: true
   ,
     new app.models.BingLayer
       id: "Aerial"
@@ -386,6 +393,7 @@ baseLayers = [
       layerName: "Imagery with Labels"
       apiKey: app.bingApiKey
       bingType: "AerialWithLabels"
+      active: true
 ]
 
 app.baseLayerCollection = new app.models.LayerCollection baseLayers
