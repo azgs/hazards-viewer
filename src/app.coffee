@@ -423,7 +423,7 @@ app.navToolCollection = new app.models.NavToolCollection navTools
 helpers = [
     new app.models.HelpModel
       id: "baselayers-help"
-      ele: ".dropdown"
+      ele: "#nav #menu .dropdown"
       head: "Toggle Basemap Layers"
       description: "Click the 'Base Layers' drop-down list to switch the basemap in the viewer."
   ,
