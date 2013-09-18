@@ -185,7 +185,7 @@ html(lang="en")
 
         script#downloadBody(type="text/html")
             #downloadModalBody
-                a(href="#", data-dismiss="modal").btn.btn-danger.tall-button.fixed-width.pull-left
+                a#download-all(href="#", data-dismiss="modal").btn.btn-danger.tall-button.fixed-width.pull-left
                     span Get All the Data
                     i.icon-hdd.icon-white
                 .description
@@ -196,8 +196,7 @@ html(lang="en")
 
                 .pull-left.btn-group.btn-group-vertical(data-toggle="buttons-radio")
                     <% for (i in layers) { %>
-                    button.btn(id!="<%= layers[i].id %>-download-button", type="button",
-                        class="fixed-width"): strong: <%= layers[i].get("layerName") %>
+                    button.btn.fixed-width.toggler(id!="<%= layers[i].id %>-download-button", type="button"): strong: <%= layers[i].get("layerName") %>
                     <% } %>
 
 
@@ -206,13 +205,13 @@ html(lang="en")
                 .clear-fix
                 .for-god-sakes-center-me
                     .btn-group.layer-access
-                        a(href="#", data-dismiss="modal").btn.btn-primary.tall-button
+                        a#get-a-layer(href="#", data-dismiss="modal").btn.btn-primary.tall-button
                             span Get the Layer
                             i.icon-hdd.icon-white
                         a#draw-a-box(href="#", data-dismiss="modal").btn.btn-info.tall-button
                             span Draw a Box
                             i.icon-fullscreen.icon-white
-                        a(href="#", data-dismiss="modal").btn.tall-button
+                        a#download-metadata(href="#", data-dismiss="modal").btn.tall-button
                             span Get Metadata
                             i.icon-file
 
