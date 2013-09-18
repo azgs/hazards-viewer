@@ -13,7 +13,7 @@ app.map = new L.Map "map",
   center: center
   zoom: zoom
   minZoom: 7
-  maxZoom: 14
+  maxZoom: 17
 
 app.geoserverUrl = "http://data.usgin.org/arizona/ows"
 
@@ -381,6 +381,7 @@ baseLayers = [
       layerName: "Road Map"
       apiKey: app.bingApiKey
       bingType: "Road"
+      active: true
   ,
     new app.models.BingLayer
       id: "Aerial"
@@ -393,7 +394,6 @@ baseLayers = [
       layerName: "Imagery with Labels"
       apiKey: app.bingApiKey
       bingType: "AerialWithLabels"
-      active: true
 ]
 
 app.baseLayerCollection = new app.models.LayerCollection baseLayers
@@ -420,6 +420,22 @@ navTools = [
 
 app.navToolCollection = new app.models.NavToolCollection navTools
 
+helpers = [
+    new app.models.HelpModel
+      id: "baselayers-help"
+      ele: ".dropdown"
+      head: "Toggle Basemap Layers"
+      description: "Click the 'Base Layers' drop-down list to switch the basemap in the viewer."
+  ,
+    new app.models.HelpModel
+      id: "menu-help"
+      ele: ".menu"
+      head: "Navigation Menu"
+      description: "Description goes here."
+]
+
+app.helpersCollection = new app.models.HelpCollection helpers
+
 # Render the sidebar
 app.sidebar = new app.views.SidebarView
   el: $("#layer-list").first()
@@ -443,6 +459,12 @@ app.printFunction = new app.views.PrintToolView
   el: $ "#print-modal"
   collection: app.navToolCollection
 app.printFunction.render()
+
+# Setup the help tools
+app.helperFunction = new app.views.HelpView
+  el: $ "#mainHelp-modal"
+  collection: app.helpersCollection
+app.helperFunction.render()
 
 # Insert the export modal body
 app.exporter = new app.views.DownloadView

@@ -91,7 +91,8 @@ html(lang="en")
 
         script#print-tool(type="text/html")
             p This tool allows you to preview and print a static map.  Click 'preview' first to add some customization to your map, like a title.  Click reset at any time to reload this window.
-            input(id="title-input",type="text",name="title",placeholder="Type a Title and Press Enter")
+            input(id="title-input",type="text",name="title",placeholder="Enter a title for the map")
+            input(id="attrib-input",type="text",name="attrib",placeholder="Enter attribution info")
 
         script#print-container(type="text/html")
             #print-container
@@ -258,4 +259,6 @@ html(lang="en")
         script(src="scripts/model-geocode.js")
         script(src="scripts/view-geocode.js")
         script(src="scripts/view-print.js")
+        script(src="scripts/model-help.js")
+        script(src="scripts/view-help.js")
         script(src="scripts/app.js")
