@@ -12,8 +12,8 @@ zoom = 7
 app.map = new L.Map "map",
   center: center
   zoom: zoom
-  minZoom: 7
-  maxZoom: 17
+  minZoom: 6
+  maxZoom: 15
 
 app.geoserverUrl = "http://data.usgin.org/arizona/ows"
 
@@ -49,15 +49,15 @@ dataLayers = [
           imageInfo:
             color: "#000000"
         ,
-          caption: "Discontinuous Earth Fissure"
+          caption: "Discontinuous"
           attribute: "fisstype"
-          value: "Discontinuous Earth Fissure"
+          value: "Discontinuous"
           imageTemplateId: "fissureImage"
           active: true
           imageInfo:
             color: "#FF0000"
         ,
-          caption: "Reported, Unconfirmed Earth Fissure"
+          caption: "Reported/Unconfirmed"
           attribute: "fisstype"
           value: "Reported, Unconfirmed Earth Fissure"
           imageTemplateId: "fissureImage"
