@@ -125,15 +125,12 @@ class views.PrintToolView extends Backbone.View
     $("#legend-container .legend-item-symbol .legend-image-symbol .rect").css "height", 10
 
   printMap: () ->
-
     ele = $("#print-modal .modal-body")
     ele.focus()
-
     window.print()
 
   resetMap: () ->
     @render()
-
     $("#print-modal .modal-body").css
       "height": "100px"
       "width": "560px"
