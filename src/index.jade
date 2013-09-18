@@ -219,12 +219,17 @@ html(lang="en")
             h4 Nearby Natural Hazards
             p.muted Searched for hazards near <%= location %>
             p View suggestions to prepare and protect yourself from natural hazards in your area:
-            <% for (var key in result) { if (result.hasOwnProperty(key) && result[key].count > 0) { %>
+            <% for (var key in result) { if (result[key].hasOwnProperty('count') && result[key].count > 0) { %>
             p
                 span: strong  <%= key %>
                 span : 
                   a(href!="<%= result[key].mitigationUrl %>", target="_blank") Mitigation tips
             <% } } %>
+            div: strong <%= result.contacts.name %> Emergency Websites
+            div: a(href!="<%= result.contacts.county %>") County Site
+            div: a(href!="<%= result.contacts.emergency %>") Emergency Management
+            div: a(href!="<%= result.contacts.floods %>") Flood Control
+
 
         script#defaultPopup(type="text/html")
             table.table.table-striped.table-bordered
