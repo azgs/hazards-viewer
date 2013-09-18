@@ -2,6 +2,99 @@
 root = @
 if not root.app? then app = root.app = {} else app = root.app
 
+COUNTY_CONTACTS = {
+  "apache":{
+    "name":"Apache County",
+    "county":"http://www.co.apache.az.us/",
+    "emergency":"http://www.co.apache.az.us/Departments/EmergencyRisk/Emergency.htm",
+    "flood":"http://www.co.apache.az.us/Departments/Engineering/Engineering.htm"
+  },
+  "cochise":{
+    "name":"Cochise County",
+    "county":"http://www.cochise.az.gov/",
+    "emergency":"http://cochise.az.gov/cochise_emergency_services.aspx?id=244",
+    "flood":"http://cochise.az.gov/cochise_highways_floodplain.aspx?id=266"
+  },
+  "coconino":{
+    "name": "Coconino County",
+    "county":"http://www.coconino.az.gov/",
+    "emergency":"http://www.coconino.az.gov/index.aspx?nid=207",
+    "flood":"http://www.coconino.az.gov/index.aspx?NID=838"
+  },
+  "gila":{
+    "name":"Gila County",
+    "county":"http://www.gilacountyaz.gov/",
+    "emergency":"http://www.gilacountyaz.gov/government/health_and_emergency_services/emergency_management/index.php",
+    "flood":"http://www.gilacountyaz.gov/government/public_works/floodplain/index.php"
+  },
+  "graham":{
+    "name":"Graham County",
+    "county":"http://72.165.8.69/GrahamWEB13/",
+    "emergency":"http://72.165.8.69/GrahamWEB13/emergency-management/",
+    "flood":"http://72.165.8.69/GrahamWEB13/county-engineer/"
+  },
+  "greenlee":{
+    "name":"Greenlee County",
+    "county":"http://www.co.greenlee.az.us/",
+    "emergency":"http://www.co.greenlee.az.us/emergency/",
+    "flood":"http://www.co.greenlee.az.us/engineering/"
+  },
+  "la":{
+    "name":"La Paz County",
+    "county":"http://www.co.la-paz.az.us/Index.html",
+    "emergency":"http://www.co.la-paz.az.us/Emergency_Services.html",
+    "flood":"http://www.co.la-paz.az.us/Community_Development.html"
+  },
+  "maricopa":{
+    "name":"Maricopa County",
+    "county":"http://www.maricopa.gov/",
+    "emergency":"http://www.maricopa.gov/Emerg_Mgt/",
+    "flood":"http://www.fcd.maricopa.gov/"
+  },
+  "mohave":{
+    "name":"Mohave County",
+    "county":"http://www.mohavecounty.us/",
+    "emergency":"http://www.mohavecounty.us/ContentPage.aspx?id=124&cid=407",
+    "flood":"http://www.mohavecounty.us/ContentPage.aspx?id=124&cid=392"
+  },
+  "navajo":{
+    "name":"Navajo County",
+    "county":"http://www.navajocountyaz.gov/Default.aspx",
+    "emergency":"http://www.navajocountyaz.gov/emergencymanagement/Default.aspx",
+    "flood":"http://www.navajocountyaz.gov/pubworks/"
+  },
+  "pima":{
+    "name":"Pima County",
+    "county":"http://webcms.pima.gov/",
+    "emergency":"http://webcms.pima.gov/government/office_of_emergency_management_homeland_security/",
+    "flood":"http://rfcd.pima.gov/"
+  },"pinal":{
+    "name":"Pinal County",
+    "county":"http://pinalcountyaz.gov/Pages/Home.aspx",
+    "emergency":"http://pinalcountyaz.gov/Departments/PublicWorks/EmergencyManagement/Pages/Home.aspx",
+    "flood":"http://www.pinalcountyaz.gov/departments/publicworks/floodcontroldistrict/floodplain/Pages/Home.aspx"
+  },
+  "santa":{
+    "name":"Santa Cruz County",
+    "county":"http://www.co.santa-cruz.az.us/index.html",
+    "emergency":"http://www.co.santa-cruz.az.us/es/oem/index.html",
+    "flood":"http://www.co.santa-cruz.az.us/public_works/flood/index.html"
+  },
+  "yavapai":{
+    "name":"Yavapai County",
+    "county":"http://www.yavapai.us/",
+    "emergency":"http://www.regionalinfo-alert.org/",
+    "flood":"http://www.ycflood.com/"},
+  "yuma":{
+    "name":"Yuma County",
+    "county":"http://www.co.yuma.az.us/index.aspx?page=1",
+    "emergency":"http://www.co.yuma.az.us/index.aspx?page=266",
+    "flood":"http://www.co.yuma.az.us/index.aspx?page=780"
+  }
+}
+
+
+
 class app.GeocodeModel extends Backbone.Model
   initialize: (options) ->
     @set "key", options.apiKey or null
@@ -18,7 +111,8 @@ class app.GeocodeModel extends Backbone.Model
         bbox = data.resourceSets[0].resources[0].bbox
         point = data.resourceSets[0].resources[0].point
         name = data.resourceSets[0].resources[0].name
-        callback bbox, point, name
+        countyInfo = COUNTY_CONTACTS[data.resourceSets[0].resources[0].address.adminDistrict2.toLowerCase().split(' ')[0]]
+        callback bbox, point, name, countyInfo
       error: (err) ->
         console.log err
 
@@ -48,7 +142,7 @@ class app.GeocodeModel extends Backbone.Model
 
 
     # First find the location using the Bing Geocoder
-    @getLocation query, (box, point, name) ->
+    @getLocation query, (box, point, name, countyInfo) ->
       # Should not do anything if the location is outside Arizona
 
       # Get the buffered BBOX
@@ -67,6 +161,7 @@ class app.GeocodeModel extends Backbone.Model
 
       output =
         buffer: buffered
+        contacts: countyInfo
 
       # Okay, now for each layer
       for layer in hazardLayers
@@ -127,6 +222,5 @@ class app.GeocodeModel extends Backbone.Model
           # Append the count to the output obj
           thisOne.count = count
           thisOne.mitigationUrl = layer.get "mitigationUrl"
-
 
       return
