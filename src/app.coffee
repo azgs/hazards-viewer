@@ -43,7 +43,7 @@ dataLayers = [
       legend: new app.models.Legend [
           caption: "Continuous Earth Fissure"
           attribute: "fisstype"
-          value: "Continuous Earth Fissure"
+          value: "Continuous"
           imageTemplateId: "fissureImage"
           active: true
           imageInfo:
@@ -59,7 +59,7 @@ dataLayers = [
         ,
           caption: "Reported/Unconfirmed"
           attribute: "fisstype"
-          value: "Reported, Unconfirmed Earth Fissure"
+          value: "Reported/Unconfirmed"
           imageTemplateId: "fissureImage"
           active: true
           imageInfo:
@@ -70,6 +70,20 @@ dataLayers = [
         heading: "Fissure Type"
       layerOptions:
         styler: "fisstype"
+        style: (feature) ->
+          defaultStyle =
+            weight: 2
+            fillOpacity: 0
+            opacity: 1
+          if feature.properties.fisstype is "Continuous"
+            defaultStyle.color = "black"
+          if feature.properties.fisstype is "Discontinuous"
+            defaultStyle.color = "red"
+          if feature.properties.fisstype is "Reported/Unconfirmed"
+            defaultStyle.color = "green"
+            defaultStyle.dashArray = "10 4"
+
+          return defaultStyle
   ,
     new app.models.GeoJSONLayer
       id: "activeFaults"
@@ -115,6 +129,18 @@ dataLayers = [
         heading: "Most Recent Motion"
       layerOptions:
         styler: "symbol"
+        style: (feature) ->
+          defaultStyle =
+            weight: 2
+            fillOpacity: 0
+            opacity: 1
+          if feature.properties.symbol is "2.13.2"
+            defaultStyle.color = "#FFA500"
+          if feature.properties.symbol is "2.13.3"
+            defaultStyle.color = "#008000"
+          if feature.properties.symbol is "2.13.4"
+            defaultStyle.color = "#800080"
+          return defaultStyle
   ,
     new app.models.GeoJSONLayer
       id: "earthquakes"
