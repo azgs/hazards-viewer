@@ -139,7 +139,7 @@ class views.DownloadView extends Backbone.View
     @$el.find(".modal-footer .btn-primary").remove()
 
     # jQuery to make the buttons change color when you click them
-    body.find(".btn").on "click", (e) ->
+    body.find(".toggler").on "click", (e) ->
       body.find(".btn-success").toggleClass "btn-success"
       $(e.currentTarget).toggleClass "btn-success"
 
@@ -160,8 +160,45 @@ class views.DownloadView extends Backbone.View
 
   events:
     "click #draw-a-box": "drawArea"
+    "click #get-a-layer": "downloadALayer"
+    "click #download-all": "downloadAll"
+    "click #download-metadata": "downloadMetadata"
 
   drawArea: (e) ->
     # Click the Leaflet.draw control?!
     @drawHandler.enable()
 
+  downloadALayer: () ->
+    layerId = @$el.find('.btn-success').attr('id').split('-')[0]
+    url = 'http://data.azgs.az.gov/static/downloadable-files/hazard-data/'
+    if layerId is 'earthFissures'
+      url += 'earthfissures.zip'
+    if layerId is 'activeFaults'
+      url += 'activefaults.zip'
+    if layerId is 'earthquakes'
+      url += 'earthquakes.zip'
+    if layerId is 'floodPotential'
+      url += 'floods.zip'
+    if layerId is 'fireRisk'
+      url += 'wildfires.zip'
+
+    window.location.assign url
+
+  downloadMetadata: () ->
+    layerId = @$el.find('.btn-success').attr('id').split('-')[0]
+    url = 'http://data.azgs.az.gov/static/downloadable-files/hazard-data/'
+    if layerId is 'earthFissures'
+      url += 'earthfissures'
+    if layerId is 'activeFaults'
+      url += 'activefaults'
+    if layerId is 'earthquakes'
+      url += 'earthquakes'
+    if layerId is 'floodPotential'
+      url += 'floods'
+    if layerId is 'fireRisk'
+      url += 'wildfires'
+
+    window.location.assign url + '-metadata.xml'
+
+  downloadAll: () ->
+    window.location.assign 'http://data.azgs.az.gov/static/downloadable-files/hazard-data/hazard-data.zip'
