@@ -449,15 +449,40 @@ app.navToolCollection = new app.models.NavToolCollection navTools
 helpers = [
     new app.models.HelpModel
       id: "baselayers-help"
-      ele: "#nav #menu .dropdown"
+      ele: $ "#nav #menu .dropdown"
       head: "Toggle Basemap Layers"
       description: "Click the 'Base Layers' drop-down list to switch the basemap in the viewer."
+      placement: "right"
+      function: "toggle-dropdown"
+  ,
+    new app.models.HelpModel
+      id: "baselayers-help2"
+      ele: $ "#banner"##nav #menu .dropdown #dropmenu #Aerial-toggle"
+      head: "Toggle Satellite Layer"
+      description: "description here"
+      placement: "bottom"
+      function: "toggle-imagery"
   ,
     new app.models.HelpModel
       id: "menu-help"
-      ele: ".menu"
+      ele: $ "#nav #menu"
       head: "Navigation Menu"
       description: "Description goes here."
+      placement: "bottom"
+  ,
+    new app.models.HelpModel
+      id: "geocode-help"
+      ele: $ "#nav #geocoder"
+      head: "Geocoder"
+      description: "description goes here"
+      placement: "left"
+  ,
+    new app.models.HelpModel
+      id: "legend-help"
+      ele: $ "#sidebar #layer-list"
+      head: "Legend"
+      description: "description here"
+      placement: "left"
 ]
 
 app.helpersCollection = new app.models.HelpCollection helpers
