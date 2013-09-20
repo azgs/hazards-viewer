@@ -24,7 +24,7 @@ class views.HelpView extends Backbone.View
 
 	triggerEvents = (triggerFunction) ->
 		if triggerFunction == "toggle-dropdown"
-			$("#nav #menu .dropdown .dropdown-toggle").trigger "click"
+			$("#nav #menu .dropdown").toggleClass "open"
 		else if triggerFunction == "toggle-imagery"
 			$("#nav #menu .dropdown #dropmenu #Aerial-toggle").trigger "click"
 
@@ -72,7 +72,6 @@ class views.HelpView extends Backbone.View
 		    	@cancel()
 
 	doHelp: () ->
-		$("#nav #menu .dropdown .dropdown-toggle").trigger "click"
 		@$el.modal "hide"
 		doPop = doPopover()
 		doPop.initialize(@collection)
