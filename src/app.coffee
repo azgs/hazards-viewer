@@ -5,6 +5,9 @@
 root = @
 if not root.app? then app = root.app = {} else app = root.app
 
+# Deal with old browsers
+app.views.badModalView({el: "body"}).render()
+
 #Initialize the map
 center = new L.LatLng 34.11180455556899, -111.7144775390625
 zoom = 7
@@ -531,6 +534,3 @@ app.geocodeView = new app.GeocodeView
 
 # Add a scalebar
 app.map.addControl new L.Control.Scale()
-
-# Deal with old browsers
-app.views.badModalView({el: "body"}).render()
