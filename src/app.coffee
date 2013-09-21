@@ -5,9 +5,6 @@
 root = @
 if not root.app? then app = root.app = {} else app = root.app
 
-# Deal with old browsers
-app.views.badModalView({el: "body"}).render()
-
 #Initialize the map
 center = new L.LatLng 34.11180455556899, -111.7144775390625
 zoom = 7
@@ -50,7 +47,7 @@ dataLayers = [
           imageTemplateId: "fissureImage"
           active: true
           imageInfo:
-            color: "#000000"
+            png: "img/legend_imgs/png/ef_continuous.png"
         ,
           caption: "Discontinuous"
           attribute: "fisstype"
@@ -58,7 +55,7 @@ dataLayers = [
           imageTemplateId: "fissureImage"
           active: true
           imageInfo:
-            color: "#FF0000"
+            png: "img/legend_imgs/png/ef_discontinuous.png"
         ,
           caption: "Reported/Unconfirmed"
           attribute: "fisstype"
@@ -66,8 +63,7 @@ dataLayers = [
           imageTemplateId: "fissureImage"
           active: true
           imageInfo:
-            color: "#008000"
-            dashed: "10 4"
+            png: "img/legend_imgs/png/ef_reported.png"
       ],
         legendHeading: "Earth Fissure Type"
         heading: "Fissure Type"
@@ -110,7 +106,7 @@ dataLayers = [
           imageTemplateId: "faultImage"
           active: true
           imageInfo:
-            color: "#FFA500"
+            png: "img/legend_imgs/png/af_10k.png"
         ,
           caption: "Within 750,000 years"
           attribute: "symbol"
@@ -118,7 +114,7 @@ dataLayers = [
           imageTemplateId: "faultImage"
           active: true
           imageInfo:
-            color: "#008000"
+            png: "img/legend_imgs/png/af_750k.png"
         ,
           caption: "Within 2.5 million years"
           attribute: "symbol"
@@ -126,7 +122,7 @@ dataLayers = [
           imageTemplateId: "faultImage"
           active: true
           imageInfo:
-            color: "#800080"
+            png: "img/legend_imgs/png/af_2m.png"
       ],
         legendHeading: "Active Faults Latest Motion"
         heading: "Most Recent Motion"
@@ -182,8 +178,7 @@ dataLayers = [
           imageTemplateId: "quakeImage"
           active: true
           imageInfo:
-            radius: 15
-            color: "#FFBF00"
+            png: "img/legend_imgs/png/eq_23.png"
         ,
           caption: "3 - 4"
           attribute: "magnitude"
@@ -191,8 +186,7 @@ dataLayers = [
           imageTemplateId: "quakeImage"
           active: true
           imageInfo:
-            radius: 20
-            color: "#FF9D00"
+            png: "img/legend_imgs/png/eq_34.png"
         ,
           caption: "4 - 5"
           attribute: "magnitude"
@@ -200,8 +194,7 @@ dataLayers = [
           imageTemplateId: "quakeImage"
           active: true
           imageInfo:
-            radius: 25
-            color: "#FF8000"
+            png: "img/legend_imgs/png/eq_45.png"
         ,
           caption: "5 - 6"
           attribute: "magnitude"
@@ -209,8 +202,7 @@ dataLayers = [
           imageTemplateId: "quakeImage"
           active: true
           imageInfo:
-            radius: 30
-            color: "#FF5E00"
+            png: "img/legend_imgs/png/eq_56.png"
         ,
           caption: "6 - 7"
           attribute: "magnitude"
@@ -218,8 +210,7 @@ dataLayers = [
           imageTemplateId: "quakeImage"
           active: true
           imageInfo:
-            radius: 35
-            color: "#FF4000"
+            png: "img/legend_imgs/png/eq_67.png"
         ,
           caption: "7 - 8"
           attribute: "magnitude"
@@ -227,8 +218,7 @@ dataLayers = [
           imageTemplateId: "quakeImage"
           active: true
           imageInfo:
-            radius: 40
-            color: "#FF0000"
+            png: "img/legend_imgs/png/eq_78.png"
       ],
         legendHeading: "Earthquake Magnitude"
         heading: "Magnitude"
@@ -318,12 +308,12 @@ dataLayers = [
           caption: "High"
           imageTemplateId: "floodImage"
           imageInfo:
-            color: "#0039BF"
+            png: "img/legend_imgs/png/fp_high.png"
         ,
           caption: "Medium"
           imageTemplateId: "floodImage"
           imageInfo:
-            color: "#6FCFF7"
+            png: "img/legend_imgs/png/fp_low.png"
       ],
         legendHeading: "Flood Potential"
         heading: "Flood Potential"
@@ -353,47 +343,47 @@ dataLayers = [
           caption: "Lowest"
           imageTemplateId: "fireImage"
           imageInfo:
-            color: "rgb(130,160,104)"
+            png: "img/legend_imgs/png/fri_1.png"
         ,
           caption: ""
           imageTemplateId: "fireImage"
           imageInfo:
-            color: "rgb(177,207,158)"
+            png: "img/legend_imgs/png/fri_2.png"
         ,
           caption: ""
           imageTemplateId: "fireImage"
           imageInfo:
-            color: "rgb(205,197,138)"
+            png: "img/legend_imgs/png/fri_3.png"
         ,
           caption: ""
           imageTemplateId: "fireImage"
           imageInfo:
-            color: "rgb(255,255,175)"
+            png: "img/legend_imgs/png/fri_4.png"
         ,
           caption: ""
           imageTemplateId: "fireImage"
           imageInfo:
-            color: "rgb(254,202,104)"
+            png: "img/legend_imgs/png/fri_5.png"
         ,
           caption: ""
           imageTemplateId: "fireImage"
           imageInfo:
-            color: "rgb(253,154,8)"
+            png: "img/legend_imgs/png/fri_6.png"
         ,
           caption: ""
           imageTemplateId: "fireImage"
           imageInfo:
-            color: "rgb(251,61,8)"
+            png: "img/legend_imgs/png/fri_7.png"
         ,
           caption: ""
           imageTemplateId: "fireImage"
           imageInfo:
-            color: "rgb(193,0,6)"
+            png: "img/legend_imgs/png/fri_8.png"
         ,
           caption: "Highest"
           imageTemplateId: "fireImage"
           imageInfo:
-            color: "rgb(95,0,2)"
+            png: "img/legend_imgs/png/fri_9.png"
       ],
         legendHeading: "FRI Relative Risk"
         heading: "Relative Risk"
@@ -451,20 +441,21 @@ app.navToolCollection = new app.models.NavToolCollection navTools
 
 helpers = [
     new app.models.HelpModel
-      id: "baselayers-help"
-      ele: $ "#nav #menu .dropdown"
-      head: "Toggle Basemap Layers"
-      description: "Click the 'Base Layers' drop-down list to switch the basemap in the viewer."
-      placement: "right"
-      function: "toggle-dropdown"
-  ,
-    new app.models.HelpModel
       id: "baselayers-help2"
-      ele: $ "#banner"##nav #menu .dropdown #dropmenu #Aerial-toggle"
+      ele: $ "#banner"
       head: "Toggle Satellite Layer"
       description: "description here"
       placement: "bottom"
-      function: "toggle-imagery"
+      action: () -> $("#nav #menu .dropdown").toggleClass("open")
+  ,
+    new app.models.HelpModel
+      id: "baselayers-help"
+      ele: $ "#nav #menu .dropdown #dropmenu"
+      head: "Toggle Basemap Layers"
+      description: "Click the 'Base Layers' drop-down list to switch the basemap in the viewer."
+      placement: "right"
+      action: () ->
+        $("#nav #menu .dropdown .dropdown-toggle").trigger("click")
   ,
     new app.models.HelpModel
       id: "menu-help"
@@ -472,6 +463,8 @@ helpers = [
       head: "Navigation Menu"
       description: "Description goes here."
       placement: "bottom"
+      action: () ->
+        $("#nav #menu .dropdown #dropmenu #AerialWithLabels-toggle").trigger "click"      
   ,
     new app.models.HelpModel
       id: "geocode-help"
