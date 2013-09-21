@@ -531,3 +531,6 @@ app.geocodeView = new app.GeocodeView
 
 # Add a scalebar
 app.map.addControl new L.Control.Scale()
+
+# Deal with old browsers
+app.views.badModalView({el: "body"}).render()

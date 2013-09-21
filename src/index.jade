@@ -55,6 +55,18 @@ html(lang="en")
                     button.btn(data-dismiss="modal", aria-hidden="true") Cancel
                     button.btn.btn-primary(data-dismiss="modal") Continue
 
+        script#your-browser-sucks-modal(type="text/html")
+            .modal.hide.fade(id="bad-browser-modal", role="dialog", aria-labelledby="bad-browser-header", aria-hidden="true")
+                .modal-header
+                    h3(id="bad-browser-header") You are using an old Web Browser
+                .modal-body
+                    p This site displays a lot of information, and as a result will not perform well in Internet Explorer version 8 or older. Please consider using another browser:
+                    ul
+                        li: a(href="https://www.google.com/intl/en/chrome/browser/") Google Chrome
+                        li: a(href="http://www.mozilla.org/en-US/firefox/new/") Mozilla Firefox
+                .modal-footer
+                    button.btn.btn-primary(data-dismiss="modal") Continue
+
         script#layer-modal(type="text/html")
             .modal.hide.fade(id!="<%= model.get('id') %>-modal", role="dialog", aria-labelledby!="<%= model.get('id') %>-header", aria-hidden="true")
                 .modal-header
@@ -265,4 +277,5 @@ html(lang="en")
         script(src="scripts/view-print.js")
         script(src="scripts/model-help.js")
         script(src="scripts/view-help.js")
+        script(src="scripts/view-sorry-your-browser-sucks-modal.js")
         script(src="scripts/app.js")

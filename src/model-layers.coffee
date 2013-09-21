@@ -67,7 +67,7 @@ class app.models.GeoJSONLayer extends app.models.LayerModel
       thisModel = @
 
       app.data[callbackName] = (data) ->
-        layerType = if options.useD3 and not (L.Browser.ie and L.Browser.msTouch) then L.GeoJSON.d3 else L.GeoJSON
+        layerType = if options.useD3 and not L.Browser.ielt9 then L.GeoJSON.d3 else L.GeoJSON
         layer = new layerType data, options.layerOptions
         thisModel.set "layer", layer
         thisModel.trigger "layerLoaded", layer
