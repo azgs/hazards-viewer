@@ -55,18 +55,6 @@ html(lang="en")
                     button.btn(data-dismiss="modal", aria-hidden="true") Cancel
                     button.btn.btn-primary(data-dismiss="modal") Continue
 
-        script#your-browser-sucks-modal(type="text/html")
-            .modal.hide.fade(id="bad-browser-modal", role="dialog", aria-labelledby="bad-browser-header", aria-hidden="true")
-                .modal-header
-                    h3(id="bad-browser-header") You are using an old Web Browser
-                .modal-body
-                    p This site displays a lot of information, and as a result will not perform well in Internet Explorer version 8 or older. Please consider using another browser:
-                    ul
-                        li: a(href="https://www.google.com/intl/en/chrome/browser/") Google Chrome
-                        li: a(href="http://www.mozilla.org/en-US/firefox/new/") Mozilla Firefox
-                .modal-footer
-                    button.btn.btn-primary(data-dismiss="modal") Continue
-
         script#layer-modal(type="text/html")
             .modal.hide.fade(id!="<%= model.get('id') %>-modal", role="dialog", aria-labelledby!="<%= model.get('id') %>-header", aria-hidden="true")
                 .modal-header
@@ -164,36 +152,22 @@ html(lang="en")
                 td.legend-text <%= model.get("caption") %>
 
         script#quakeImage(type="text/html")
-            svg(xmlns="http://www.w3.org/2000/svg", version="1.1",
-                    style!="height:<%= 2 * (info.radius + 4) %>px;width:<%= 2 * (info.radius + 4) %>px")
-                circle(cx!="<%= info.radius + 4 %>", cy!="<%= info.radius + 4 %>", r!="<%= info.radius %>",
-                        stroke!="<%= info.color %>", stroke-width!="2", fill-opacity="0.2", fill!="<%= info.color %>")
+            img(src!="<%= info.png %>")
 
         script#quakeIntensityImage(type="text/html")
-            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:24px;height:24px;")
-                polygon(points="4,20 12,4 20,20",
-                        stroke-width="2", stroke="#F24BE7", fill="#F24BE7", fill-opacity="0.2")
+            img(src="img/legend_imgs/png/eq_old.png")
 
         script#faultImage(type="text/html")
-            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:48px;")
-                path(d="M 5 40 q 20 -60 40 -20",
-                        stroke-width="2", stroke!="<%= info.color %>", fill="none")
+            img(src!="<%= info.png %>")
 
         script#fissureImage(type="text/html")
-            svg(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:48px;")
-                path(d="M 5 40 q 20 -60 40 -20",
-                        stroke-width="2", stroke!="<%= info.color %>", fill="none",
-                        stroke-dasharray!="<%= info.dashed %>")
+            img(src!="<%= info.png %>")
 
         script#floodImage(type="text/html")
-            svg.rect(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:50px;")
-                rect(width="40", height="40",
-                        stroke="none", fill!="<%= info.color %>", fill-opacity="0.6")
+            img(src!="<%= info.png %>")
 
         script#fireImage(type="text/html")
-            svg.rect(xmlns="http://www.w3.org/2000/svg", version="1.1", style="width:50px;height:30px;")
-                rect(y="6", width="40", height="20",
-                        stroke="none", fill!="<%= info.color %>", fill-opacity="0.6")
+            img(src!="<%= info.png %>")
 
         script#downloadBody(type="text/html")
             #downloadModalBody
@@ -230,7 +204,9 @@ html(lang="en")
         script#localHazards(type="text/html")
             h4 Nearby Natural Hazards
             p.muted Searched for hazards near <%= location %>
-            p View suggestions to prepare and protect yourself from natural hazards in your area:
+            p View suggestions to prepare and protect yourself from natural hazards in your area.
+            p: em Please be aware that this feature does not currently indicate your exposure to wildfire risk.
+                a#turn-on-fires(href="#")  View wildfire risk
             <% for (var key in result) { if (result[key].hasOwnProperty('count') && result[key].count > 0) { %>
             p
                 span: strong  <%= key %>
@@ -277,5 +253,4 @@ html(lang="en")
         script(src="scripts/view-print.js")
         script(src="scripts/model-help.js")
         script(src="scripts/view-help.js")
-        script(src="scripts/view-sorry-your-browser-sucks-modal.js")
         script(src="scripts/app.js")

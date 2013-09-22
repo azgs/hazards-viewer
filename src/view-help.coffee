@@ -22,12 +22,6 @@ class views.HelpView extends Backbone.View
 	events: ->
 		"click #mainHelp-btn": "doHelp"
 
-	triggerEvents = (triggerFunction) ->
-		if triggerFunction == "toggle-dropdown"
-			$("#nav #menu .dropdown").toggleClass "open"
-		else if triggerFunction == "toggle-imagery"
-			$("#nav #menu .dropdown #dropmenu #Aerial-toggle").trigger "click"
-
 	doPopover = ->
 		initialize: (collection) ->
 			@collection = collection
@@ -60,8 +54,8 @@ class views.HelpView extends Backbone.View
 			@step = (if @step + 1 > 5 then 0 else @step + 1)
 			if @step != 0
 				@collection.models[@step - 1].attributes.ele.popover "show"
-				@function = @collection.models[@step - 1].attributes.function
-				if @function then triggerEvents(@function)
+				@action = @collection.models[@step - 1].attributes.action
+				if @action then @action()
 
 				$(".tutorial-cancel").one "click", (e) ->
 		        	cancel.call self
@@ -72,7 +66,13 @@ class views.HelpView extends Backbone.View
 		    	@cancel()
 
 	doHelp: () ->
+		col = @collection
+
+		runPopover = () ->
+			doPop = doPopover()
+			doPop.initialize(col)
+			doPop.next()
+
+		@$el.on 'hidden', runPopover
+			
 		@$el.modal "hide"
-		doPop = doPopover()
-		doPop.initialize(@collection)
-		doPop.next()
