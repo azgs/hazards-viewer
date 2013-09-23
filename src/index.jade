@@ -213,9 +213,9 @@ html(lang="en")
                   a(href!="<%= result[key].mitigationUrl %>", target="_blank") Mitigation tips
             <% } } %>
             div: strong <%= result.contacts.name %> Emergency Websites
-            div: a(href!="<%= result.contacts.county %>") County Site
-            div: a(href!="<%= result.contacts.emergency %>") Emergency Management
-            div: a(href!="<%= result.contacts.floods %>") Flood Control
+            div: a(href!="<%= result.contacts.county %>", target="_blank") County Site
+            div: a(href!="<%= result.contacts.emergency %>", target="_blank") Emergency Management
+            div: a(href!="<%= result.contacts.floods %>", target="_blank") Flood Control
 
 
         script#defaultPopup(type="text/html")
