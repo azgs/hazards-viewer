@@ -55,6 +55,18 @@ html(lang="en")
                     button.btn(data-dismiss="modal", aria-hidden="true") Cancel
                     button.btn.btn-primary(data-dismiss="modal") Continue
 
+        script#your-browser-sucks-modal(type="text/html")
+            .modal.hide.fade(id="bad-browser-modal", role="dialog", aria-labelledby="bad-browser-header", aria-hidden="true")
+                .modal-header
+                    h3(id="bad-browser-header") You are using an old Web Browser
+                .modal-body
+                    p This site displays a lot of information, and as a result will not perform well in Internet Explorer version 8 or older. Please consider using another browser:
+                    ul
+                        li: a(href="https://www.google.com/intl/en/chrome/browser/") Google Chrome
+                        li: a(href="http://www.mozilla.org/en-US/firefox/new/") Mozilla Firefox
+                .modal-footer
+                    button.btn.btn-primary(data-dismiss="modal") Continue
+
         script#layer-modal(type="text/html")
             .modal.hide.fade(id!="<%= model.get('id') %>-modal", role="dialog", aria-labelledby!="<%= model.get('id') %>-header", aria-hidden="true")
                 .modal-header
@@ -90,13 +102,12 @@ html(lang="en")
                     button.btn.btn-primary(data-dismiss="modal") Close
 
         script#print-tool(type="text/html")
-            p This tool allows you to preview and print a static map.  Click 'preview' first to add some customization to your map, like a title.  Click reset at any time to reload this window.
-            input(id="title-input",type="text",name="title",placeholder="Enter a title for the map")
-            input(id="attrib-input",type="text",name="attrib",placeholder="Enter attribution info")
+            p This tool allows you to preview and print a static map.  Click 'preview' first to add some customization to your map, like a title.  Don't worry if you see scrollbars or other elements that wouldn't function on paper.  We will resize everything to an 8.5' x 11' sheet of paper for you.  Click reset at any time to reload this window.
 
         script#print-container(type="text/html")
             #print-container
-                input(id="title-input",type="text",name="title",placeholder="Type a Title and Press Enter")
+                #print-title
+                    input(id="title-input",type="text",name="title",placeholder="Enter a title for the map")
                 #preview-map-container
                 #legend-container
                     h4 Legend
@@ -214,9 +225,9 @@ html(lang="en")
                   a(href!="<%= result[key].mitigationUrl %>", target="_blank") Mitigation tips
             <% } } %>
             div: strong <%= result.contacts.name %> Emergency Websites
-            div: a(href!="<%= result.contacts.county %>") County Site
-            div: a(href!="<%= result.contacts.emergency %>") Emergency Management
-            div: a(href!="<%= result.contacts.floods %>") Flood Control
+            div: a(href!="<%= result.contacts.county %>", target="_blank") County Site
+            div: a(href!="<%= result.contacts.emergency %>", target="_blank") Emergency Management
+            div: a(href!="<%= result.contacts.floods %>", target="_blank") Flood Control
 
 
         script#defaultPopup(type="text/html")
@@ -253,4 +264,5 @@ html(lang="en")
         script(src="scripts/view-print.js")
         script(src="scripts/model-help.js")
         script(src="scripts/view-help.js")
+        script(src="scripts/view-sorry-your-browser-sucks-modal.js")
         script(src="scripts/app.js")

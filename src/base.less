@@ -295,7 +295,7 @@ path[styler="2.13.4"] {
 }
 
 // Center earthquakes legend symbology
-#earthquakes-legend .legend-image-magnitude svg {
+#earthquakes-legend .legend-image-magnitude img {
   display:block;
   margin:auto;
 }
@@ -315,6 +315,18 @@ path[styler="2.13.4"] {
   border-style: solid;
   border-color: black;
   border-width:3px;
+}
+
+#legend-container h4 {
+  margin:0px 0px 0px 6px;
+}
+
+#legend-container .table th {
+  padding: 2px 0px 2px 6px;
+}
+
+#legend-container img {
+  padding: 2px 4px 2px 6px;
 }
 
 #print-container #legend-container {
@@ -350,6 +362,17 @@ path[styler="2.13.4"] {
   }
   #title {
     visibility: visible;
+  }
+  #legend-container h4 {
+    margin:0px 0px 0px 6px;
+  }
+
+  #legend-container .table th {
+    padding: 2px 0px 2px 6px;
+  }
+
+  #legend-container img {
+    padding: 2px 4px 2px 6px;
   }
   #print-container {
     visibility: visible;
@@ -476,4 +499,22 @@ path[styler="2.13.4"] {
   th, td {
     min-width: 40px;
   }
+}
+
+.help-hover {
+  background-color: #6d7a4c;
+}
+.popover {
+  width: 250px;
+}
+#sidebar .popover .popover-content p {
+  font-size: 14px;
+  text-align: left;
+}
+.popover .popover-content .btn-group {
+    margin: 10px 0px;
+    text-align: center;
+}
+.popover .popover-content .btn-group .tutorial-finish {
+  margin: 0px 50%;
 }
