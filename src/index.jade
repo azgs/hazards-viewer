@@ -90,13 +90,12 @@ html(lang="en")
                     button.btn.btn-primary(data-dismiss="modal") Close
 
         script#print-tool(type="text/html")
-            p This tool allows you to preview and print a static map.  Click 'preview' first to add some customization to your map, like a title.  Click reset at any time to reload this window.
-            input(id="title-input",type="text",name="title",placeholder="Enter a title for the map")
-            input(id="attrib-input",type="text",name="attrib",placeholder="Enter attribution info")
+            p This tool allows you to preview and print a static map.  Click 'preview' first to add some customization to your map, like a title.  Don't worry if you see scrollbars or other elements that wouldn't function on paper.  We will resize everything to an 8.5' x 11' sheet of paper for you.  Click reset at any time to reload this window.
 
         script#print-container(type="text/html")
             #print-container
-                input(id="title-input",type="text",name="title",placeholder="Type a Title and Press Enter")
+                #print-title
+                    input(id="title-input",type="text",name="title",placeholder="Enter a title for the map")
                 #preview-map-container
                 #legend-container
                     h4 Legend
