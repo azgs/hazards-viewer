@@ -43,6 +43,17 @@ class app.GeocodeView extends Backbone.View
 
         # Open the Popups immediately
         ( layer.openPopup() for key, layer of l._layers )
+        
+        # Fire toggler
+        $('#turn-on-fires').one 'click', (evt) ->
+          fires = _.first app.dataLayerCollection.filter (model) ->
+            return model.id is 'fireRisk'
+
+          if not fires.get 'active'
+            $('#fireRisk-toggle').trigger 'click'
+            ( layer.closePopup() for key, layer of l._layers )
+
+        return
 
 class app.HelpGeocodeView extends Backbone.View
 
@@ -80,3 +91,15 @@ class app.HelpGeocodeView extends Backbone.View
 
       # Open the Popups immediately
       ( layer.openPopup() for key, layer of l._layers )
+
+      # Fire toggler
+      $('#turn-on-fires').one 'click', (evt) ->
+        fires = _.first app.dataLayerCollection.filter (model) ->
+          return model.id is 'fireRisk'
+
+        if not fires.get 'active'
+          $('#fireRisk-toggle').trigger 'click'
+          ( layer.closePopup() for key, layer of l._layers )
+
+      return
+
