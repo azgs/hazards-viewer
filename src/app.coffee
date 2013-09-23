@@ -433,52 +433,73 @@ navTools = [
     new app.models.NavToolModel
       id: "mainHelp"
       toolName: "Help"
-      modalName: "How Do I Do This?"
-      modalBody: "Not Implemented Yet"
+      modalName: "What Does All Of This Do?"
+      modalBody: "Welcome to the Arizona Natural Hazards Viewer!  Whether you intended to come here or somehow ended up here accidentally, there's no better time than now to educate yourself about natural hazards in your area.  The main audience for this data viewer is intended to be people who normally don't have access to geo-scientific data/software.  We designed this help tutorial to educate users about what this data viewer does and how to do it.  If you're wondering what all of these fancy buttons do, click the blue 'Help!' button to take a tour!"
 ]
 
 app.navToolCollection = new app.models.NavToolCollection navTools
 
+app.setHover = () -> $("#nav #menu .dropdown #dropmenu #AerialWithLabels-toggle").addClass "help-hover"
+app.removeHover = () -> $("#nav #menu .dropdown #dropmenu #AerialWithLabels-toggle").removeClass "help-hover"
+app.switchLayer = () -> $("#nav #menu .dropdown #dropmenu #AerialWithLabels-toggle").trigger "click"
+app.toggleQuakes = () -> $("#earthquakes-toggle.layerToggle").trigger "click"
+
 helpers = [
     new app.models.HelpModel
       id: "baselayers-help2"
-      ele: $ "#banner"
-      head: "Toggle Satellite Layer"
-      description: "description here"
+      ele: $ "#nav #menu"
+      head: "Main Navigation Menu"
+      description: "This is the main navigation bar.  Clicking most of these buttons will generate a dialog box with further instructions on how to interact with the application.  For the sake of example, let's have a look at the 'Base Layers' button."
       placement: "bottom"
-      action: () -> $("#nav #menu .dropdown").toggleClass("open")
+      action: () ->
+        $(".tutorial-next").click () ->
+          $(".dropdown-menu").toggle()
   ,
     new app.models.HelpModel
       id: "baselayers-help"
       ele: $ "#nav #menu .dropdown #dropmenu"
       head: "Toggle Basemap Layers"
-      description: "Click the 'Base Layers' drop-down list to switch the basemap in the viewer."
+      description: "Basemap layers can be switched through this menu."
       placement: "right"
       action: () ->
-        $("#nav #menu .dropdown .dropdown-toggle").trigger("click")
+        setTimeout app.setHover,1000
+        setTimeout app.switchLayer,2000
+        setTimeout app.removeHover,3000
+        $(".tutorial-next").click () ->
+          $(".dropdown-menu").toggle()
+  ,
+    new app.models.HelpModel
+      id: "legend-help"
+      ele: $ "#sidebar #layer-list"
+      head: "Data Layer List"
+      description: "Here is where you can interact with the data.  Click a button to switch a data layer 'on'.  Click a layer name to find out more information about a dataset."
+      placement: "left"
+      action: () ->
+        setTimeout app.toggleQuakes,1000
   ,
     new app.models.HelpModel
       id: "menu-help"
-      ele: $ "#nav #menu"
-      head: "Navigation Menu"
-      description: "Description goes here."
-      placement: "bottom"
-      action: () ->
-        $("#nav #menu .dropdown #dropmenu #AerialWithLabels-toggle").trigger "click"      
+      ele: $ "#sidebar"
+      head: "Data Layer Legend"
+      description: "Clicking a data layer 'on' will also generate a legend for that layer, where you can see how features on the map are symbolized.  Some data layers (like this one) support filtering within the dataset so that you can better focus what you are looking at."
+      placement: "left"
+      action: () -> 
+        $(".tutorial-next").click () ->
+          $("#earthquakes-toggle.layerToggle").trigger("click")
   ,
     new app.models.HelpModel
       id: "geocode-help"
       ele: $ "#nav #geocoder"
       head: "Geocoder"
-      description: "description goes here"
-      placement: "left"
-  ,
-    new app.models.HelpModel
-      id: "legend-help"
-      ele: $ "#sidebar #layer-list"
-      head: "Legend"
-      description: "description here"
-      placement: "left"
+      description: "Finally, you can enter a street address to discover local hazards in your area.  Upon pressing the 'enter' button on your keyboard, your address will be run through an algorithm which uses a 5km search radius to return natural hazards you should be aware about at a local level."
+      placement: "bottom"
+      action: () ->
+        $("#nav #geocoder .search-query").val "416 W Congress St, Tucson, AZ 85701"
+        app.geocodeView = new app.HelpGeocodeView
+          model: new app.GeocodeModel
+            apiKey: app.bingApiKey
+            value: $("#nav #geocoder .search-query").val()
+          el: $ "#geocoder"    
 ]
 
 app.helpersCollection = new app.models.HelpCollection helpers

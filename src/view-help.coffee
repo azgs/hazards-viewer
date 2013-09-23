@@ -27,10 +27,13 @@ class views.HelpView extends Backbone.View
 			@collection = collection
 			@step = 0
 			@collection.forEach (model, index) ->
-				content = "<p>" + model.get("description") + "   " + index + "</p>"
+				content = "<p>" + model.get("description") + "</p>"
 				cancelText = if index != 4 then "Cancel Tutorial" else "Finish Tutorial"
-				content += "<div class='btn-group pull-right'>"
-				content += "<button class='btn tutorial-cancel' href='#'>" + cancelText + "</button>"
+				content += "<div class='btn-group'>"
+				if index != 4
+					content += "<button class='btn tutorial-cancel' href='#'>" + cancelText + "</button>" 
+				else 
+					content += "<button class='btn tutorial-finish' href='#'>" + cancelText
 				if index != 4 then content += "<button class='btn btn-primary tutorial-next' href='#'> Next Step > </button>"
 				content += "</div>"
 
@@ -56,6 +59,9 @@ class views.HelpView extends Backbone.View
 				@collection.models[@step - 1].attributes.ele.popover "show"
 				@action = @collection.models[@step - 1].attributes.action
 				if @action then @action()
+
+				$(".tutorial-finish").one "click", (e) ->
+		        	cancel.call self
 
 				$(".tutorial-cancel").one "click", (e) ->
 		        	cancel.call self
