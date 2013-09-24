@@ -162,22 +162,7 @@ html(lang="en")
                 td(class!="legend-image-" + "<%= model.get('attribute') %>")
                 td.legend-text <%= model.get("caption") %>
 
-        script#quakeImage(type="text/html")
-            img(src!="<%= info.png %>")
-
-        script#quakeIntensityImage(type="text/html")
-            img(src="img/legend_imgs/png/eq_old.png")
-
-        script#faultImage(type="text/html")
-            img(src!="<%= info.png %>")
-
-        script#fissureImage(type="text/html")
-            img(src!="<%= info.png %>")
-
-        script#floodImage(type="text/html")
-            img(src!="<%= info.png %>")
-
-        script#fireImage(type="text/html")
+        script#imageTemplate(type="text/html")
             img(src!="<%= info.png %>")
 
         script#downloadBody(type="text/html")
