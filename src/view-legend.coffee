@@ -57,7 +57,7 @@ class views.LegendItemView extends Backbone.View
   render: () ->
     itemTemplate = @itemTemplate
     # Append the legend item template
-    thisone = $(itemTemplate({model: @model, filter: @filterable}).replace(/\n|\t|  /g, "")).appendTo @$el
+    thisone = $(itemTemplate({model: @model, filter: @filterable}).replace(/\n|\r|\t|  /g, "")).appendTo @$el
 
     # Append the legend image template
     attribute = model.get "attribute"
@@ -92,7 +92,7 @@ class views.PrintLegendView extends Backbone.View
 
     @collection.forEach (model) ->
       # Append the legend item template
-      thisone = $(itemTemplate({model: model, filter: filterable}).replace(/\n|\t|  /g, "")).appendTo el
+      thisone = $(itemTemplate({model: model, filter: filterable}).replace(/\n|\t|\r|  /g, "")).appendTo el
       # Append the legend image template
       attribute = model.get "attribute"
       thisone.children(".legend-image-"+attribute).append model.get "image"
