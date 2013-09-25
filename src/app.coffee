@@ -1,7 +1,5 @@
 # Setup a global object to stash our work in
 
-#console.log = () -> window.buff_temp = arguments
-
 root = @
 if not root.app? then app = root.app = {} else app = root.app
 
