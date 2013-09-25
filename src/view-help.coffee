@@ -21,6 +21,7 @@ class views.HelpView extends Backbone.View
 
 	events: ->
 		"click #mainHelp-btn": "doHelp"
+		"click .tutorial-finish": "cleanup"
 
 	doPopover = ->
 		initialize: (collection) ->
@@ -48,6 +49,8 @@ class views.HelpView extends Backbone.View
 		cancel: ->
 			@collection.models[@step - 1].attributes.ele.popover "hide" if @step != 0
 			@isCanceled = true
+			$("#Road-toggle").trigger("click")
+			$(".dropdown-menu").css "display", ""
 
 		next: ->
 			next = @next

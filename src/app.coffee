@@ -47,7 +47,6 @@ dataLayers = [
           caption: "Continuous Earth Fissure"
           attribute: "fisstype"
           value: "Continuous"
-          imageTemplateId: "fissureImage"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/ef_continuous.png"
@@ -55,7 +54,6 @@ dataLayers = [
           caption: "Discontinuous"
           attribute: "fisstype"
           value: "Discontinuous"
-          imageTemplateId: "fissureImage"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/ef_discontinuous.png"
@@ -63,7 +61,6 @@ dataLayers = [
           caption: "Reported/Unconfirmed"
           attribute: "fisstype"
           value: "Reported/Unconfirmed"
-          imageTemplateId: "fissureImage"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/ef_reported.png"
@@ -106,7 +103,6 @@ dataLayers = [
           caption: "Within 10,000 years"
           attribute: "symbol"
           value: "2.13.2"
-          imageTemplateId: "faultImage"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/af_10k.png"
@@ -114,7 +110,6 @@ dataLayers = [
           caption: "Within 750,000 years"
           attribute: "symbol"
           value: "2.13.3"
-          imageTemplateId: "faultImage"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/af_750k.png"
@@ -122,7 +117,6 @@ dataLayers = [
           caption: "Within 2.5 million years"
           attribute: "symbol"
           value: "2.13.4"
-          imageTemplateId: "faultImage"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/af_2m.png"
@@ -172,13 +166,13 @@ dataLayers = [
           caption: "Older Earthquakes"
           attribute: "magnitude"
           value: "contains(I,II,III,IV,V,VI,VII,VIII)"
-          imageTemplateId: "quakeIntensityImage"
           active: true
+          imageInfo:
+            png: "img/legend_imgs/png/eq_old.png"
         ,
           caption: "2 - 3"
           attribute: "magnitude"
           value: "[1.9, 3.1]"
-          imageTemplateId: "quakeImage"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_23.png"
@@ -186,7 +180,6 @@ dataLayers = [
           caption: "3 - 4"
           attribute: "magnitude"
           value: "[2.9, 4.1]"
-          imageTemplateId: "quakeImage"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_34.png"
@@ -194,7 +187,6 @@ dataLayers = [
           caption: "4 - 5"
           attribute: "magnitude"
           value: "[3.9, 5.1]"
-          imageTemplateId: "quakeImage"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_45.png"
@@ -202,7 +194,6 @@ dataLayers = [
           caption: "5 - 6"
           attribute: "magnitude"
           value: "[4.9, 6.1]"
-          imageTemplateId: "quakeImage"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_56.png"
@@ -210,7 +201,6 @@ dataLayers = [
           caption: "6 - 7"
           attribute: "magnitude"
           value: "[5.9, 7.1]"
-          imageTemplateId: "quakeImage"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_67.png"
@@ -218,7 +208,6 @@ dataLayers = [
           caption: "7 - 8"
           attribute: "magnitude"
           value: "[6.9, 8.1]"
-          imageTemplateId: "quakeImage"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_78.png"
@@ -309,12 +298,10 @@ dataLayers = [
       lastUpdate: "May, 2010"
       legend: new app.models.Legend [
           caption: "High"
-          imageTemplateId: "floodImage"
           imageInfo:
             png: "img/legend_imgs/png/fp_high.png"
         ,
           caption: "Medium"
-          imageTemplateId: "floodImage"
           imageInfo:
             png: "img/legend_imgs/png/fp_low.png"
       ],
@@ -344,47 +331,38 @@ dataLayers = [
       active: false
       legend: new app.models.Legend [
           caption: "Lowest"
-          imageTemplateId: "fireImage"
           imageInfo:
             png: "img/legend_imgs/png/fri_1.png"
         ,
           caption: ""
-          imageTemplateId: "fireImage"
           imageInfo:
             png: "img/legend_imgs/png/fri_2.png"
         ,
           caption: ""
-          imageTemplateId: "fireImage"
           imageInfo:
             png: "img/legend_imgs/png/fri_3.png"
         ,
           caption: ""
-          imageTemplateId: "fireImage"
           imageInfo:
             png: "img/legend_imgs/png/fri_4.png"
         ,
           caption: ""
-          imageTemplateId: "fireImage"
           imageInfo:
             png: "img/legend_imgs/png/fri_5.png"
         ,
           caption: ""
-          imageTemplateId: "fireImage"
           imageInfo:
             png: "img/legend_imgs/png/fri_6.png"
         ,
           caption: ""
-          imageTemplateId: "fireImage"
           imageInfo:
             png: "img/legend_imgs/png/fri_7.png"
         ,
           caption: ""
-          imageTemplateId: "fireImage"
           imageInfo:
             png: "img/legend_imgs/png/fri_8.png"
         ,
           caption: "Highest"
-          imageTemplateId: "fireImage"
           imageInfo:
             png: "img/legend_imgs/png/fri_9.png"
       ],
@@ -437,7 +415,7 @@ navTools = [
       id: "mainHelp"
       toolName: "Help"
       modalName: "What Does All Of This Do?"
-      modalBody: "Welcome to the Arizona Natural Hazards Viewer!  Whether you intended to come here or somehow ended up here accidentally, there's no better time than now to educate yourself about natural hazards in your area.  The main audience for this data viewer is intended to be people who normally don't have access to geo-scientific data/software.  We designed this help tutorial to educate users about what this data viewer does and how to do it.  If you're wondering what all of these fancy buttons do, click the blue 'Help!' button to take a tour!"
+      modalBody: "Welcome to the Arizona Natural Hazards Viewer!  Whether you intended to come here or somehow ended up here accidentally, there's no better time than now to educate yourself about natural hazards in your area.  The main audience for this data viewer is intended to be people who normally don't have access to geo-scientific data/software.  We designed this help tutorial to educate users about what this data viewer does and how to do it.  If you're wondering what all of these fancy buttons do, click the blue 'Help!' button to take a tour!  If you have any feedback or questions, you can contact the Arizona Geological Survey at AZHazardViewer@azgs.az.gov."
 ]
 
 app.navToolCollection = new app.models.NavToolCollection navTools
@@ -456,7 +434,7 @@ helpers = [
       placement: "bottom"
       action: () ->
         $(".tutorial-next").click () ->
-          $(".dropdown-menu").toggle()
+          $(".dropdown-menu").css "display", "block"
   ,
     new app.models.HelpModel
       id: "baselayers-help"
@@ -469,7 +447,7 @@ helpers = [
         setTimeout app.switchLayer,2000
         setTimeout app.removeHover,3000
         $(".tutorial-next").click () ->
-          $(".dropdown-menu").toggle()
+          $(".dropdown-menu").css "display", ""
   ,
     new app.models.HelpModel
       id: "legend-help"
@@ -494,15 +472,17 @@ helpers = [
       id: "geocode-help"
       ele: $ "#nav #geocoder"
       head: "Geocoder"
-      description: "Finally, you can enter a street address to discover local hazards in your area.  Upon pressing the 'enter' button on your keyboard, your address will be run through an algorithm which uses a 5km search radius to return natural hazards you should be aware about at a local level."
+      description: "Finally, you can enter a street address to discover local hazards in your area.  Upon pressing the 'enter' button on your keyboard, your address will be run through an algorithm which uses a 3 mile search radius to return natural hazards you should be aware about at a local level."
       placement: "bottom"
       action: () ->
         $("#nav #geocoder .search-query").val "416 W Congress St, Tucson, AZ 85701"
-        app.geocodeView = new app.HelpGeocodeView
+        app.geocodeViewHelp = new app.GeocodeView
           model: new app.GeocodeModel
             apiKey: app.bingApiKey
             value: $("#nav #geocoder .search-query").val()
-          el: $ "#geocoder"    
+          el: $ "#geocoder"
+        app.geocodeViewHelp.geocode 
+          keyCode: 13
 ]
 
 app.helpersCollection = new app.models.HelpCollection helpers
