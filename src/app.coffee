@@ -16,7 +16,7 @@ app.map = new L.Map "map",
   minZoom: 6
   maxZoom: 15
 
-app.geoserverUrl = "http://data.usgin.org/arizona/ows"
+app.geoserverUrl = "http://data.azgs.az.gov/arizona/ows"
 
 # Setup data layers
 dataLayers = [
