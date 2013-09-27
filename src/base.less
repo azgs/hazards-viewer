@@ -307,11 +307,26 @@ path[styler="2.13.4"] {
 }
 
 // Print modal
+#print-preview-modal {
+  width: 67%;
+  margin-left: -35%;
+  top: 2%;
+  overflow: auto;
+}
+
+#print-preview-modal .modal-body {
+  max-height: 700px;
+}
+
+#legend-container {
+  max-height: 600px;
+}
+
 #preview-map-container {
   display: inline;
   float:left;
   width: 700px;
-  height:600px;
+  height: 600px;
   border-style: solid;
   border-color: black;
   border-width:3px;
@@ -353,11 +368,16 @@ path[styler="2.13.4"] {
   body * {
     visibility: hidden;
   }
-  #print-modal .modal-body * {
+  #print-preview-modal {
+    width: 1000px;
+    margin-left: -35%;
+    top: 2%;
+  }
+  #print-preview-modal .modal-body * {
     visibility: visible;
     padding:0;
   }
-  #print-modal .modal-footer * {
+  #print-preview-modal .modal-footer * {
     display: none;
   }
   #title {

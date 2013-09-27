@@ -104,13 +104,18 @@ html(lang="en")
         script#print-tool(type="text/html")
             p This tool allows you to preview and print a static map.  Click 'preview' first to add some customization to your map, like a title.  Don't worry if you see scrollbars or other elements that wouldn't function on paper.  We will resize everything to an 8.5' x 11' sheet of paper for you.  Click reset at any time to reload this window.
 
-        script#print-container(type="text/html")
-            #print-container
-                #print-title
-                    input(id="title-input",type="text",name="title",placeholder="Enter a title for the map")
-                #preview-map-container
-                #legend-container
-                    h4 Legend
+        script#print-preview-container-modal(type="text/html")
+            .modal.hide.fade(id="print-preview-modal", role="dialog", aria-labelledby="print-preview-header", aria-hidden="true")
+                .modal-body
+                    #print-container
+                        #print-title
+                            input(id="title-input",type="text",name="title",placeholder="Enter a title for the map")
+                        #preview-map-container
+                        #legend-container
+                            h4 Legend
+                .modal-footer
+                    button.btn(id="reset-btn", data-dismiss="modal", aria-hidden="true") Reset
+                    button.btn.btn-primary(id="print-btn") Print
 
         script#print-legend-items(type="text/html")
             tr(class!="legend-item-" + "<%= model.get('attribute') %>")

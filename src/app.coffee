@@ -1,7 +1,5 @@
 # Setup a global object to stash our work in
 
-#console.log = () -> window.buff_temp = arguments
-
 root = @
 if not root.app? then app = root.app = {} else app = root.app
 
@@ -18,7 +16,7 @@ app.map = new L.Map "map",
   minZoom: 6
   maxZoom: 15
 
-app.geoserverUrl = "http://data.usgin.org/arizona/ows"
+app.geoserverUrl = "http://data.azgs.az.gov/arizona/ows"
 
 # Setup data layers
 dataLayers = [
