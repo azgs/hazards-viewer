@@ -2,7 +2,7 @@
 
 A map of natural hazards in Arizona. Built by the [AZGS](http://azgs.az.gov) and [ADEM]() with funding from [FEMA](http://www.fema.gov). The initial scope is to show information about [earth fissures](http://www.azgs.az.gov/EFC.shtml), geologically "active" faults, [earthquakes](http://azgs.az.gov/az-shakes/), [flood risks](http://www.azgs.az.gov/hazards_floods.shtml), and wildfire risk.
 
-The map itself can be viewed here: http://data.usgin.org/hazard-viewer/
+The map itself can be viewed here: http://data.azgs.az.gov/hazard-viewer/
 
 ## About these data
 
