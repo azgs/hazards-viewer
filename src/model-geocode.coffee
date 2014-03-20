@@ -171,7 +171,7 @@ class app.GeocodeModel extends Backbone.Model
         data = layer.get "currentData"
 
         # If there isn't any, we have to go get it
-        if not data?
+        if not data and layer.get("id") is not "floodPotential"?
           # This is currently hard-wired for floods, although this will get hit by any not-WFS layer
           callbackName = "localFloods"
           dataUrl = layer.dataUrl()
