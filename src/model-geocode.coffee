@@ -119,6 +119,8 @@ class app.GeocodeModel extends Backbone.Model
   # Lookup hazards in the area based on a spatial query
   getLocalHazards: (query, bufferDistance, hazardLayers, callback) ->
 
+    hazardLayers = (x for x in hazardLayers when x.id != "floodPotential")
+
     # Helper function to buffer a bbox and return L.LatLngBounds object
     bufferedBBox = (bbox, buffer) ->
       # Buffer the bbox: 1st generate geographic corner coordinates
@@ -171,7 +173,7 @@ class app.GeocodeModel extends Backbone.Model
         data = layer.get "currentData"
 
         # If there isn't any, we have to go get it
-        if not data and layer.get("id") is not "floodPotential"?
+        if not data?
           # This is currently hard-wired for floods, although this will get hit by any not-WFS layer
           callbackName = "localFloods"
           dataUrl = layer.dataUrl()
