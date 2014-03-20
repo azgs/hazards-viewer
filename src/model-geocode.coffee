@@ -120,6 +120,7 @@ class app.GeocodeModel extends Backbone.Model
   getLocalHazards: (query, bufferDistance, hazardLayers, callback) ->
 
     hazardLayers = (x for x in hazardLayers when x.id != "floodPotential")
+    hazardLayers = (x for x in hazardLayers when x.id != "fireRisk")
 
     # Helper function to buffer a bbox and return L.LatLngBounds object
     bufferedBBox = (bbox, buffer) ->
