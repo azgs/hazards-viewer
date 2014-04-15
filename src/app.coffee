@@ -16,7 +16,7 @@ app.map = new L.Map "map",
   minZoom: 6
   maxZoom: 15
 
-app.geoserverUrl = "http://159.87.39.6:8086/arizona-hazards/azgs/ows"
+app.geoserverUrl = "http://data.azgs.az.gov/arizona/azgs/ows"
 
 # Setup data layers
 dataLayers = [
@@ -274,9 +274,9 @@ dataLayers = [
     new app.models.WmsLayer
       id: "floodPotential"
       layerName: "Flood Potential"
-      serviceUrl: "http://159.87.39.6:8086/arizona-hazards/azgs/wms"
+      serviceUrl: "http://data.azgs.az.gov/arizona/azgs/wms"
       serviceType: "WMS"
-      wfsUrl: "http://159.87.39.6:8086/arizona-hazards/azgs/ows"
+      wfsUrl: "http://data.azgs.az.gov/arizona/azgs/ows"
       typeName: "azgs:highflood_statewide"
       active: false
       citation: "Arizona Division of Emergency Management"
