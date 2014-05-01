@@ -16,7 +16,7 @@ app.map = new L.Map "map",
   minZoom: 6
   maxZoom: 15
 
-app.geoserverUrl = "http://data.azgs.az.gov/arizona/azgs/ows"
+app.geoserverUrl = "http://data.azgs.az.gov/arizona-hazards/azgs/ows"
 
 # Setup data layers
 dataLayers = [
@@ -274,10 +274,10 @@ dataLayers = [
     new app.models.WmsLayer
       id: "floodPotential"
       layerName: "Flood Potential"
-      serviceUrl: "http://data.azgs.az.gov/arizona/azgs/wms"
+      serviceUrl: "http://data.azgs.az.gov/arizona-hazards/azgs/wms"
       serviceType: "WMS"
-      wfsUrl: "http://data.azgs.az.gov/arizona/azgs/ows"
-      typeName: "azgs:highflood_statewide"
+      wfsUrl: "http://data.azgs.az.gov/arizona-hazards/azgs/ows"
+      typeName: "azgs:floods"
       active: false
       citation: "Arizona Division of Emergency Management"
       details: '<p>This layer shows areas with potentially High and Medium Risk of flooding. Data are drawn from the Federal Emergency Management Agency (FEMA) digital flood insurance rate maps (DFIRM) database, dated May 2010. High flooding potential includes areas covered by all of the “A” Special Flood Hazard zones. These areas have a 1% annual chance of flooding, also known as the 100-year flood, and a 26% chance of flooding within the span of a 30-year mortgage. Medium flood potential includes  areas within the “Shaded X” zones. These are areas between the limits of the 100-year and 500-year flood zones.</p><p>The flood potential layer was created by JE Fuller/Hydrology and Geomorpholgy, Inc. for the Arizona Division of Emergency Management (ADEM), as part of a larger study for the <a href="http://www.dem.azdema.gov/operations/mitigation/hazmitplan/hazmitplan.html">2010 State of Arizona Multi-Hazard Mitigation Plan</a>. Data is current as of May 2010. These data are provided as guidance only. Local Flood Control Districts should be consulted for additional or more detailed information.</p>'
@@ -298,10 +298,6 @@ dataLayers = [
           caption: "High"
           imageInfo:
             png: "img/legend_imgs/png/fp_high.png"
-        ,
-          caption: "Medium"
-          imageInfo:
-            png: "img/legend_imgs/png/fp_low.png"
       ],
         legendHeading: "Flood Potential"
         heading: "Flood Potential"
