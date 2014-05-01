@@ -119,9 +119,6 @@ class app.GeocodeModel extends Backbone.Model
   # Lookup hazards in the area based on a spatial query
   getLocalHazards: (query, bufferDistance, hazardLayers, callback) ->
 
-    hazardLayers = (x for x in hazardLayers when x.id != "floodPotential")
-    hazardLayers = (x for x in hazardLayers when x.id != "fireRisk")
-
     # Helper function to buffer a bbox and return L.LatLngBounds object
     bufferedBBox = (bbox, buffer) ->
       # Buffer the bbox: 1st generate geographic corner coordinates
