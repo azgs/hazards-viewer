@@ -156,7 +156,7 @@ dataLayers = [
           url: "http://www.azein.gov/azein/Hazards%20%20Arizona/Earthquake.aspx?PageView=Shared"
       ]
       mitigationUrl: "mitigation/earthquakes.html"
-      lastUpdate: "Aug. 7, 2013"
+      lastUpdate: "June 30, 2014"
       description: '<h4>Layer Description</h4>'
       filterClause: "&filter=#{(new app.models.Filter([{calculated_magnitude: "[2.0,9.0]"}])).urlEncoded()}"
       active: false
