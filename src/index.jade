@@ -228,6 +228,9 @@ html(lang="en")
                     td <%= properties[i].value %>
                 <% } %>
 
+        script#eqTimeSlide(type="text/html")
+            #eq-time-slider
+
         script(src="http://code.jquery.com/jquery-1.9.1.min.js")
         script(src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")
         script(src="vendor/leaflet/leaflet.js")
@@ -242,6 +245,7 @@ html(lang="en")
         script(src="vendor/javascript.util.js")
         script(src="vendor/jsts.js")
         script(src="scripts/L.Draw.BoundedRectangle.js")
+        script(src="scripts/L.FilterGeoJSON.js")
         script(src="scripts/model-filter.js")
         script(src="scripts/model-legend.js")
         script(src="scripts/view-legend.js")
