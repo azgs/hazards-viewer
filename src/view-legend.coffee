@@ -98,3 +98,14 @@ class views.PrintLegendView extends Backbone.View
       thisone.children(".legend-image-"+attribute).append model.get "image"
 
     return @
+
+
+
+
+class views.EqSliderLegendView extends Backbone.View
+  initialize: (options) ->
+    @sliderTemplate = _.template $("#eqTimeSlider").html()
+
+  render: () ->
+    console.log @$el
+    @$el.prepend @sliderTemplate

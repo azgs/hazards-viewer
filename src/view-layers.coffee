@@ -25,11 +25,11 @@ class app.views.SidebarView extends Backbone.View
         el: el.find("##{model.get("id")}-legend")
       legendView.render()
 
+      # Render earthquakes time slider view
       if model.get("id") is "earthquakes"
-        console.log model
-      #eqSliderView = new views.EqSliderView
-      #  el: el
-      #legendView.render()
+        eqSliderLegendView = new views.EqSliderLegendView
+          el: el.find("##{model.get("id")}-legend-collapse")
+        eqSliderLegendView.render()
 
       # Setup a Modal dialog
       $("body").append modal
