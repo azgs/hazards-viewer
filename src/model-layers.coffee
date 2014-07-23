@@ -2,6 +2,7 @@
 root = @
 if not root.app? then app = root.app = {} else app = root.app
 if not app.models then models = app.models = {} else models = app.models
+if not app.views? then app.views = views = {} else views = app.views
 if not app.data then data = app.data = {} else data = app.data
 
 class app.models.LayerModel extends Backbone.Model
@@ -72,6 +73,25 @@ class app.models.GeoJSONLayer extends app.models.LayerModel
         thisModel.set "layer", layer
         thisModel.trigger "layerLoaded", layer
         thisModel.set "currentData", data
+
+        # Render earthquakes time slider view
+        if options.id is "earthquakes"
+          dates = []
+          _.each data.features, (d) ->
+            dates.push new Date d.properties.date
+
+          minDate = new Date(Math.min.apply(null, dates)).toISOString()
+          maxDate = new Date(Math.max.apply(null, dates)).toISOString()
+
+          thisModel.set "minDate", minDate
+          thisModel.set "maxDate", maxDate
+
+          eqSliderLegendView = new views.EqSliderLegendView
+            model: thisModel
+            minDate: thisModel.get "minDate"
+            maxDate: thisModel.get "maxDate"
+            el: $("#layer-list").find("##{options.id}-legend-collapse")
+          eqSliderLegendView.render()
 
       $.ajax
         url: jsonp

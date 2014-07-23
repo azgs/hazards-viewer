@@ -99,13 +99,22 @@ class views.PrintLegendView extends Backbone.View
 
     return @
 
-
-
-
 class views.EqSliderLegendView extends Backbone.View
   initialize: (options) ->
     @sliderTemplate = _.template $("#eqTimeSlider").html()
 
   render: () ->
-    console.log @$el
     @$el.prepend @sliderTemplate
+    maxDate = @options.maxDate
+    minDate = @options.minDate
+    layer = @model.get "layer"
+
+    $ ->
+      $("#eq-slider-widget").slider
+        range: "min"
+        value: new Date(maxDate).valueOf()
+        min: new Date(minDate).valueOf()
+        max: new Date(maxDate).valueOf()
+        slide: (event, ui) ->
+          layer.setFilter (f) ->
+            return new Date(f.properties.date).valueOf() > ui.value

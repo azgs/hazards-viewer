@@ -240,9 +240,6 @@ dataLayers = [
           return L.circleMarker latlng, markerOptions
 
         onEachFeature: (feature, layer) ->
-
-          d = new Date Date.parse feature.properties.date
-
           props = [
             key: "Date"
             value: d.toDateString()

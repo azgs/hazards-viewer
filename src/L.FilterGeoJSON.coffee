@@ -55,13 +55,6 @@ L.FilterGeoJSON = L.FeatureGroup.extend(
     else if @options.filter(json)
       pointToLayer = @_style.pointToLayer
       layer = L.GeoJSON.geometryToLayer(json, pointToLayer)
-      title = json.properties.source
-      uid = json.properties.uid
-      html = "<div id=\"map-content\"><h6>" + title + "</h6>"
-      html += "<button type=\"button\" id=" + uid
-      html += " class=\"btn btn-success btn-block\">"
-      html += "Information</button></div>"
-      layer.bindPopup html
       layer.feature = json
       @addLayer layer
     return
