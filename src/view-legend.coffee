@@ -104,10 +104,14 @@ class views.EqSliderLegendView extends Backbone.View
 
   render: () ->
     $("#eq-time-slider-container").remove()
+    $("#eq-slider-text").remove();
     @$el.prepend @sliderTemplate
     maxDate = @options.maxDate
     minDate = @options.minDate
     layer = @model.get "layer"
+
+    slideText = "Earthquakes before " + new Date maxDate
+    $("#eq-slider-text").append slideText
 
     $ ->
       $("#eq-slider-widget").slider
@@ -118,3 +122,6 @@ class views.EqSliderLegendView extends Backbone.View
         slide: (event, ui) ->
           layer.setFilter (f) ->
             return new Date(f.properties.date).valueOf() < ui.value
+          slideText = "Earthquakes before " + new Date ui.value
+          $("#eq-slider-text").empty();
+          $("#eq-slider-text").append slideText
