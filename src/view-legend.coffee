@@ -69,7 +69,6 @@ class views.LegendItemView extends Backbone.View
 
   setActive: (e) ->
     @model.set "active", false
-    console.log @model.attributes
 
 
 
@@ -104,6 +103,7 @@ class views.EqSliderLegendView extends Backbone.View
     @sliderTemplate = _.template $("#eqTimeSlider").html()
 
   render: () ->
+    $("#eq-time-slider-container").remove()
     @$el.prepend @sliderTemplate
     maxDate = @options.maxDate
     minDate = @options.minDate
@@ -117,4 +117,4 @@ class views.EqSliderLegendView extends Backbone.View
         max: new Date(maxDate).valueOf()
         slide: (event, ui) ->
           layer.setFilter (f) ->
-            return new Date(f.properties.date).valueOf() > ui.value
+            return new Date(f.properties.date).valueOf() < ui.value
