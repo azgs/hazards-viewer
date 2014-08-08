@@ -153,7 +153,7 @@ dataLayers = [
           url: "mitigation/earthquakes.html"
         ,
           text: "Arizona Emergency Information Network"
-          url: "http://www.azein.gov/azein/Hazards%20%20Arizona/Earthquake.aspx?PageView=Shared"
+          url: "http://www.azein.gov/hazards/earthquakes"
       ]
       mitigationUrl: "mitigation/earthquakes.html"
       lastUpdate: "June 30, 2014"
@@ -281,13 +281,13 @@ dataLayers = [
       brief: '<p>Areas with High and Medium flooding potential as represented by the 100- and 500- flood zones determined by the Federal Emergency Management Agency (FEMA) digital flood insurance rate maps (DFIRM) database, dated May 2010.</p><p>Flood hazard data are currently unavailable for tribal lands in Arizona. To assess flood hazards on tribal lands, please seek out further information from the appropriate Tribal Division of Public Safety Department or Environmental Protection.</p>'
       links: [
           text: "2010 State of Arizona Multi-Hazard Mitigation Plan"
-          url: "http://www.dem.azdema.gov/operations/mitigation/hazmitplan/hazmitplan.html"
+          url: "http://www.dem.azdema.gov/preparedness/docs/coop/mitplan/26_Flooding.pdf"
         , 
           text: "Mitigation Tips"
           url: "mitigation/floods.html"
         ,
           text: "Arizona Emergency Information Network"
-          url: "http://www.azein.gov/azein/Hazards%20%20Arizona/Flooding.aspx?PageView=Shared"
+          url: "http://www.azein.gov/hazards/flooding"
       ]
       mitigationUrl: "mitigation/floods.html"
       lastUpdate: "May, 2010"
@@ -315,7 +315,7 @@ dataLayers = [
           url: "mitigation/fires.html"
         ,
           text: "Arizona Emergency Information Network"
-          url: "http://www.azein.gov/azein/Hazards%20%20Arizona/Wildfire.aspx"
+          url: "http://www.azein.gov/hazards/wildfire"
       ]
       mitigationUrl: "mitigation/fires.html"
       lastUpdate: "Fall 2013"
