@@ -238,35 +238,6 @@ dataLayers = [
           markerOptions.color = markerOptions.fillColor = color
 
           return L.circleMarker latlng, markerOptions
-
-        onEachFeature: (feature, layer) ->
-          props = [
-            key: "Date"
-            value: d.toDateString()
-          ]
-
-          if isNaN feature.properties.magnitude
-            lookup =
-              I: "<strong>I.</strong> Not felt except by a very few under especially favorable conditions."
-              II: "<strong>II.</strong> Felt only by a few persons at rest, especially on upper floors of buildings."
-              III: "<strong>III.</strong> Felt quite noticeably by persons indoors, especially on upper floors of buildings. Many people do not recognize it as an earthquake. Standing motor cars may rock slightly. Vibrations similar to the passing of a truck. Duration estimated."
-              IV: "<strong>IV.</strong> Felt indoors by many, outdoors by few during the day. At night, some awakened. Dishes, windows, doors disturbed; walls make cracking sound. Sensation like heavy truck striking building. Standing motor cars rocked noticeably."
-              V: "<strong>V.</strong> Felt by nearly everyone; many awakened. Some dishes, windows broken. Unstable objects overturned. Pendulum clocks may stop."
-              VI: "<strong>VI.</strong> Felt by all, many frightened. Some heavy furniture moved; a few instances of fallen plaster. Damage slight."
-              VII: "<strong>VII.</strong> Damage negligible in buildings of good design and construction; slight to moderate in well-built ordinary structures; considerable damage in poorly built or badly designed structures; some chimneys broken."
-              VIII: "<strong>VIII.</strong> Damage slight in specially designed structures; considerable damage in ordinary substantial buildings with partial collapse. Damage great in poorly built structures. Fall of chimneys, factory stacks, columns, monuments, walls. Heavy furniture overturned."
-              IX: "<strong>IX.</strong> Damage considerable in specially designed structures; well-designed frame structures thrown out of plumb. Damage great in substantial buildings, with partial collapse. Buildings shifted off foundations."
-
-            props.push
-              key: "Intensity"
-              value: "<p>#{lookup[feature.properties.magnitude]}</p><p><a href='http://earthquake.usgs.gov/learn/topics/mercalli.php' target='_blank'>Read more about Intensity...</a></p>"
-          else
-            props.push
-              key: "Magnitude"
-              value: "#{feature.properties.magnitude}"
-
-          layer.bindPopup _.template $("#defaultPopup").html(),
-            properties: props
   ,
     new app.models.WmsLayer
       id: "floodPotential"
