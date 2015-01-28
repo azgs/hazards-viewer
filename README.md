@@ -4,6 +4,24 @@ A map of natural hazards in Arizona. Built by the [AZGS](http://azgs.az.gov) and
 
 The map itself can be viewed here: http://data.azgs.az.gov/hazard-viewer/
 
+## Development Setup
+
+In a Linux environment:
+
+```
+$ npm install
+$ node server.js
+```
+
+Page is served out at `http://localhost:3001/`
+
+In [Cloud9](https://c9.io/) Linux environment:
+
+After above steps make sure to change the port to 8080 in `server.js`. That is `app.listen(3001);` should be changed to `app.listen(8080);`
+
+Page is accessed at your Cloud9 web server page though make sure to use 'http' instead of 'https'.
+
+
 ## About these data
 
 ### Earth Fissures
