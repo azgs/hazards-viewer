@@ -25,7 +25,7 @@ dataLayers = [
       layerName: "Earth Fissures"
       serviceUrl: app.geoserverUrl
       serviceType: "WFS"
-      typeName: "azgs:earthfissures"
+      typeName: "azgs:earthfissures2"
       active: false
       useD3: true
       citation: "Arizona Geological Survey"
@@ -43,22 +43,22 @@ dataLayers = [
       description: '<h4>Layer Description</h4>'
       legend: new app.models.Legend [
           caption: "Continuous Earth Fissure"
-          attribute: "fisstype"
-          value: "Continuous"
+          attribute: "Label"
+          value: "Continuous earth fissure"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/ef_continuous.png"
         ,
           caption: "Discontinuous"
-          attribute: "fisstype"
-          value: "Discontinuous"
+          attribute: "Label"
+          value: "Discontinuous earth fissure"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/ef_discontinuous.png"
         ,
           caption: "Reported/Unconfirmed"
-          attribute: "fisstype"
-          value: "Reported/Unconfirmed"
+          attribute: "Label"
+          value: "Reported, unconfirmed earth fissure"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/ef_reported.png"
@@ -66,17 +66,18 @@ dataLayers = [
         legendHeading: "Earth Fissure Type"
         heading: "Fissure Type"
       layerOptions:
-        styler: "fisstype"
+        styler: "Label"
         style: (feature) ->
           defaultStyle =
             weight: 2
             fillOpacity: 0
             opacity: 1
-          if feature.properties.fisstype is "Continuous"
+            
+          if feature.properties.Label is "Continuous earth fissure"
             defaultStyle.color = "black"
-          if feature.properties.fisstype is "Discontinuous"
+          if feature.properties.Label is "Discontinuous earth fissure"
             defaultStyle.color = "red"
-          if feature.properties.fisstype is "Reported/Unconfirmed"
+          if feature.properties.Label is "Reported, unconfirmed earth fissure"
             defaultStyle.color = "green"
             defaultStyle.dashArray = "10 4"
 
