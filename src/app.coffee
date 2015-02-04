@@ -25,7 +25,7 @@ dataLayers = [
       layerName: "Earth Fissures"
       serviceUrl: app.geoserverUrl
       serviceType: "WFS"
-      typeName: "azgs:earthfissures2"
+      typeName: "azgs:earthfissures"
       active: false
       useD3: true
       citation: "Arizona Geological Survey"
