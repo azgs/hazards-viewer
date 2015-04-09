@@ -339,24 +339,28 @@ app.dataLayerCollection = new app.models.LayerCollection dataLayers
 # Setup base layers
 app.bingApiKey = "AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
 baseLayers = [
-    new app.models.BingLayer
+    new app.models.TileLayer
       id: "Road"
       layerName: "Road Map"
-      apiKey: app.bingApiKey
+      url: 'https://a.tiles.mapbox.com/v3/azgs.map-qc1pcpws/{z}/{x}/{y}.png'
       bingType: "Road"
       active: true
+      
   ,
     new app.models.BingLayer
       id: "Aerial"
       layerName: "Satellite Imagery"
       apiKey: app.bingApiKey
       bingType: "Aerial"
+      
   ,
     new app.models.BingLayer
       id: "AerialWithLabels"
       layerName: "Imagery with Labels"
       apiKey: app.bingApiKey
       bingType: "AerialWithLabels"
+     
+    
 ]
 
 app.baseLayerCollection = new app.models.LayerCollection baseLayers
