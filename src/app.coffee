@@ -21,11 +21,11 @@ app.geoserverUrl = "http://data.azgs.az.gov/arizona-hazards/azgs/ows"
 # Setup data layers
 dataLayers = [
     new app.models.GeoJSONLayer
-      id: "fissure_linework_051815"
+      id: "earthfissures"
       layerName: "Earth Fissures"
       serviceUrl: app.geoserverUrl
       serviceType: "WFS"
-      typeName: "azgs:fissure_linework_051815"
+      typeName: "azgs:earthfissures"
       active: false
       useD3: true
       citation: "Arizona Geological Survey"
