@@ -21,7 +21,7 @@ app.geoserverUrl = "http://data.azgs.az.gov/arizona-hazards/azgs/ows"
 # Setup data layers
 dataLayers = [
     new app.models.GeoJSONLayer
-      id: "earthfissures"
+      id: "earthFissures"
       layerName: "Earth Fissures"
       serviceUrl: app.geoserverUrl
       serviceType: "WFS"
