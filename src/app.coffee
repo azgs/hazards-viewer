@@ -336,6 +336,27 @@ dataLayers = [
   
 app.dataLayerCollection = new app.models.LayerCollection dataLayers
 
+dataLayers2 = [
+  new app.models.WmsLayer
+      id: "MajorR"
+      layerName: "Major Rivers"
+      serviceUrl: app.geoserverUrl
+      serviceType: "WFS"
+      opacity: 0.5,
+      wfsUrl: "http://data.azgs.az.gov/arizona-hazards/azgs/ows"
+      typeName: "azgs:MajorR"
+      active: true
+      layerOptions:
+        styler: "symbol"
+        style: (feature) ->
+          defaultStyle =
+            weight: 20
+            fillOpacity: 0.5
+            opacity: 0.50
+]
+
+app.dataLayerCollection2 = new app.models.LayerCollection dataLayers2
+
 # Setup base layers
 app.bingApiKey = "AvRe9bcvCMLvazRf2jV1W6FaNT40ABwWhH6gRYKxt72tgnoYwHV1BnWzZxbm7QJ2"
 baseLayers = [

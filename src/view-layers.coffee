@@ -59,6 +59,13 @@ class app.views.SidebarView extends Backbone.View
     boxId = checkbox.attr "id"
     modelId = boxId.split("-")[0]
     model = @collection.get modelId
+    
+    if modelId is "floodPotential"
+      @collection2 = app.dataLayerCollection2
+      model2 = @collection2.get ("MajorR")
+      lr = model2.get "layer"
+      app.map.addLayer lr
+      model2.set "active", true
 
     # Toggle the legend
     @$el.find("##{boxId.split("-")[0]}-legend-collapse").collapse "toggle"
@@ -75,6 +82,12 @@ class app.views.SidebarView extends Backbone.View
 
       if p?
         p.attr "id", "#{model.id}-layer"
+        
+    else if modelId is "floodPotential"
+      app.map.removeLayer model2.get "layer"
+      model2.set "active", false
+      app.map.removeLayer model.get "layer"
+      model.set "active", false
     else
       app.map.removeLayer model.get "layer"
       model.set "active", false
