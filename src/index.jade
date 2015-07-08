@@ -142,6 +142,7 @@ html(lang="en")
                     label.onoffswitch-label(for!="<%= model.get('id') %>-toggle")
                         .onoffswitch-inner
                         .onoffswitch-switch
+                a(href="#", href!="#<%= model.get('id') %>-modal", role="button", data-toggle="modal").Info_Icon
                 a.layer-info-button(href="#", href!="#<%= model.get('id') %>-modal", role="button", data-toggle="modal") <%= model.get('layerName') %>
             div(id!="<%= model.get('id') %>-legend-collapse", class="accordion-body collapse")
                 div(id!="<%= model.get('id') %>-legend", class="accordion-inner")
