@@ -16,14 +16,14 @@ app.map = new L.Map "map",
   minZoom: 6
   maxZoom: 15
 
-app.geoserverUrl = "http://data.azgs.az.gov/arizona-hazards/azgs/ows"
+app.geoserverUrl = "http://10.208.3.125:8080/geoserver"
 
 # Setup data layers
 dataLayers = [
     new app.models.GeoJSONLayer
       id: "earthFissures"
       layerName: "Earth Fissures"
-      serviceUrl: app.geoserverUrl
+      serviceUrl: app.geoserverUrl + "/azgs/ows"
       serviceType: "WFS"
       typeName: "azgs:earthfissures"
       active: false
@@ -86,7 +86,7 @@ dataLayers = [
     new app.models.GeoJSONLayer
       id: "activeFaults"
       layerName: "Active Faults"
-      serviceUrl: app.geoserverUrl
+      serviceUrl: app.geoserverUrl + "/azgs/ows"
       serviceType: "WFS"
       typeName: "azgs:activefaults"
       active: false
@@ -140,7 +140,7 @@ dataLayers = [
     new app.models.GeoJSONLayer
       id: "earthquakes"
       layerName: "Earthquake Epicenters"
-      serviceUrl: app.geoserverUrl
+      serviceUrl: app.geoserverUrl + "/azgs/ows"
       serviceType: "WFS"
       typeName: "azgs:earthquakedata"
       citation: "Arizona Geological Survey"
@@ -243,9 +243,9 @@ dataLayers = [
     new app.models.WmsLayer
       id: "floodPotential"
       layerName: "Flood Potential"
-      serviceUrl: "http://data.azgs.az.gov/arizona-hazards/azgs/wms"
+      serviceUrl: app.geoserverUrl + "/azgs/wms"
       serviceType: "WMS"
-      wfsUrl: "http://data.azgs.az.gov/arizona-hazards/azgs/ows"
+      wfsUrl: app.geoserverUrl + "/azgs/ows"
       typeName: "azgs:floods"
       active: false
       citation: "Arizona Division of Emergency Management and Military Affairs"
