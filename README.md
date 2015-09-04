@@ -6,21 +6,40 @@ The map itself can be viewed here: http://data.azgs.az.gov/hazard-viewer/
 
 ## Development Setup
 
-In a Linux environment:
+Prerequisites: Nodejs
+
+The following steps run an install script which compiles the javascript from coffeescript, the html from jade and the css from less. It was created for a Linux/Mac enviroment but see steps below to get the application running in Windows, or you can create your own watchers in your IDE. In the future an equivalent `install.sh` needs to be created for Windows or a cross-platform install script should to be written (using shelljs?). 
+
+In a **Linux/Mac** environment:
 
 ```
 $ npm install
 $ node server.js
 ```
 
+In a **Windows** environment:
+
+- Modify `package.json` by removing `./` before `install.sh`:
+```
+"install": "install.sh"
+```
+- In a Windows terminal:
+```
+> npm install
+```
+- In the new `scripts` directory move everything from `scripts/src` to `scripts`
+- Move `scripts/server.js` to the hazards viewer root, `hazards-viewer`
+```
+> node server.js
+```
+
 Page is served out at `http://localhost:3001/`
 
-In [Cloud9](https://c9.io/) Linux environment:
+In **[Cloud9](https://c9.io/) Linux** environment:
 
-After above steps make sure to change the port to 8080 in `server.js`. That is `app.listen(3001);` should be changed to `app.listen(8080);`
+~~After above steps make sure to change the port to 8080 in `server.js`. That is `app.listen(3001);` should be changed to `app.listen(8080);`Page is accessed at your Cloud9 web server page though make sure to use 'http' instead of 'https'.~~
 
-Page is accessed at your Cloud9 web server page though make sure to use 'http' instead of 'https'.
-
+**Cloud 9 Update: Data used by the Hazard viewer can only be accessed from an AZGS IP address so external development is no longer possible.**
 
 ## About these data
 
