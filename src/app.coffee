@@ -340,10 +340,10 @@ dataLayers2 = [
   new app.models.WmsLayer
       id: "MajorR"
       layerName: "Major Rivers"
-      serviceUrl: app.geoserverUrl
+      serviceUrl: app.geoserverUrl + "/azgs/ows"
       serviceType: "WFS"
       opacity: 0.5,
-      wfsUrl: "http://data.azgs.az.gov/arizona-hazards/azgs/ows"
+      wfsUrl: app.geoserverUrl + "/azgs/ows"
       typeName: "azgs:MajorR"
       active: true
       layerOptions:
