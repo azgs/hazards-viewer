@@ -37,9 +37,7 @@ Page is served out at `http://localhost:3001/`
 
 In **[Cloud9](https://c9.io/) Linux** environment:
 
-~~After above steps make sure to change the port to 8080 in `server.js`. That is `app.listen(3001);` should be changed to `app.listen(8080);`Page is accessed at your Cloud9 web server page though make sure to use 'http' instead of 'https'.~~
-
-**Cloud 9 Update: Data used by the Hazard viewer can only be accessed from an AZGS IP address so external development is no longer possible.**
+After above steps make sure to change the port to 8080 in `server.js`. That is `app.listen(3001);` should be changed to `app.listen(8080);`Page is accessed at your Cloud9 web server page though make sure to use 'http' instead of 'https'.
 
 ## About these data
 
