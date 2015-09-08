@@ -16,7 +16,7 @@ app.map = new L.Map "map",
   minZoom: 6
   maxZoom: 15
 
-app.geoserverUrl = "http://data.azgs.az.gov/arizona-hazards/"
+app.geoserverUrl = "http://data.usgin.org/higs_bedrock_geology/"
 
 # Setup data layers
 dataLayers = [
