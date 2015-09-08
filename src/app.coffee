@@ -16,7 +16,7 @@ app.map = new L.Map "map",
   minZoom: 6
   maxZoom: 15
 
-app.geoserverUrl = "http://10.208.3.125:8080/geoserver"
+app.geoserverUrl = "http://data.azgs.az.gov/arizona-hazards/"
 
 # Setup data layers
 dataLayers = [
