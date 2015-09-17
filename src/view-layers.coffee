@@ -31,6 +31,10 @@ class app.views.SidebarView extends Backbone.View
 
     # All filterable boxes should start checked
     el.find(".filter").prop "checked", true
+    
+    # Remove checkbox from Study_areas layer
+    $("input[columnvalue*=x]").remove()
+    
 
     # Hacky -- bind event to part of the modals
     $(".info-collapse").on "click", @toggleCollapseIcon
@@ -59,13 +63,24 @@ class app.views.SidebarView extends Backbone.View
     boxId = checkbox.attr "id"
     modelId = boxId.split("-")[0]
     model = @collection.get modelId
+    @collection2 = app.dataLayerCollection2
     
     if modelId is "floodPotential"
-      @collection2 = app.dataLayerCollection2
       model2 = @collection2.get ("MajorR")
-      lr = model2.get "layer"
-      app.map.addLayer lr
+      MR = model2.get "layer"
+      app.map.addLayer MR
       model2.set "active", true
+      
+    if modelId is "earthFissures"
+        model3 = app.dataLayerCollection2.get ("study_area_wgs84")
+        SA = model3.get "layer"
+        app.map.addLayer SA
+        model3.set "active", true
+        
+        for key, value2 of SA._layers
+          for key, value3  of value2._layers
+            pr = $(value3._container).children()
+            pr.attr "class", "#{model3.id}-layer"
 
     # Toggle the legend
     @$el.find("##{boxId.split("-")[0]}-legend-collapse").collapse "toggle"
@@ -83,9 +98,16 @@ class app.views.SidebarView extends Backbone.View
       if p?
         p.attr "id", "#{model.id}-layer"
         
+        
     else if modelId is "floodPotential"
       app.map.removeLayer model2.get "layer"
       model2.set "active", false
+      app.map.removeLayer model.get "layer"
+      model.set "active", false
+      
+    else if modelId is "earthFissures"
+      app.map.removeLayer model3.get "layer"
+      model3.set "active", false
       app.map.removeLayer model.get "layer"
       model.set "active", false
     else

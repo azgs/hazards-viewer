@@ -13,7 +13,26 @@
 #layer.setFilter(function (f) {
 #  return f.properties["lynyrd"] = "skynyrd";
 #});
-#
+
+#OnClick (within popup) is a global event thus function must be pushed to global namespace    
+(exports ? this).doZoom = (bbox0, bbox1, bbox2, bbox3) ->  
+    bounds = L.latLngBounds([
+      [
+          bbox1
+          bbox0
+      ]
+      [
+        bbox3
+        bbox2
+      ]
+    ])
+    app.map.fitBounds bounds
+    
+#OnClick (within popup) is a global event thus function must be pushed to global namespace 
+(exports ? this).windowPDF = () ->
+    window.open(preview, '_blank')
+  
+  
 L.FilterGeoJSON = L.FeatureGroup.extend(
   options:
     filter: ->
@@ -63,8 +82,48 @@ L.FilterGeoJSON = L.FeatureGroup.extend(
         key: "Date"
         value: new Date(date)
       ]
-
-      if isNaN json.properties.magnitude
+      
+      #Popup Configuration STUDY AREA/ Earth fissures  
+      if json.properties.Type is "Study area" 
+        url2 = 'http://data.azgs.az.gov/static/downloadable-files/hazard-data/'
+        ###onEachFeature = (json, layer) ->###
+        pdf = json.properties.Pdf.split(',')
+        label = json.properties.Label
+        bbox = layer.getBounds().toBBoxString()
+        splitbbox = bbox.split(',')
+        lastOne = pdf[pdf.length - 1]
+        preview = url2 + 'EarthFissureAssets/' + lastOne + '.png'
+        #PDF button/link 
+        links = _.map(pdf, (item) ->
+              path = url2 + 'EarthFissureAssets/' + item + '.pdf'
+              '<div class="alert alert-info"><a Target="_blank" onclick="windowPDF" href="' + path + '">' + item + '</a></div>'
+              ).join('')
+        
+        
+        urlCheck = (url) ->
+            http = new XMLHttpRequest
+            http.open 'HEAD', url, false
+            http.send()
+            if http.status == 200
+                        links
+            else
+                        '<div class="alert alert-danger">Not Available</div>'
+        
+        #zoom button / content in popup
+        html1 = '<div class="title"><h4>' + label + ' Study Area</h4></div>'
+        html1 += '<table><tr>'
+        html1 += '<td width=200><img width=200 src="' + preview + '" onerror=this.style.display="none"; /></td>'
+        html1 += '<td style="padding-left:10px;">'
+        html1 += '<h5>Downloadable Maps:</h5>'
+        html1 += '<div class=download>' + urlCheck(preview) + '</div>'
+        html1 += '<button type="button" id="test" onclick="doZoom(' + bbox + ')" class="btn btn-success">Zoom to this study area</button>'
+        html1 += '</td></tr></table>'
+        
+        layer.bindPopup html1, minWidth: 400
+        @addLayer layer
+        return
+       
+      else if isNaN json.properties.magnitude
         lookup = 
           I: "<strong>I.</strong> Not felt except by a very few under especially favorable conditions."
           II: "<strong>II.</strong> Felt only by a few persons at rest, especially on upper floors of buildings."
@@ -89,6 +148,10 @@ L.FilterGeoJSON = L.FeatureGroup.extend(
 
       @addLayer layer
     return
+    
 )
+
 L.filterGeoJson = (data, options) ->
   new L.FilterGeoJSON(data, options)
+  
+  

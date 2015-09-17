@@ -16,7 +16,8 @@ app.map = new L.Map "map",
   minZoom: 6
   maxZoom: 15
 
-app.geoserverUrl = "http://data.usgin.org/higs_bedrock_geology/"
+
+app.geoserverUrl = "http://data.usgin.org/higs_bedrock_geology"
 
 # Setup data layers
 dataLayers = [
@@ -62,6 +63,11 @@ dataLayers = [
           active: true
           imageInfo:
             png: "img/legend_imgs/png/ef_reported.png"
+        ,
+          caption: "Study Area Boundary"
+          active: true
+          imageInfo:
+            png: "img/legend_imgs/png/study_area_blue.png"
       ],
         legendHeading: "Earth Fissure Type"
         heading: "Fissure Type"
@@ -337,7 +343,7 @@ dataLayers = [
 app.dataLayerCollection = new app.models.LayerCollection dataLayers
 
 dataLayers2 = [
-  new app.models.WmsLayer
+    new app.models.WmsLayer
       id: "MajorR"
       layerName: "Major Rivers"
       serviceUrl: app.geoserverUrl + "/azgs/ows"
@@ -353,6 +359,24 @@ dataLayers2 = [
             weight: 20
             fillOpacity: 0.5
             opacity: 0.50
+            
+  ,
+    new app.models.GeoJSONLayer
+      id: "study_area_wgs84"
+      layerName: "Earth Fissure Study Area"
+      serviceUrl: app.geoserverUrl + "/azgs/ows"
+      serviceType: "WFS"
+      typeName: "azgs:study_area_wgs84"
+      active: false
+      useD3: false
+      layerOptions:
+        styler: "Type"
+        pointToLayer: (feature) ->
+          markerOptions1 =
+            fillOpacity: 0.2
+            fill: "#FFBF00"
+            stroke: "#FFBF00"
+          return layerOptions
 ]
 
 app.dataLayerCollection2 = new app.models.LayerCollection dataLayers2
