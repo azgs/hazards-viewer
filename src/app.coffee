@@ -343,7 +343,7 @@ dataLayers = [
 app.dataLayerCollection = new app.models.LayerCollection dataLayers
 
 dataLayers2 = [
-    new app.models.WmsLayer
+    new app.models.GeoJSONLayer
       id: "MajorR"
       layerName: "Major Rivers"
       serviceUrl: app.geoserverUrl + "/azgs/ows"

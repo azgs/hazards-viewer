@@ -71,6 +71,11 @@ class app.views.SidebarView extends Backbone.View
       app.map.addLayer MR
       model2.set "active", true
       
+      for key, value4 of MR._layers
+        for key, value5  of value4._layers
+          pr = $(value5._container).children()
+          pr.attr "class", "#{model2.id}-layer"
+      
     if modelId is "earthFissures"
         model3 = app.dataLayerCollection2.get ("study_area_wgs84")
         SA = model3.get "layer"
