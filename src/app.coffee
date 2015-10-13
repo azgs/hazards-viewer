@@ -175,9 +175,16 @@ dataLayers = [
           imageInfo:
             png: "img/legend_imgs/png/eq_old.png"
         ,
+          caption: "1 - 2"
+          attribute: "magnitude"
+          value: "[1.0, 1.99]"
+          active: true
+          imageInfo:
+            png: "img/legend_imgs/png/eq_12.png"
+        ,
           caption: "2 - 3"
           attribute: "magnitude"
-          value: "[1.9, 2.99]"
+          value: "[2.0, 2.99]"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_23.png"
