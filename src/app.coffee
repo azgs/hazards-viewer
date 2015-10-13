@@ -177,42 +177,42 @@ dataLayers = [
         ,
           caption: "2 - 3"
           attribute: "magnitude"
-          value: "[1.9, 3.1]"
+          value: "[1.9, 2.99]"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_23.png"
         ,
           caption: "3 - 4"
           attribute: "magnitude"
-          value: "[2.9, 4.1]"
+          value: "[3.0, 3.99]"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_34.png"
         ,
           caption: "4 - 5"
           attribute: "magnitude"
-          value: "[3.9, 5.1]"
+          value: "[4.0, 4.99]"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_45.png"
         ,
           caption: "5 - 6"
           attribute: "magnitude"
-          value: "[4.9, 6.1]"
+          value: "[5.0, 5.99]"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_56.png"
         ,
           caption: "6 - 7"
           attribute: "magnitude"
-          value: "[5.9, 7.1]"
+          value: "[6.0, 6.99]"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_67.png"
         ,
           caption: "7 - 8"
           attribute: "magnitude"
-          value: "[6.9, 8.1]"
+          value: "[7.0, 8.1]"
           active: true
           imageInfo:
             png: "img/legend_imgs/png/eq_78.png"
