@@ -74,3 +74,9 @@ __Update Frequency:__ This dataset is not maintained by the AZGS and will be upd
 - Reclassifying a raster for simple categorization of fire risk
 - Updating the [backend for the WCS service](http://data.usgin.org/arizona/ows?service=wcs&version=1.0.0&request=GetCapabilities)
 - Rebuilding .png tiles and replacing the existing set (http://{s}.tiles.usgin.org/fire-risk-index/{z}/{x}/{y}.png)
+
+### Landslides Layer
+
+The term landslides here encompasses many types of mass movement features including rock falls, slides, topples, debris flows, and earth slides. Landslide features range in size from small localized slides a few tens of feet across to complexes of many large slide blocks miles wide.
+
+__Update Frequency:__ The building of a statewide landslide database for AZ is an ongoing project and new mapping and landslide data will be added as it becomes available. AZGS hopes to partner with other state, county, and tribal agencies to make the database as complete as possible.

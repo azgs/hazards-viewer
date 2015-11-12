@@ -58,35 +58,19 @@ class app.views.SidebarView extends Backbone.View
       icon.removeClass "icon-chevron-right"
       icon.addClass "icon-chevron-down"
 
+
   toggleLayer: (e) ->
     checkbox = $ e.currentTarget
     boxId = checkbox.attr "id"
     modelId = boxId.split("-")[0]
     model = @collection.get modelId
     @collection2 = app.dataLayerCollection2
+    model2= @collection2.get ("MajorR")
+    model3 = @collection2.get ("study_area_wgs84")
+    model4 = @collection2.get ("Landslide_contacts")
+    model5 = @collection2.get ("Landslide_lines")
     
-    if modelId is "floodPotential"
-      model2 = @collection2.get ("MajorR")
-      MR = model2.get "layer"
-      app.map.addLayer MR
-      model2.set "active", true
-      
-      for key, value4 of MR._layers
-        for key, value5  of value4._layers
-          pr = $(value5._container).children()
-          pr.attr "class", "#{model2.id}-layer"
-      
-    if modelId is "earthFissures"
-        model3 = app.dataLayerCollection2.get ("study_area_wgs84")
-        SA = model3.get "layer"
-        app.map.addLayer SA
-        model3.set "active", true
-        
-        for key, value2 of SA._layers
-          for key, value3  of value2._layers
-            pr = $(value3._container).children()
-            pr.attr "class", "#{model3.id}-layer"
-
+    
     # Toggle the legend
     @$el.find("##{boxId.split("-")[0]}-legend-collapse").collapse "toggle"
 
@@ -102,14 +86,60 @@ class app.views.SidebarView extends Backbone.View
 
       if p?
         p.attr "id", "#{model.id}-layer"
+    
+      if modelId is "floodPotential"
+        MR = model2.get "layer"
+        app.map.addLayer MR
+        model2.set "active", true
         
+        for key, value4 of MR._layers
+          for key, value5  of value4._layers
+            pr = $(value5._container).children()
+            pr.attr "class", "#{model2.id}-layer"
+            
         
+      if modelId is "earthFissures"
+        SA = model3.get "layer"
+        app.map.addLayer SA
+        model3.set "active", true
+          
+        for key, value2 of SA._layers
+          for key, value3  of value2._layers
+            pr = $(value3._container).children()
+            pr.attr "class", "#{model3.id}-layer"
+ 
+#      if modelId is "Landslide_polygons"
+#        lw = model4.get "layer"
+#        app.map.addLayer lw
+#        model4.set "active", true
+#          
+#        for key, value5 of lw._layers
+#          for key, value6  of value5._layers
+#            pt = $(value6._container).children()
+#            pt.attr "class", "#{model4.id}-layer"
+#          
+#        lp = model5.get "layer"
+#        app.map.addLayer lp
+#        model5.set "active", true
+#          
+#        for key, value7 of lw._layers
+#          for key, value8  of value7._layers
+#            pp = $(value8._container).children()
+#            pp.attr "class", "#{model5.id}-layer"
+
     else if modelId is "floodPotential"
       app.map.removeLayer model2.get "layer"
       model2.set "active", false
       app.map.removeLayer model.get "layer"
       model.set "active", false
-      
+    
+#    else if modelId is "Landslide_polygons"
+#      app.map.removeLayer model.get "layer"
+#      model.set "active", false
+#      app.map.removeLayer model5.get "layer"
+#      model5.set "active", false
+#      app.map.removeLayer model4.get "layer"
+#      model4.set "active", false
     else if modelId is "earthFissures"
       app.map.removeLayer model3.get "layer"
       model3.set "active", false
@@ -221,6 +251,8 @@ class views.DownloadView extends Backbone.View
       url += 'floods.zip'
     if layerId is 'fireRisk'
       url += 'wildfires.zip'
+    if layerId is 'Landslide_polygons'
+      url += 'landslides.zip'
 
     window.location.assign url
 
@@ -237,6 +269,8 @@ class views.DownloadView extends Backbone.View
       url += 'floods'
     if layerId is 'fireRisk'
       url += 'wildfires'
+    if layerId is 'Landslide_polygons'
+      url += 'landslides'
 
     window.location.assign url + '-metadata.xml'
 

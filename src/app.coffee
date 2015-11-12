@@ -345,7 +345,90 @@ dataLayers = [
         legendHeading: "FRI Relative Risk"
         heading: "Relative Risk"
         filterable: false
-]
+]# REPLACE ] with , (MOVE COMMA ONE TAB IN FROM 348:0)
+#    new app.models.WmsLayer
+#      id: "Landslide_polygons"
+#      layerName: "Landslides"
+#      serviceUrl: app.geoserverUrl + "/azgs/ows"
+#     serviceType: "WMS"
+#      typeName: "azgs:Landslide_polygons"
+#      active: true
+#      useD3: false
+#      lastUpdate: "October 2015"
+#      citation: "Arizona Geological Survey"
+#      brief: 'The term landslides here encompasses many types of mass movement features including rock falls, slides, topples, debris flows, and earth slides. Landslide features range in size from small localized slides a few tens of feet across to complexes of many large slide blocks miles wide.'
+#      details: '<p> In 2015 AZGS began compiling statewide landslide data to update the Arizona Hazard Mitigation Plan Risk Assessment. Landslides pose a hazard to people, property, and infrastructure such as roads and utilities. The cost to repair highways in AZ due to damage by landslides in recent years exceeds $20 million. Landslide data was compiled from multiple sources including AZGS and USGS geologic maps and aerial photo and Google Earth imagery interpretation. At present there are over 4,400 landslide polygons and 1,300 debris flow data points in the database covering over 520 square miles. Many of these landslides are ancient landscape features (Pliocene-Pleistocene) but many are more recent (Holocene to historical and active). Portions of ancient landslides may reactivate in response to surface modification and/or heavy rains..</p><p>The building of a statewide landslide database for AZ is an ongoing project and new mapping and landslide data will be added as it becomes available. AZGS hopes to partner with other state, county, and tribal agencies to make the database as complete as possible.</p>'
+#      legend: new app.models.Legend [
+#          caption: "Earth Slide - General"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/Yellow45.png"
+#        ,
+#          caption: "Earth Slide - Rotational"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/Red45.png"
+#        ,
+#          caption: "Earth Slide - Translational"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/Purple45.png"
+#        ,
+#          caption: "Rock Slide - Rotational"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/Orange45.png"
+#        ,
+#          caption: "Debris Flow"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/DarkGreen45.png"
+#        ,
+#          caption: "Rock Fall"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/AppleGreen45.png"
+#        ,
+#          caption: "Debris Fall"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/Blue45.png"
+#        ,
+#          caption: "Accurate Contact"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/LSBlackLine.png"
+#        ,
+#          caption: "Proximate Contact"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/LSDashedLine.png"
+#        ,
+#          caption: "Fault"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/LSThickLine.png"
+#        ,
+#          caption: "Accurate Scarp"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/LSLineHatch.png"
+#        ,
+#          caption: "Proximate Scarp"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/LSDashHatch.png"
+#        ,
+#          caption: "Debis Flow Chute"
+#          active: true
+#          imageInfo:
+#            png: "img/legend_imgs/png/Arrow45.png"
+#      ],
+#       legendHeading: "Landslides"
+#        heading: "Landslide Type"
+#        filterable: false
+#]
+
   
 app.dataLayerCollection = new app.models.LayerCollection dataLayers
 
@@ -366,8 +449,7 @@ dataLayers2 = [
             weight: 20
             fillOpacity: 0.5
             opacity: 0.50
-            
-  ,
+  ,       
     new app.models.GeoJSONLayer
       id: "study_area_wgs84"
       layerName: "Earth Fissure Study Area"
@@ -384,6 +466,24 @@ dataLayers2 = [
             fill: "#FFBF00"
             stroke: "#FFBF00"
           return layerOptions
+  ,
+    new app.models.WmsLayer
+      id: "Landslide_contacts"
+      layerName: "Landslide Contacts"
+      serviceUrl: app.geoserverUrl + "/azgs/ows"
+      serviceType: "WMS"
+      typeName: "azgs:Landslide_contacts"
+      active: false
+      useD3: false
+  ,
+    new app.models.WmsLayer
+      id: "Landslide_lines"
+      layerName: "Landslide Lines"
+      serviceUrl: app.geoserverUrl + "/azgs/ows"
+      serviceType: "WMS"
+      typeName: "azgs:Landslide_lines"
+      active: false
+      useD3: false
 ]
 
 app.dataLayerCollection2 = new app.models.LayerCollection dataLayers2
