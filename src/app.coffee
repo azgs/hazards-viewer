@@ -40,7 +40,7 @@ dataLayers = [
           url: "mitigation/fissures.html"
       ]
       mitigationUrl: "mitigation/fissures.html"
-      lastUpdate: "Summer, 2013"
+      lastUpdate: "January 2016"
       description: '<h4>Layer Description</h4>'
       legend: new app.models.Legend [
           caption: "Continuous Earth Fissure"
