@@ -62,7 +62,14 @@ dataLayers = [
           value: "Reported, unconfirmed earth fissure"
           active: true
           imageInfo:
-            png: "img/legend_imgs/png/ef_reported.png"
+            png: "img/legend_imgs/png/ef_reported_unconfirmed.png"
+        ,
+          caption: "Confirmed/Unsurveyed"
+          attribute: "Label"
+          value: "Confirmed, unsurveyed earth fissure"
+          active: true
+          imageInfo:
+            png: "img/legend_imgs/png/ef_unsurveyed.png"
         ,
           caption: "Study Area Boundary"
           active: true
@@ -85,7 +92,8 @@ dataLayers = [
             defaultStyle.color = "red"
           if feature.properties.Label is "Reported, unconfirmed earth fissure"
             defaultStyle.color = "green"
-            defaultStyle.dashArray = "10 4"
+          if feature.properties.Label is "Confirmed, unsurveyed earth fissure"
+            defaultStyle.color = "yellow"
 
           return defaultStyle
   ,
