@@ -45,7 +45,7 @@ After above steps make sure to change the port to 8080 in `server.js`. That is `
 
 Earth fissures are open surface fractures that may be as much as a mile in length, up to 15 ft wide, and 10s of feet deep.
 
-__Update Frequency:__ These data are updated infrequently. Updates require changes to the AZGS Hazards database, and should be accompanied by changes in the [AZGS document repository](http://repository.azgs.az.gov/facets/results/taxonomy%3A228), the [primary Earth Fissure site](http://www.azgs.az.gov/EFC.shtml), and the [dedicated Earth Fissure map](http://services.azgs.az.gov/OnlineMaps/fissures.html)
+__Update Frequency:__ These data are updated infrequently. Updates require changes to the AZGS Hazards database, and should be accompanied by changes in the [AZGS document repository](http://repository.azgs.az.gov/facets/results/taxonomy%3A228) and the [primary Earth Fissure site](http://www.azgs.az.gov/EFC.shtml).
 
 ### Active Faults
 
