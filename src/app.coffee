@@ -434,8 +434,8 @@ dataLayers = [
             png: "img/legend_imgs/png/Arrow45.png"
       ],
        legendHeading: "Landslides"
-        heading: "Landslide Type"
-        filterable: false
+       heading: "Landslide Type"
+       filterable: false
 ]
 
   
