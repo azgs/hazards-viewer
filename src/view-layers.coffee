@@ -108,24 +108,24 @@ class app.views.SidebarView extends Backbone.View
             pr = $(value3._container).children()
             pr.attr "class", "#{model3.id}-layer"
  
-#      if modelId is "Landslide_polygons"
-#        lw = model4.get "layer"
-#        app.map.addLayer lw
-#        model4.set "active", true
-#          
-#        for key, value5 of lw._layers
-#          for key, value6  of value5._layers
-#            pt = $(value6._container).children()
-#            pt.attr "class", "#{model4.id}-layer"
-#          
-#        lp = model5.get "layer"
-#        app.map.addLayer lp
-#        model5.set "active", true
-#          
-#        for key, value7 of lw._layers
-#          for key, value8  of value7._layers
-#            pp = $(value8._container).children()
-#            pp.attr "class", "#{model5.id}-layer"
+      if modelId is "Landslide_polygons"
+        lw = model4.get "layer"
+        app.map.addLayer lw
+        model4.set "active", true
+          
+        for key, value5 of lw._layers
+          for key, value6  of value5._layers
+            pt = $(value6._container).children()
+            pt.attr "class", "#{model4.id}-layer"
+          
+        lp = model5.get "layer"
+        app.map.addLayer lp
+        model5.set "active", true
+          
+        for key, value7 of lw._layers
+          for key, value8  of value7._layers
+            pp = $(value8._container).children()
+            pp.attr "class", "#{model5.id}-layer"
 
     else if modelId is "floodPotential"
       app.map.removeLayer model2.get "layer"
@@ -133,13 +133,13 @@ class app.views.SidebarView extends Backbone.View
       app.map.removeLayer model.get "layer"
       model.set "active", false
     
-#    else if modelId is "Landslide_polygons"
-#      app.map.removeLayer model.get "layer"
-#      model.set "active", false
-#      app.map.removeLayer model5.get "layer"
-#      model5.set "active", false
-#      app.map.removeLayer model4.get "layer"
-#      model4.set "active", false
+    else if modelId is "Landslide_polygons"
+      app.map.removeLayer model.get "layer"
+      model.set "active", false
+      app.map.removeLayer model5.get "layer"
+      model5.set "active", false
+      app.map.removeLayer model4.get "layer"
+      model4.set "active", false
     else if modelId is "earthFissures"
       app.map.removeLayer model3.get "layer"
       model3.set "active", false
