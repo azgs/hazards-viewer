@@ -363,7 +363,7 @@ dataLayers = [
       typeName: "azgs:Landslide_polygons"
       active: true
       useD3: false
-      lastUpdate: "October 2015"
+      lastUpdate: "December 2017"
       citation: "Arizona Geological Survey"
       brief: 'The term landslides here encompasses many types of mass movement features including rock falls, slides, topples, debris flows, and earth slides. Landslide features range in size from small localized slides a few tens of feet across to complexes of many large slide blocks miles wide.'
       details: '<p> In 2015 AZGS began compiling statewide landslide data to update the Arizona Hazard Mitigation Plan Risk Assessment. Landslides pose a hazard to people, property, and infrastructure such as roads and utilities. The cost to repair highways in AZ due to damage by landslides in recent years exceeds $20 million. Landslide data was compiled from multiple sources including AZGS and USGS geologic maps and aerial photo and Google Earth imagery interpretation. At present there are over 4,400 landslide polygons and 1,300 debris flow data points in the database covering over 520 square miles. Many of these landslides are ancient landscape features (Pliocene-Pleistocene) but many are more recent (Holocene to historical and active). Portions of ancient landslides may reactivate in response to surface modification and/or heavy rains..</p><p>The building of a statewide landslide database for AZ is an ongoing project and new mapping and landslide data will be added as it becomes available. AZGS hopes to partner with other state, county, and tribal agencies to make the database as complete as possible.</p>'
